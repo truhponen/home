@@ -1,0 +1,2 @@
+# buildx
+docker buildx build -t truhponen/my-departures --platform linux/arm64 .
