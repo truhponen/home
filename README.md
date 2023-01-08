@@ -1,6 +1,17 @@
 This repository contains only random instructions that I need to maintain my Raspberry PI, Portainer, Home Assistant, OpenVPN, DNSMasq ... setup.
 
-My memory is not great
+My memory is not great.
+
+# Creating container image using Docker
+
+docker buildx build -t truhponen/my-departures:latest --platform linux/arm64 --push .
+
+* "Docker buildx build" to create Pi + Linux compliant image on Windows
+* "-t truhponen/my-departures:latest" to add right tag
+* "--platform linux/arm64" to make image Pi + Linux compliant
+* "--push" image to Docker hub
+* "." if build from local folder
+
 
 # Mounting NFS drive
 
