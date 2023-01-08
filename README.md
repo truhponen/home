@@ -4,7 +4,11 @@ My memory is not great.
 
 # Creating container image using Docker
 
-docker buildx build -t truhponen/my-departures:latest --platform linux/arm64 --push .
+To Docker hub
+        docker buildx build -t truhponen/my-departures:latest --platform linux/arm64 --push .
+        
+To Git hub
+        sudo docker buildx build -t ghcr.io/truhponen/my-departures:latest --platform linux/arm64 --push .
 
 * "Docker buildx build" to create Pi + Linux compliant image on Windows
 * "-t truhponen/my-departures:latest" to add right tag
