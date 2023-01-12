@@ -1,0 +1,25 @@
+# Dynamic query
+
+
+    operators = {
+        "==": 'eq',
+        "!=": 'ne',
+        "<=": 'le',
+        ">=": 'ge',
+        "<": 'lt',
+        ">": 'gt',
+    }
+
+        def search(table_id, action, key, op_symbol, value):
+            op = operators[op_symbol]
+            db = TinyDB(config.db)
+            table = db.table()
+            query = Query()
+            func = getattr(operator,op)
+            term = func(query[key],value)
+            action = getattr(table, action)
+            departures = action(term)
+            return departures
+
+    print(search("HSL_1000103", 'search', 'time', '<=', 1673460859))
+    
