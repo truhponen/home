@@ -7,11 +7,11 @@ My memory is not great.
 
 To Docker hub
 
-        docker buildx build -t truhponen/my-departures:latest --platform linux/arm64 --push .
+    docker buildx build -t truhponen/my-departures:latest --platform linux/arm64 --push .
         
 To Git hub
 
-        sudo docker buildx build -t ghcr.io/truhponen/my-departures:latest --platform linux/arm64 --push .
+    sudo docker buildx build -t ghcr.io/truhponen/my-departures:latest --platform linux/arm64 --push .
 
 
 * "Docker buildx build" to create Pi + Linux compliant image on Windows
@@ -79,18 +79,18 @@ container image: https://hub.docker.com/r/rhasspy/wyoming-whisper
 
 Compose 
 
-        whisper:
-          image: "rhasspy/wyoming-whisper:latest"
+    whisper:
+      image: "rhasspy/wyoming-whisper:latest"
           
-          restart: unless-stopped
+      restart: unless-stopped
           
-          networks:
-            home_automation:
+      networks:
+        home_automation:
         
-          ports:
-            "10300:10300"
+      ports:
+        "10300:10300"
             
-          volumes:
-            - whisper:/data:rw
+      volumes:
+        - whisper:/data:rw
             
-          command: --model tiny-int8 --language en
+      command: --model tiny-int8 --language en
