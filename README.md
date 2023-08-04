@@ -2,6 +2,7 @@ This repository contains only random instructions that I need to maintain my Ras
 
 My memory is not great.
 
+
 # Creating container image using Docker
 
 To Docker hub
@@ -23,7 +24,6 @@ To Git hub
 
 # Mounting NFS drive
 
-
 Followed these instructions: https://cloudinfrastructureservices.co.uk/how-to-install-nfs-on-debian-11-server/
 
 1. Create folder
@@ -41,6 +41,7 @@ Followed these instructions: https://cloudinfrastructureservices.co.uk/how-to-in
         systemctl restart nfs-server
         
 5. Create volume in Docker
+
 
 # Home assistant voice
 
