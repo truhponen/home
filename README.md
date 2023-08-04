@@ -41,3 +41,32 @@ Followed these instructions: https://cloudinfrastructureservices.co.uk/how-to-in
         systemctl restart nfs-server
         
 5. Create volume in Docker
+
+# Home assistant voice
+
+Links to containers from https://www.home-assistant.io/blog/2023/04/27/year-of-the-voice-chapter-2/
+
+Piper
+container image: https://hub.docker.com/r/rhasspy/wyoming-piper
+
+Compose 
+
+        # Piper (text-to-speech)
+        piper:
+          image: "rhasspy/wyoming-piper:latest"
+          
+          restart: unless-stopped
+          
+          networks:
+            home_automation:
+        
+          ports:
+            "10200:10200"
+            
+          volumes:
+            - piper:/data:rw
+            
+          command: --voice en_US-lessac-medium
+
+Whisper
+container image: https://hub.docker.com/r/rhasspy/wyoming-whisper
