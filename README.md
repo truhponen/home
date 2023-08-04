@@ -51,7 +51,6 @@ container image: https://hub.docker.com/r/rhasspy/wyoming-piper
 
 Compose 
 
-        # Piper (text-to-speech)
         piper:
           image: "rhasspy/wyoming-piper:latest"
           
@@ -70,3 +69,21 @@ Compose
 
 Whisper
 container image: https://hub.docker.com/r/rhasspy/wyoming-whisper
+
+Compose 
+
+        whisper:
+          image: "rhasspy/wyoming-whisper:latest"
+          
+          restart: unless-stopped
+          
+          networks:
+            home_automation:
+        
+          ports:
+            "10300:10300"
+            
+          volumes:
+            - whisper:/data:rw
+            
+          command: --model tiny-int8 --language en
