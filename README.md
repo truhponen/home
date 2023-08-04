@@ -77,6 +77,10 @@ Compose
 
 container image: https://hub.docker.com/r/rhasspy/wyoming-whisper
 
+Run
+
+    docker run -it -p 10300:10300 -v /path/to/local/data:/data rhasspy/wyoming-whisper --model tiny-int8 --language en
+
 Compose 
 
     whisper:
