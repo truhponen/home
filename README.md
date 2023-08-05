@@ -40,8 +40,19 @@ Followed these instructions: https://cloudinfrastructureservices.co.uk/how-to-in
 
         systemctl restart nfs-server
         
-5. Create volume in Docker
+5. Create volume in Docker / Portainer
 
+   Use NFS volume
+
+       TRUE
+
+   Address
+
+       192.168.68.118
+
+   Mount point
+
+       :/nfs/whisper
 
 # Home assistant voice
 
