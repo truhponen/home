@@ -103,7 +103,7 @@ Compose
         home_automation:
         
       ports:
-        "10300:10300"
+        - "10300:10300"
             
       volumes:
         - whisper:/data:rw
