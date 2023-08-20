@@ -112,7 +112,9 @@ Compose
 
 ### Open VPN Access server
 
-If Raspberry, OS has to be Ubuntu 20.04 LTS https://openvpn.net/vpn-server-resources/install-openvpn-access-server-on-raspberry-pi/
+If Raspberry Pi, OS has to be Ubuntu 20.04 LTS.
+
+Instructions: https://openvpn.net/vpn-server-resources/install-openvpn-access-server-on-raspberry-pi/
 
 Status of Access Server
 
