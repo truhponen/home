@@ -112,19 +112,20 @@ Compose
 
 ### Open VPN Access server
 
-Status
+Status of Access Server
 
     sudo systemctl status openvpnas
 
-privkey
+Update host's privkey to OpenVPS
 
     sudo /usr/local/openvpn_as/scripts/sacli --key "cs.priv_key" --value_file "/etc/letsencrypt/live/truhponen.duckdns.org/privkey.pem" ConfigPut
 
-fullchain
+Update host's fullchain to OpenVPS
 
     sudo /usr/local/openvpn_as/scripts/sacli --key "cs.cert" --value_file "/etc/letsencrypt/live/truhponen.duckdns.org/fullchain.pem" ConfigPut
 
-start
+Restart Access Server
 
-    /usr/local/openvpn_as/scripts/sacli start
+    sudo systemctl restart openvpnas
+
 
