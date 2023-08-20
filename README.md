@@ -109,3 +109,10 @@ Compose
         - whisper:/data:rw
             
       command: --model tiny-int8 --language en
+
+### Open VPN Access server
+
+Status
+
+    sudo systemctl status openvpnas
+
