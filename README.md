@@ -126,6 +126,10 @@ Update host's fullchain to OpenVPS
 
 Restart Access Server
 
+    sudo /usr/local/openvpn_as/scripts/sacli start
+
+OR
+    
     sudo systemctl restart openvpnas
 
 
