@@ -116,12 +116,15 @@ Status
 
     sudo systemctl status openvpnas
 
+privkey
 
     sudo /usr/local/openvpn_as/scripts/sacli --key "cs.priv_key" --value_file "/etc/letsencrypt/live/truhponen.duckdns.org/privkey.pem" ConfigPut
 
+fullchain
 
     sudo /usr/local/openvpn_as/scripts/sacli --key "cs.cert" --value_file "/etc/letsencrypt/live/truhponen.duckdns.org/fullchain.pem" ConfigPut
 
+start
 
     /usr/local/openvpn_as/scripts/sacli start
 
