@@ -110,6 +110,43 @@ Compose
             
       command: --model tiny-int8 --language en
 
+# VPN
+
+### Modem setting (ZTE MC801A)
+1. Management page: http://192.168.100.1
+2. Set...
+    1. Nykyinen tila: "Siltaava tila"
+4. Go to "\5G asetukset\Yhteyspiste"
+5. Set...
+   1. PDP-tyyppi: "IPv4!"
+   2. Yhteyspiste: "internet4" (default: "internet")
+
+### Router settings (Deco)
+1. Management page: app
+4. Go to "\Lisää\Lisäasetukset\NAT-siirto\Portin edelleenlähetys"
+5. Add port forwarding for ports
+   1. 80
+   2. 443
+   3. 943
+   4. 945
+   5. 1194
+  
+### NGINX 
+
+    http {
+        server {
+            listen 80;
+            listen [::]:80;
+        
+            server_name xxxxxx;
+            server_tokens off;
+        
+            location / {
+                return 301 https://$host$request_uri;
+            }
+        }
+
+
 ### Open VPN Access server
 
 If Raspberry Pi, OS has to be Ubuntu 20.04 LTS.
