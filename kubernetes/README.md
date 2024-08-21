@@ -1,14 +1,14 @@
-## Incus preparation for Kubernetes
+# Install Kubernetes in Incus LXC container
 
 1. Change nf_conntrack_max
 
-   From https://github.com/justmeandopensource/kubernetes/blob/master/lxd-provisioning/README.md
+   Not sure if needed, but was recommended in https://github.com/justmeandopensource/kubernetes/blob/master/lxd-provisioning/README.md
 
        sudo sysctl -w net.netfilter.nf_conntrack_max=524288
 
 2. Create containers using profile k8s
 
-3. When container is running add profile k8s-testflite. Otherwise testflite fails.
+   Note that key "lxc.apparmor.profile" that is mentioned in most of instruction needs to be "incus.apparmor.profile"
 
 4. Execute shell script
 
