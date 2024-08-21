@@ -1,0 +1,9 @@
+name: data-storage
+description: ''
+devices:
+  root:
+    path: /
+    pool: data
+    type: disk
+config: {}
+project: default
