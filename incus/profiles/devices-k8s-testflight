@@ -1,0 +1,13 @@
+name: devices-k8s-testflight
+description: ''
+devices:
+  apparmor-disable5:
+    path: /boot/config-6.8.0-40-generic
+    source: /boot/config-6.8.0-40-generic
+    type: disk
+  apparmor-disable6:
+    path: /lib/modules/6.8.0-40-generic
+    source: /lib/modules/6.8.0-40-generic
+    type: disk
+config: {}
+project: default
