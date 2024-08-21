@@ -10,6 +10,6 @@ Initialize
 
     incus admin init
 
-## UI
+Install UI
 
-Installed from https://github.com/zabbly/incus
+    apt install incus-ui-canonical
