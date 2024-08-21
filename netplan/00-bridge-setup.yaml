@@ -1,0 +1,17 @@
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp0s31f6:
+      dhcp4: no
+  bridges:
+    br0:
+      interfaces: [ enp0s31f6 ]
+      dhcp4: yes
+      nameservers:
+        addresses: [1.1.1.1, 1.0.0.1]
+      dhcp6: yes
+      link-local: [ ]
+#      parameters:
+#        stp: true
+#        forward-delay: 4
