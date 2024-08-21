@@ -1,4 +1,4 @@
-name: data-storage
+name: storage-data-incus
 description: ''
 devices:
   root:
