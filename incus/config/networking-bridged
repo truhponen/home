@@ -1,4 +1,4 @@
-name: bridged
+name: networking-bridged
 description: ''
 devices:
   eth0:
