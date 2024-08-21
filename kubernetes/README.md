@@ -2,7 +2,7 @@
 
 1. Change nf_conntrack_max
 
-   Not sure if needed, but was recommended in https://github.com/justmeandopensource/kubernetes/blob/master/lxd-provisioning/README.md
+   Not sure if needed, but was recommended in https://github.com/justmeandopensource/kubernetes/blob/master/lxd-provisioning/README.md. I had troubles with kube-proxy giving error related "Set sysctl" entry="net/netfilter/nf_conntrack_max" value=131072: not permitted. This was before I changed "lxc.apparmor.profile" to "incus.apparmor.profile"
 
        sudo sysctl -w net.netfilter.nf_conntrack_max=524288
 
