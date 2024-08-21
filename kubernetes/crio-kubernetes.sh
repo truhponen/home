@@ -7,12 +7,6 @@ KUBERNETES_VERSION=v1.30
 CRIO_VERSION=v1.30
 
 echo "|"
-echo "Install utils"
-echo "|"
-apt update
-apt install -y software-properties-common curl
-
-echo "|"
 echo "Add Kubernetes repository"
 echo "|"
 curl -fsSL https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/Release.key |
