@@ -24,6 +24,6 @@ devices:
     type: unix-char
   root:
     path: /
-    pool: default
+    pool: data-incus
     type: disk
 used_by: []
