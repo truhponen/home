@@ -1,0 +1,28 @@
+name: devices-configs-k8s
+description: ''
+devices:
+  apparmor-disable1:
+    path: /sys/module/nf_conntrack/parameters/hashsize
+    source: /sys/module/nf_conntrack/parameters/hashsize
+    type: disk
+  apparmor-disable2:
+    path: /dev/kmsg
+    source: /dev/kmsg
+    type: unix-char
+  apparmor-disable3:
+    path: /sys/fs/bpf
+    source: /sys/fs/bpf
+    type: disk
+  apparmor-disable4:
+    path: /proc/sys/net/netfilter/nf_conntrack_max
+    source: /proc/sys/net/netfilter/nf_conntrack_max
+    type: disk
+config:
+  linux.kernel_modules: >-
+    ip_vs,ip_vs_rr,ip_vs_wrr,ip_vs_sh,ip_tables,ip6_tables,netlink_diag,nf_nat,overlay,br_netfilter
+  raw.lxc: |-
+    lxc.apparmor.profile=unconfined
+    lxc.cap.drop= 
+    lxc.cgroup.devices.allow=a
+    lxc.mount.auto=proc:rw sys:rw cgroup:rw
+project: default
