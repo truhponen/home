@@ -12,4 +12,4 @@ From https://github.com/justmeandopensource/kubernetes/blob/master/lxd-provision
 
 4. Execute shell script
 
-       bash < (curl https://raw.githubusercontent.com/truhponen/home/main/kubernetes/crio-kubernetes.sh)
+       bash <(curl https://raw.githubusercontent.com/truhponen/home/main/kubernetes/crio-kubernetes.sh)
