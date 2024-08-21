@@ -9,3 +9,7 @@ From https://github.com/justmeandopensource/kubernetes/blob/master/lxd-provision
 2. Create containers using profile k8s
 
 3. When container is running add profile k8s-testflite. Otherwise testflite fails.
+
+4. Execute shell script
+
+       curl 
