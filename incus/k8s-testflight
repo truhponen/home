@@ -6,22 +6,18 @@ devices:
     source: /sys/module/nf_conntrack/parameters/hashsize
     type: disk
   apparmor-disable2:
-    path: /dev/kmsg
-    source: /dev/kmsg
-    type: unix-char
-  apparmor-disable3:
     path: /sys/fs/bpf
     source: /sys/fs/bpf
     type: disk
-  apparmor-disable4:
+  apparmor-disable3:
     path: /proc/sys/net/netfilter/nf_conntrack_max
     source: /proc/sys/net/netfilter/nf_conntrack_max
     type: disk
-  apparmor-disable5:
+  apparmor-disable4:
     path: /boot/config-6.8.0-40-generic
     source: /boot/config-6.8.0-40-generic
     type: disk
-  apparmor-disable6:
+  apparmor-disable5:
     path: /lib/modules/6.8.0-40-generic
     source: /lib/modules/6.8.0-40-generic
     type: disk
