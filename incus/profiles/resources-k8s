@@ -1,0 +1,10 @@
+name: resources-k8s
+description: ''
+devices: {}
+config:
+  limits.cpu: '2'
+  limits.memory: 4GiB
+  limits.memory.swap: 'false'
+  security.privileged: 'true'
+  security.nesting: 'true'
+project: default
