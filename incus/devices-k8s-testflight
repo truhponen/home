@@ -1,4 +1,4 @@
-name: devices-k8s-testflight
+name: k8s-testflight
 description: ''
 devices:
   apparmor-disable5:
