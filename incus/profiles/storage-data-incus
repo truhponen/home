@@ -1,0 +1,9 @@
+name: storage-data-incus
+description: ''
+devices:
+  root:
+    path: /
+    pool: data
+    type: disk
+config: {}
+project: default
