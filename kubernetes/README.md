@@ -6,11 +6,11 @@
 
        sudo sysctl -w net.netfilter.nf_conntrack_max=524288
 
-2. Create containers using profile k8s
+2. Create containers using profile [k8s](https://github.com/truhponen/home/blob/main/incus/k8s)
 
    Note that key "lxc.apparmor.profile" that is mentioned in most of instruction needs to be "incus.apparmor.profile"
 
-3. I haven't tested if also konfiguration k8s-disable-apparmor is needed - try to test later
+3. Add also profile [k8s-disable-apparmor](https://github.com/truhponen/home/blob/main/incus/k8s-disable-apparmor) (not sure if needed)
 
    Those were copied from https://microk8s.io/docs/install-lxd as I had troubles with kube-proxy giving error related "Set sysctl" entry="net/netfilter/nf_conntrack_max" value=131072: not permitted. This was before I changed "lxc.apparmor.profile" to "incus.apparmor.profile"
 
