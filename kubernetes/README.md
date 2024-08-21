@@ -14,6 +14,11 @@
 
    Those were copied from https://microk8s.io/docs/install-lxd as I had troubles with kube-proxy giving error related "Set sysctl" entry="net/netfilter/nf_conntrack_max" value=131072: not permitted. This was before I changed "lxc.apparmor.profile" to "incus.apparmor.profile"
 
+5. Install http-utils
+
+       apt update
+       apt install -y software-properties-common curl
+
 5. Execute shell script
 
        bash <(curl https://raw.githubusercontent.com/truhponen/home/main/kubernetes/crio-kubernetes.sh)
