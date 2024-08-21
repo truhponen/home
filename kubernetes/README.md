@@ -1,9 +1,11 @@
-Incus preparation for Kubernetes
+## Incus preparation for Kubernetes
+
+1. Change nf_conntrack_max
 
 From https://github.com/justmeandopensource/kubernetes/blob/master/lxd-provisioning/README.md
 
-    sudo sysctl -w net.netfilter.nf_conntrack_max=524288
+       sudo sysctl -w net.netfilter.nf_conntrack_max=524288
 
-Create containers using profile k8s
+2. Create containers using profile k8s
 
-For testflite add also profile k8s-testflite
+3. When container is running add profile k8s-testflite. Otherwise testflite fails.
