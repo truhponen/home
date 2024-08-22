@@ -23,17 +23,19 @@
 
        bash <(curl https://raw.githubusercontent.com/truhponen/home/main/kubernetes/install-in-Incus-LXC/crio-kubernetes.sh)
 
-6. Setup configs
+   Init has flag `--pod-network-cidr=10.244.0.0/16` for Flannel
+
+7. Setup configs
 
        mkdir -p $HOME/.kube
        sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
        sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-7. Pod network
+8. Pod network
 
        https://kubernetes.io/docs/concepts/cluster-administration/addons/
 
-8. Join workers
+9. Join workers
 
        kubeadm join 10.12.96.118:6443 --token 3dy8nl.g3c... \
         --discovery-token-ca-cert-hash sha256:d54...
