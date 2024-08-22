@@ -31,11 +31,19 @@
        sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
        sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-8. Pod network
+8. Install Helm
+
+       curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+       sudo apt-get install apt-transport-https --yes
+       echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+       apt update
+       apt install helm
+  
+10. Pod network
 
        https://kubernetes.io/docs/concepts/cluster-administration/addons/
 
-9. Join workers
+11. Join workers
 
        kubeadm join 10.12.96.118:6443 --token 3dy8nl.g3c... \
         --discovery-token-ca-cert-hash sha256:d54...
