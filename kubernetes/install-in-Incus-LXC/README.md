@@ -8,8 +8,6 @@
 
 2. Create containers using profile [k8s](https://github.com/truhponen/home/blob/main/incus/k8s)
 
-   Note that key "lxc.apparmor.profile" that is mentioned in most of instruction needs to be "incus.apparmor.profile"
-
 3. After container started add profile [k8s-preflight](https://github.com/truhponen/home/blob/main/incus/k8s-preflight)
    
    Profile is basically same as [k8s](https://github.com/truhponen/home/blob/main/incus/k8s) with additional device mappings, at least, preflight will fail. Device mappings were copied from https://microk8s.io/docs/install-lxd.
