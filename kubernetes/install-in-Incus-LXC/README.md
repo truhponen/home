@@ -14,7 +14,7 @@
    
    Without profile's device mappings, at least, testflight will fail. Device mappings were copied from https://microk8s.io/docs/install-lxd.
 
-5. Install http-utils
+4. Install http-utils
 
        apt update
        apt install -y software-properties-common curl
@@ -25,13 +25,13 @@
 
    Init has flag `--pod-network-cidr=10.244.0.0/16` for Flannel
 
-7. Setup configs
+6. Setup configs
 
        mkdir -p $HOME/.kube
        sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
        sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
-8. Install Helm
+7. Install Helm
 
        curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
        sudo apt-get install apt-transport-https --yes
@@ -39,7 +39,7 @@
        apt update
        apt install helm
 
-9. Install Flannel using Helm
+8. Install Flannel using Helm
 
        kubectl create ns kube-flannel
        kubectl label --overwrite ns kube-flannel pod-security.kubernetes.io/enforce=privileged
@@ -47,11 +47,11 @@
        helm repo add flannel https://flannel-io.github.io/flannel/
        helm install flannel --set podCidr="10.244.0.0/16" --namespace kube-flannel flannel/flannel
 
-11. Pod network
+9. Pod network
 
        https://kubernetes.io/docs/concepts/cluster-administration/addons/
 
-12. Join workers
+10. Join workers
 
         kubeadm join 10.12.96.118:6443 --token 3dy8nl.g3c... \
          --discovery-token-ca-cert-hash sha256:d54...
