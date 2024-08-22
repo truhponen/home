@@ -38,12 +38,20 @@
        echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
        apt update
        apt install helm
-  
-10. Pod network
+
+9. Install Flannel using Helm
+
+       kubectl create ns kube-flannel
+       kubectl label --overwrite ns kube-flannel pod-security.kubernetes.io/enforce=privileged
+
+       helm repo add flannel https://flannel-io.github.io/flannel/
+       helm install flannel --set podCidr="10.244.0.0/16" --namespace kube-flannel flannel/flannel
+
+11. Pod network
 
        https://kubernetes.io/docs/concepts/cluster-administration/addons/
 
-11. Join workers
+12. Join workers
 
        kubeadm join 10.12.96.118:6443 --token 3dy8nl.g3c... \
         --discovery-token-ca-cert-hash sha256:d54...
