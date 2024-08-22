@@ -4,7 +4,7 @@ Add zabbly repository
 
 Install Incus 
 
-    apt install incus
+    apt install incus -y
 
 Initialize
 
