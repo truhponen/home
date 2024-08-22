@@ -1,14 +1,5 @@
-description: Incus profile for Kubernetes
 name: k8s
-config:
-  limits.cpu: "2"
-  limits.memory: 2GB
-  limits.memory.swap: "false"
-  linux.kernel_modules: ip_tables,ip6_tables,nf_nat,overlay,br_netfilter
-  raw.lxc: "incus.apparmor.profile=unconfined nlxc.cap.drop= nlxc.cgroup.devices.allow=a nlxc.mount.auto=proc:rw
-    sys:rw"
-  security.privileged: "true"
-  security.nesting: "true"
+description: Incus profile for Kubernetes
 devices:
   eth0:
     name: eth0
@@ -23,4 +14,14 @@ devices:
     path: /
     pool: data-incus
     type: disk
-used_by: []
+config:
+  limits.cpu: '2'
+  limits.memory: 4GB
+  limits.memory.swap: 'false'
+  security.privileged: 'true'
+  security.nesting: 'true'
+  linux.kernel_modules: ip_tables,ip6_tables,nf_nat,overlay,br_netfilter
+  raw.lxc: >-
+    incus.apparmor.profile=unconfined nlxc.cap.drop= 
+    nlxc.cgroup.devices.allow=a nlxc.mount.auto=proc:rw sys:rw
+project: default
