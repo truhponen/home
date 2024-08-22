@@ -21,7 +21,7 @@
 
 5. Execute shell script
 
-       bash <(curl https://raw.githubusercontent.com/truhponen/home/main/kubernetes/crio-kubernetes.sh)
+       bash <(curl https://raw.githubusercontent.com/truhponen/home/main/kubernetes/install-in-Incus-LXC/crio-kubernetes.sh)
 
 6. Setup configs
 
