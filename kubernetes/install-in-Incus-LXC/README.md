@@ -53,5 +53,5 @@
 
 12. Join workers
 
-       kubeadm join 10.12.96.118:6443 --token 3dy8nl.g3c... \
-        --discovery-token-ca-cert-hash sha256:d54...
+        kubeadm join 10.12.96.118:6443 --token 3dy8nl.g3c... \
+         --discovery-token-ca-cert-hash sha256:d54...
