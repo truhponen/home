@@ -10,7 +10,7 @@
 
    Note that key "lxc.apparmor.profile" that is mentioned in most of instruction needs to be "incus.apparmor.profile"
 
-3. After container started add profile [k8s-for-testflight](https://github.com/truhponen/home/blob/main/incus/k8s-for-testflight)
+3. After container started add profile [k8s-preflight](https://github.com/truhponen/home/blob/main/incus/k8s-preflight)
    
    Without profile's device mappings, at least, testflight will fail. Device mappings were copied from https://microk8s.io/docs/install-lxd.
 
