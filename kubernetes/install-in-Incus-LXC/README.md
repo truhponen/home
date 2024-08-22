@@ -12,7 +12,7 @@
 
 3. After container started add profile [k8s-preflight](https://github.com/truhponen/home/blob/main/incus/k8s-preflight)
    
-   Without profile's device mappings, at least, testflight will fail. Device mappings were copied from https://microk8s.io/docs/install-lxd.
+   Profile is basically same as [k8s](https://github.com/truhponen/home/blob/main/incus/k8s) with additional device mappings, at least, preflight will fail. Device mappings were copied from https://microk8s.io/docs/install-lxd.
 
 4. Install http-utils
 
