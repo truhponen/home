@@ -45,4 +45,4 @@ sysctl -w net.ipv4.ip_forward=1
 echo "|"
 echo "Init"
 echo "|"
-kubeadm init
+kubeadm init --pod-network-cidr=10.244.0.0/16
