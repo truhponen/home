@@ -1,17 +1,19 @@
-echo "This script is based on https://cri-o.io/"
+#!/bin/bash
 
+echo "This script is based on https://cri-o.io/"
 echo "|"
 echo "Set variables"
 echo "|"
+
 KUBERNETES_VERSION=v1.30
 CRIO_VERSION=v1.30
 
 echo "|"
 echo "Add Kubernetes repository"
 echo "|"
+
 curl -fsSL https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/Release.key |
     gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-
 echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/ /" |
     tee /etc/apt/sources.list.d/kubernetes.list
 
