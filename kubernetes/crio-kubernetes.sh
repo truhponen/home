@@ -5,8 +5,8 @@ echo "|"
 echo "Set variables"
 echo "|"
 
-KUBERNETES_VERSION=v1.30
-CRIO_VERSION=v1.30
+export KUBERNETES_VERSION=v1.30
+export CRIO_VERSION=v1.30
 
 echo "|"
 echo "Add Kubernetes repository"
