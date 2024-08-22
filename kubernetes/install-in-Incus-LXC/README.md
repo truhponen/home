@@ -10,9 +10,9 @@
 
    Note that key "lxc.apparmor.profile" that is mentioned in most of instruction needs to be "incus.apparmor.profile"
 
-3. Add also profile [k8s-for-testflight](https://github.com/truhponen/home/blob/main/incus/k8s-for-testflight) (not sure if needed)
-
-   Those were copied from https://microk8s.io/docs/install-lxd as I had troubles with kube-proxy giving error related "Set sysctl" entry="net/netfilter/nf_conntrack_max" value=131072: not permitted. This was before I changed "lxc.apparmor.profile" to "incus.apparmor.profile"
+3. Add also profile [k8s-for-testflight](https://github.com/truhponen/home/blob/main/incus/k8s-for-testflight)
+   
+   Without profile's device mappings, at least, testflight will fail. Device mappings were copied from https://microk8s.io/docs/install-lxd.
 
 5. Install http-utils
 
