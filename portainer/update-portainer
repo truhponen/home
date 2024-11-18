@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# to run this in host:
+# curl https://raw.githubusercontent.com/truhponen/home/refs/heads/main/portainer/update-portainer | bash
+
 echo "Update Portainer"
 echo "|"
 echo "Stop current Portainer"
