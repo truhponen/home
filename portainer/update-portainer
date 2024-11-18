@@ -1,14 +1,27 @@
+#!/bin/bash
 
-Stop current Portainer
+echo "Update Portainer"
+echo "|"
+echo "Stop current Portainer"
+echo "|"
 
 docker stop portainer
-Remove current Portainer
+
+echo "|"
+echo "Remove current Portainer"
+echo "|"
 
 docker rm portainer
-Pull latest image
+
+echo "|"
+echo "Pull latest image"
+echo "|"
 
 docker pull portainer/portainer-ce:latest
-Run Portainer. Command maps certificates from mounted directory to Portainer default files
+
+echo "|"
+echo "Run Portainer. Command maps certificates from mounted directory to Portainer default files"
+echo "|"
 
 docker run -d -p 8000:8000 -p 9000:9000 -p 9443:9443 \
 --name portainer --restart=always --network=default-network \
