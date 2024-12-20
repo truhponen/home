@@ -19,5 +19,5 @@ USER www-data
 WORKDIR /var/www
 RUN wget https://getgrav.org/download/core/grav-admin/latest -O grav-admin.zip
 RUN unzip grav-admin.zip
-RUN mv -T /var/www/grav-admin /var/www/html
+RUN mv grav-admin html
 RUN rm grav-admin.zip
