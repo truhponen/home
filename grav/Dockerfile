@@ -32,3 +32,6 @@ RUN rm grav.zip
 
 # Not needed - Remove grav-admin folder
 #RUN rm -r grav-admin
+
+# Place for volume inside container for data persistence
+VOLUME ["/var/www/html"]
