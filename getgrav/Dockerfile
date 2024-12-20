@@ -16,10 +16,15 @@ RUN a2enmod rewrite
 # Give www-data user rights to all www folders
 RUN chown www-data:www-data /var/www
 
-# Download, unzip and move Grav html-folder
+# Download, unzip and copy Grav files to html-folder
 USER www-data
 WORKDIR /var/www
 RUN wget https://getgrav.org/download/core/grav-admin/latest -O grav-admin.zip
 RUN unzip grav-admin.zip
-#RUN mv grav-admin/{,.}* html
-#RUN rm grav-admin.zip
+RUN cp -r grav-admin/* html/
+
+# Remove grav-admin.zip file
+RUN rm grav-admin.zip
+
+# Remove grav-admin folder
+RUN rm -r grav-admin
