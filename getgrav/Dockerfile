@@ -21,7 +21,7 @@ USER www-data
 WORKDIR /var/www
 RUN wget https://getgrav.org/download/core/grav-admin/latest -O grav-admin.zip
 RUN unzip grav-admin.zip
-RUN cp -r grav-admin/* html/
+RUN cp -r grav-admin/{.,}* html
 
 # Remove grav-admin.zip file
 RUN rm grav-admin.zip
