@@ -1,4 +1,4 @@
-# truhponen/getgrav
+# truhponen/grav-cms
 # Official PHP image
 FROM php:8.2-apache
 
