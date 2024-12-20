@@ -1,3 +1,4 @@
+# truhponen/getgrav
 FROM php:8.0-apache
 
 # Update system
