@@ -1,5 +1,5 @@
 # truhponen/getgrav
-FROM php:8.4.2-apache-bullseye
+FROM php:8.2-apache
 
 # Update system
 RUN apt-get update
