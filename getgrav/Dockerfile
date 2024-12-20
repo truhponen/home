@@ -13,8 +13,10 @@ RUN docker-php-ext-install zip gd
 # Enable mod_rewrite for Apache
 RUN a2enmod rewrite
 
+# Give www-data user rights to all www folders
 RUN chown www-data:www-data /var/www
 
+# Download, unzip and move Grav html-folder
 USER www-data
 WORKDIR /var/www
 RUN wget https://getgrav.org/download/core/grav-admin/latest -O grav-admin.zip
