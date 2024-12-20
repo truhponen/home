@@ -1,4 +1,5 @@
 # truhponen/getgrav
+# Official PHP image
 FROM php:8.2-apache
 
 # Update system
@@ -20,14 +21,14 @@ RUN chown www-data:www-data /var/www
 # Download, unzip and copy Grav files to html-folder
 USER www-data
 WORKDIR /var/www/html
-RUN wget https://getgrav.org/download/skeletons/learn2-with-git-sync-site/1.6.8 -O grav-admin.zip 
-RUN unzip grav-admin.zip
+RUN wget https://getgrav.org/download/skeletons/learn2-with-git-sync-site/1.6.8 -O grav.zip 
+RUN unzip grav.zip
 
-# Not needed as there is no folder
+# Not needed as there is no folder in zip-file
 #RUN rsync -r /var/www/grav-admin/* /var/www/html
 
 # Remove grav-admin.zip file
-RUN rm grav-admin.zip
+RUN rm grav.zip
 
 # Not needed - Remove grav-admin folder
 #RUN rm -r grav-admin
