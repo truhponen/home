@@ -5,7 +5,7 @@ LABEL maintainer="Tuomo Truhponen (@truhponen)"
 RUN apt-get update
 
 # Install dependencies
-RUN apt-get install -y libzip-dev libpng-dev libjpeg-dev wget
+RUN apt-get install -y libzip-dev libpng-dev libjpeg-dev wget unzip
 
 # Configure and install PHP extensions
 RUN docker-php-ext-configure gd --with-jpeg
@@ -15,7 +15,7 @@ RUN docker-php-ext-install zip gd
 RUN a2enmod rewrite
 
 # Get Grav
-WORKDIR /var/www
+WORKDIR /var/www/html
 RUN wget https://getgrav.org/download/core/grav-admin/latest -O grav-admin.zip
 RUN unzip grav-admin.zip
 RUN rm grav-admin.zip
