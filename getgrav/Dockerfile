@@ -17,3 +17,5 @@ RUN a2enmod rewrite
 # Get Grav
 WORKDIR /var/www
 RUN wget https://getgrav.org/download/core/grav-admin/latest -O grav-admin.zip
+RUN unzip grav-admin.zip
+RUN rm grav-admin.zip
