@@ -19,13 +19,15 @@ RUN chown www-data:www-data /var/www
 
 # Download, unzip and copy Grav files to html-folder
 USER www-data
-WORKDIR /var/www
+WORKDIR /var/www/html
 RUN wget https://getgrav.org/download/skeletons/learn2-with-git-sync-site/1.6.8 -O grav-admin.zip 
 RUN unzip grav-admin.zip
-RUN rsync -r /var/www/grav-admin/* /var/www/html
+
+# Not needed as there is no folder
+#RUN rsync -r /var/www/grav-admin/* /var/www/html
 
 # Remove grav-admin.zip file
-#RUN rm grav-admin.zip
+RUN rm grav-admin.zip
 
-# Remove grav-admin folder
+# Not needed - Remove grav-admin folder
 #RUN rm -r grav-admin
