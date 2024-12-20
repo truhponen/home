@@ -12,6 +12,9 @@ RUN apt-get install -y libzip-dev libpng-dev libjpeg-dev unzip wget rsync
 RUN docker-php-ext-configure gd --with-jpeg
 RUN docker-php-ext-install zip gd
 
+# Place for volume inside container for data persistence
+VOLUME ["/var/www/html"]
+
 # Enable mod_rewrite for Apache
 RUN a2enmod rewrite
 
@@ -32,6 +35,3 @@ RUN rm grav.zip
 
 # Not needed - Remove grav-admin folder
 #RUN rm -r grav-admin
-
-# Place for volume inside container for data persistence
-VOLUME ["/var/www/html"]
