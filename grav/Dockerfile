@@ -6,7 +6,7 @@ FROM php:8.2-apache
 RUN apt-get update
 
 # Install dependencies
-RUN apt-get install -y libzip-dev libpng-dev libjpeg-dev git wget
+RUN apt-get install -y libzip-dev libpng-dev libjpeg-dev git wget unzip
 
 # Configure and install PHP extensions
 RUN docker-php-ext-configure gd --with-jpeg
