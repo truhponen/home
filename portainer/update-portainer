@@ -5,6 +5,12 @@
 
 echo "Update Portainer"
 echo "|"
+echo "Pull latest image"
+echo "|"
+
+docker pull portainer/portainer-ce:latest
+
+echo "|"
 echo "Stop current Portainer"
 echo "|"
 
@@ -17,12 +23,6 @@ echo "|"
 docker rm portainer
 
 echo "|"
-echo "Pull latest image"
-echo "|"
-
-docker pull portainer/portainer-ce:latest
-
-echo "|"
 echo "Run Portainer. Command maps certificates from mounted directory to Portainer default files"
 echo "|"
 
@@ -30,3 +30,10 @@ docker run -d -p 8000:8000 -p 9000:9000 -p 9443:9443 \
 --name portainer --restart=always --network=default-network \
 -v /config/cert/certificate.pem:/certs/portainer.crt -v /config/cert/key.pem:/certs/portainer.key \
 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest
+
+echo "|"
+echo "Prune unused images"
+echo "|"
+
+docker image prune -f
+
