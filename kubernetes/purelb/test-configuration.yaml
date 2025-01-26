@@ -12,7 +12,7 @@ spec:
   - IPv4
   ipFamilyPolicy: SingleStack
   ports:
-  - port: 80
+  - port: 6880
     protocol: TCP
     targetPort: 8080
   selector:
