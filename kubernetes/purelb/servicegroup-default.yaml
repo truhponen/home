@@ -1,7 +1,7 @@
 apiVersion: purelb.io/v1
 kind: ServiceGroup
 metadata:
-  name: default
+  name: local
   namespace: purelb
 spec:
   local:
