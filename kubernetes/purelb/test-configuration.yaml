@@ -4,7 +4,7 @@ metadata:
   annotations:
     purelb.io/service-group: local
   labels:
-    app: echoserver
+    app.kubernetes.io/name: load-balancer-example
   name: my-service
 spec:
   externalTrafficPolicy: Cluster
@@ -16,6 +16,6 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    app: echoserver
+    app.kubernetes.io/name: load-balancer-example
   sessionAffinity: None
   type: LoadBalancer
