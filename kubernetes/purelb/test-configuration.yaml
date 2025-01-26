@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   annotations:
-    purelb.io/service-group: localaddr
+    purelb.io/service-group: default
   labels:
     app: echoserver
   name: my-service
