@@ -4,9 +4,9 @@ metadata:
   name: kubernetes-dashboard-test
   namespace: kubernetes-dashboard
   labels:
-    app.kubernetes.io/component: app
-    app.kubernetes.io/instance: kubernetes-dashboard
-    app.kubernetes.io/name: kong
+    - app.kubernetes.io/component: app
+    - app.kubernetes.io/instance: kubernetes-dashboard
+    - app.kubernetes.io/name: kong
 spec:
   type: LoadBalancer
   selector:
