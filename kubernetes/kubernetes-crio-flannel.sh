@@ -28,7 +28,8 @@ echo "|"
 echo "Install Kubernetes packages"
 echo "|"
 apt update
-apt install -y cri-o kubelet kubeadm kubectl
+apt install -y cri-o kubelet kubeadm kubectl helm
+apt-mark hold cri-o kubelet kubeadm kubectl helm
 
 echo "|"
 echo "Start Cri-o"
