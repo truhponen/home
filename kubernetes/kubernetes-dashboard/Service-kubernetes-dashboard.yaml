@@ -3,10 +3,16 @@ kind: Service
 metadata:
   name: kubernetes-dashboard
   namespace: kubernetes-dashboard
+  labels:
+    app.kubernetes.io/component: app
+    app.kubernetes.io/instance: kubernetes-dashboard
+    app.kubernetes.io/name: kong
 spec:
   type: LoadBalancer
   selector:
-    app.kubernetes.io/name: kong
+    - app.kubernetes.io/component: app
+    - app.kubernetes.io/instance: kubernetes-dashboard
+    - app.kubernetes.io/name: kong
   ports:
     - protocol: TCP
       port: 433
