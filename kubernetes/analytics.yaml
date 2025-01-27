@@ -16,7 +16,7 @@ spec:
      accessModes:
      -  ReadWriteOnce
      hostPath:
-         path: “/kubernetes-storage/analytics”
+         path: “/storage/analytics”
 ---
 apiVersion: apps/v1
 kind: StatefulSet
