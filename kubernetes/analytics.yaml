@@ -4,6 +4,20 @@ kind: Namespace
 metadata:
     name: analytics
 ---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+    name: analytics-storage
+    labels:
+        type: local
+spec:
+     capacity:
+        storage: 15Gi
+     accessModes:
+     -  ReadWriteOnce
+     hostPath:
+         path: “/kubetnetes-storage/analytics”
+---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
