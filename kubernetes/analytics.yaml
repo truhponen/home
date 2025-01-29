@@ -43,7 +43,7 @@ spec:
           name: influxdb
         volumeMounts:
         - name: data
-          mountPath: /usr/share/nginx/html
+          mountPath: /var/lib/influxdb2
   volumeClaimTemplates:
   - metadata:
       name: data
