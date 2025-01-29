@@ -19,19 +19,6 @@ spec:
      hostPath:
          path: “/kube-storage/analytics”
 ---
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: influxdb
-  namespace: analytics
-spec:
-  storageClassName: manual
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 6Gi
----
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -63,10 +50,12 @@ spec:
       - metadata:
             name: www
         spec:
-          accessModes: [ "ReadWriteOnce" ]
+          storageClassName: manual
+          accessModes:
+             - ReadWriteOnce
           resources:
             requests:
-              storage: 1Gi
+              storage: 6Gi
 ---
 apiVersion: v1
 kind: Service
