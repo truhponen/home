@@ -7,10 +7,11 @@ metadata:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-    name: analytics-storage
+    name: analytics
     labels:
         type: local
 spec:
+     storageClassName: manual
      capacity:
         storage: 15Gi
      accessModes:
