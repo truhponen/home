@@ -46,16 +46,16 @@ spec:
                 volumeMounts:
                   - mountPath: /var/lib/influxdb2
                     name: datav
-    volumeClaimTemplates:
-      - metadata:
-            name: www
-        spec:
-          storageClassName: manual
-          accessModes:
-             - ReadWriteOnce
-          resources:
-            requests:
-              storage: 6Gi
+        volumeClaimTemplates:
+          - metadata:
+                name: www
+            spec:
+              storageClassName: manual
+              accessModes:
+                 - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 6Gi
 ---
 apiVersion: v1
 kind: Service
