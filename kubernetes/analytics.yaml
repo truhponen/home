@@ -35,10 +35,10 @@ spec:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-    labels:
-        app: influxdb
     name: influxdb
     namespace: analytics
+    labels:
+        app: influxdb
 spec:
     replicas: 1
     selector:
@@ -50,6 +50,10 @@ spec:
             labels:
                 app: influxdb
         spec:
+            volumes:
+              - name: data
+                persistentVolumeClaim:
+                    claimName: pvc-influxdb            
             containers:
               - image: influxdb:2.0.6
                 name: influxdb
@@ -58,7 +62,7 @@ spec:
                     name: influxdb
                 volumeMounts:
                   - mountPath: /var/lib/influxdb2
-                    name: pvc-influxdb
+                    name: data
 ---
 apiVersion: v1
 kind: Service
