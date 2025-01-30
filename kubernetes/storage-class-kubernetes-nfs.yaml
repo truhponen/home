@@ -2,7 +2,10 @@ apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: kubernetes-nfs
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
 provisioner: kubernetes-nfs.kotimme.cc
+reclaimPolicy: Retain # default value is Delete
 parameters:
   server: 192.168.68.150
   path: /
