@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: sc-test-case
+  name: sc-test-case2
   namespace: default
 spec:
   accessModes:
