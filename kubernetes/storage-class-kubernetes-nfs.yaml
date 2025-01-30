@@ -12,5 +12,5 @@ mountOptions:
   - nfsvers=4.1
 parameters:
   server: 192.168.68.150
-  path: "/rpool/kubernetes"
+  path: /rpool/kubernetes
   readOnly: "false"
