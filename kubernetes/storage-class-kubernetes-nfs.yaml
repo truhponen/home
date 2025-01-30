@@ -4,8 +4,12 @@ metadata:
   name: kubernetes-nfs
   annotations:
     storageclass.kubernetes.io/is-default-class: "true"
-provisioner: kubernetes-nfs.kotimme.cc
+provisioner: nfs.csi.k8s.io
 reclaimPolicy: Retain # default value is Delete
+volumeBindingMode: Immediate
+allowVolumeExpansion: true
+mountOptions:
+  - nfsvers=4.1
 parameters:
   server: 192.168.68.150
   path: /
