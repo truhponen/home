@@ -55,6 +55,7 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /var/lib/influxdb2
+          subpath: influxdb
   volumeClaimTemplates:
   - metadata:
       name: data
