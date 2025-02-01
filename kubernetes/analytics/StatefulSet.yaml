@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: influxdb
+  namespace: analytics
+spec:
+  serviceName: "influxdb"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: influxdb
+  template:
+    metadata:
+      labels:
+        app: influxdb
+    spec:
+      containers:
+      - name: influxdb
+        image: influxdb:2.0.6
+        ports:
+        - containerPort: 8086
+          name: influxdb
+        volumeMounts:
+        - name: influxdb-data
+          mountPath: /var/lib/influxdb2
+          subPath: influxdb
+  volumeClaimTemplates:
+  - metadata:
+      name: influxdb-data
+    spec:
+      storageClassName: nfs-csi
+      volumeName: analytics
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 6Gi
