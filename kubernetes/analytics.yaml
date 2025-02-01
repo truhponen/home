@@ -13,7 +13,7 @@ metadata:
   annotations:
     pv.kubernetes.io/provisioned-by: nfs.csi.k8s.io
 spec:
-  storageClassName: analytics
+  storageClassName: nfs.csi
   capacity:
     storage: 10Gi
   accessModes:
