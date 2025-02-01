@@ -60,7 +60,7 @@ spec:
   - metadata:
       name: influxdb-data
     spec:
-      storageClassName: analytics
+      storageClassName: nfs-csi
       volumeName: analytics
       accessModes:
       - ReadWriteOnce
