@@ -9,15 +9,27 @@ kind: PersistentVolume
 metadata:
   name: analytics
   labels:
-    type: local
+    type: nfs
+  annotations:
+    pv.kubernetes.io/provisioned-by: nfs.csi.k8s.io
 spec:
-  storageClassName: manual
+  storageClassName: nfs-csi
   capacity:
-    storage: 15Gi
+    storage: 10Gi
   accessModes:
-  - ReadWriteOnce
-  hostPath:
-    path: "/kube-storage/analytics"
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  
+  mountOptions:
+    - nfsvers=4.1
+  csi:
+    driver: nfs.csi.k8s.io
+    # volumeHandle format: {nfs-server-address}#{sub-dir-name}#{share-name}
+    # make sure this value is unique for every share in the cluster
+    volumeHandle: 192.168.68.150/rpool/kubernetes/analytics
+    volumeAttributes:
+      server: 192.168.68.150
+      share: /rpool/kubernetes/analytics
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -48,7 +60,7 @@ spec:
   - metadata:
       name: data
     spec:
-      storageClassName: manual
+      storageClassName: analytics
       accessModes:
       - ReadWriteOnce
       resources:
