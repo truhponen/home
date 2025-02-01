@@ -13,13 +13,12 @@ metadata:
   annotations:
     pv.kubernetes.io/provisioned-by: nfs.csi.k8s.io
 spec:
-  storageClassName: nfs-csi
+  storageClassName: analytics
   capacity:
     storage: 10Gi
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
-  
   mountOptions:
     - nfsvers=4.1
   csi:
