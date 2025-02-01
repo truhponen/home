@@ -53,14 +53,15 @@ spec:
         - containerPort: 8086
           name: influxdb
         volumeMounts:
-        - name: data
+        - name: influxdb-data
           mountPath: /var/lib/influxdb2
-#          subPath: /influxdb
+          subPath: /influxdb
   volumeClaimTemplates:
   - metadata:
-      name: data
+      name: influxdb-data
     spec:
       storageClassName: analytics
+      volumeName: analytics
       accessModes:
       - ReadWriteOnce
       resources:
