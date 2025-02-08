@@ -1,19 +1,22 @@
+# Based on https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/deploy/example/pv-nfs-csi.yaml
 ---
 apiVersion: v1
 kind: PersistentVolume
 metadata:
+  # One PersistentVolume for whole namespace
   name: analytics
   labels:
     type: nfs
   annotations:
     pv.kubernetes.io/provisioned-by: nfs.csi.k8s.io
 spec:
-  storageClassName: nfs-csi
   capacity:
     storage: 10Gi
   accessModes:
     - ReadWriteOnce
+  # Offers only retained storage
   persistentVolumeReclaimPolicy: Retain
+  storageClassName: nfs-csi
   mountOptions:
     - nfsvers=4.1
   csi:
@@ -23,4 +26,5 @@ spec:
     volumeHandle: 192.168.68.150/rpool/kubernetes/analytics
     volumeAttributes:
       server: 192.168.68.150
+      # Namespace has own folder i in NFS share
       share: /rpool/kubernetes/analytics
