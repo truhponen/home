@@ -17,8 +17,9 @@ spec:
         app: influxdb
     spec:
       securityContext:
-        runAsUser: 1004
-        runAsGroup: 1004
+        # 1002 is kunernetes user on 170
+        runAsUser: 1002
+        runAsGroup: 1002
         # fsGroup:
         # supplementalGroups: []
       containers:
