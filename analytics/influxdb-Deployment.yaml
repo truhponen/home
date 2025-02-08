@@ -19,10 +19,10 @@ spec:
         ports:
         - containerPort: 8086
         volumeMounts:
-        - name: influxdb-data
+        - name: influxdb
           mountPath: /var/lib/influxdb2
-          subPath: influxdb
+          subPath: analytics/influxdb
       volumes:
-      - name: influxdb-data
+      - name: influxdb
         persistentVolumeClaim:
-          claimName: influxdb-data
+          claimName: influxdb
