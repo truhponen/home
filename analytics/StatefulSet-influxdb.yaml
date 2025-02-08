@@ -23,6 +23,6 @@ spec:
         - containerPort: 8086
           name: influxdb
         volumeMounts:
-        - name: influxdb-data
+        - name: influxdb
           mountPath: /var/lib/influxdb2
           subPath: influxdb
