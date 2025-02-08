@@ -21,6 +21,7 @@ spec:
         volumeMounts:
         - name: influxdb-data
           mountPath: /var/lib/influxdb2
+          subPath: influxdb
       volumes:
       - name: influxdb-data
         persistentVolumeClaim:
