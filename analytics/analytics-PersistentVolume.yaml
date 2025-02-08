@@ -3,7 +3,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  # One PersistentVolume for whole namespace
+  # One PersistentVolume for whole namespace, use mountvolume's subpaths to separate data
   name: analytics
   labels:
     type: nfs
