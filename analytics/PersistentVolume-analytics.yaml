@@ -28,4 +28,4 @@ spec:
       server: 192.168.68.150
       # Namespace has own folder i in NFS share
       share: /rpool/kubernetes/analytics
-      mountPermissions: true
+      mountPermissions: "1002:1002"
