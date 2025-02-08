@@ -16,6 +16,10 @@ spec:
       labels:
         app: influxdb
     spec:
+      securityContext:
+        # runAsUser: 
+        # runAsGroup: 
+        fsGroup: 1004
       containers:
       - name: influxdb
         image: influxdb:2.0.6
