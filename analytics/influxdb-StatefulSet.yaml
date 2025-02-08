@@ -4,7 +4,6 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: influxdb
-  namespace: analytics
 spec:
   replicas: 1
   selector:
@@ -16,12 +15,6 @@ spec:
       labels:
         app: influxdb
     spec:
-      securityContext:        
-        # runAsUser: 
-        # runAsGroup: 
-        # fsGroup:
-        # 2000 is kubernetes-data user group
-        supplementalGroups: [2000]
       containers:
       - name: influxdb
         image: influxdb:2.0.6
