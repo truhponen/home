@@ -2,6 +2,6 @@ namespace: analytics
 resources:
   - analytics-Namespace.yaml
   - analytics-PersistentVolume.yaml
-  - influxdb-Deployment.yaml
+  - influxdb-StatefulSet.yaml
   - influxdb-Service.yaml
   - influxdb-data-PersistentVolumeClaim.yaml
