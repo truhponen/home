@@ -24,6 +24,7 @@ spec:
         volumeMounts:
         - name: influxdb
           mountPath: /var/lib/influxdb2
+          # subPath: influxdb
       volumes:
         - name: influxdb
           nfs:
