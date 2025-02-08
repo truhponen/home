@@ -17,10 +17,10 @@ spec:
         app: influxdb
     spec:
       securityContext:
-        # runAsUser: 
-        # runAsGroup: 
-        fsGroup: 1004
-        #supplementalGroups: []
+        runAsUser: 1004
+        runAsGroup: 1004
+        # fsGroup:
+        # supplementalGroups: []
       containers:
       - name: influxdb
         image: influxdb:2.0.6
