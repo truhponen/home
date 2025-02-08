@@ -23,9 +23,9 @@ spec:
     driver: nfs.csi.k8s.io
     # volumeHandle format: {nfs-server-address}#{sub-dir-name}#{share-name}
     # make sure this value is unique for every share in the cluster
-    volumeHandle: 192.168.68.150/rpool/kubernetes
+    volumeHandle: 192.168.68.150/rpool/kubernetes/analytics
     volumeAttributes:
       server: 192.168.68.150
-      # Namespace has own folder i in NFS share
-      share: /rpool/kubernetes
+      # Namespace has own NFS share
+      share: /rpool/kubernetes/analytics
       mountPermissions: "1004:1004"
