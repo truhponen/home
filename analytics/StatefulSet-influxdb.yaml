@@ -20,6 +20,7 @@ spec:
         # runAsUser: 
         # runAsGroup: 
         fsGroup: 1004
+        #supplementalGroups: []
       containers:
       - name: influxdb
         image: influxdb:2.0.6
