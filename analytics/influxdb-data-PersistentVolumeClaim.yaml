@@ -10,4 +10,3 @@ spec:
     requests:
       storage: 5Gi
   storageClassName: nfs-csi
-  volumeName: analytics-pv
