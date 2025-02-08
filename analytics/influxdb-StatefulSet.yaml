@@ -30,5 +30,6 @@ spec:
           nfs:
             server: 192.168.68.150 # IP to our NFS server
             path: /rpool/kubernetes/analytics # The exported directory
+            mountPermissions: "1004:1004"
 #          persistentVolumeClaim:
 #            claimName: influxdb
