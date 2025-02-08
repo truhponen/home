@@ -16,12 +16,12 @@ spec:
       labels:
         app: influxdb
     spec:
-      securityContext:
-        # 1002 is kunernetes user on 170
-        runAsUser: 1002
-        runAsGroup: 1002
+      securityContext:        
+        # runAsUser: 
+        # runAsGroup: 
         # fsGroup:
-        # supplementalGroups: []
+        # 2000 is kubernetes-data user group
+        supplementalGroups: [2000]
       containers:
       - name: influxdb
         image: influxdb:2.0.6
