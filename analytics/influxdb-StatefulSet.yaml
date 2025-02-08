@@ -24,8 +24,10 @@ spec:
         volumeMounts:
         - name: influxdb
           mountPath: /var/lib/influxdb2
-          subPath: influxdb
       volumes:
         - name: influxdb
-          persistentVolumeClaim:
-            claimName: influxdb
+          nfs:
+            server: 192.168.68.150 # IP to our NFS server
+            path: /rpool/kubernetes/analytics # The exported directory
+#          persistentVolumeClaim:
+#            claimName: influxdb
