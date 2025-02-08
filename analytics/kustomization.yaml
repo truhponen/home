@@ -1,0 +1,7 @@
+namespace: analytics
+resources:
+  - Namespace-analytics.yaml
+  - PersistentVolume-analytics.yaml
+  - PersistentVolumeClaim-influxdb.yaml
+  - Service-influxdb.yaml
+  - StatefulSet-influxdb.yaml
