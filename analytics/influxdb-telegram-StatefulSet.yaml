@@ -20,6 +20,7 @@ spec:
       - name: influxdb
         image: docker.io/influxdb:2.7.11
         imagePullPolicy: IfNotPresent
+        imagePullSecrets: docker-hub
         ports:
         - containerPort: 8086
           name: influxdb
@@ -31,6 +32,7 @@ spec:
       - name: telegraf-mqtt
         image: docker.io/telegraf:1.33.2
         imagePullPolicy: IfNotPresent
+        imagePullSecrets: docker-hub
         ports:
         - containerPort: 9411
           name: telegraf-mqtt
