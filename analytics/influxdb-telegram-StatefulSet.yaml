@@ -23,7 +23,7 @@ spec:
         - containerPort: 8086
           name: influxdb
         volumeMounts:
-        - name: influxdb
+        - name: analytics
           mountPath: /var/lib/influxdb2
           subPath: influxdb
       # Telegraf MQTT container
@@ -33,7 +33,7 @@ spec:
         - containerPort: 9411
           name: telegraf-mqtt
         volumeMounts:
-        - name: telegraf-mqtt
+        - name: analytics
           mountPath: /etc/telegraf
           # Note that pod will fail if configuration is not in folder
           subPath: telegraf-mqtt
