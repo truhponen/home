@@ -1,6 +1,6 @@
 namespace: prod
 resources:
-  - analytics-PersistentVolume.yaml
-  - analytics-PersistentVolumeClaim.yaml
-  - analytics-Service.yaml
-  - influxdb-telegram-StatefulSet.yaml
+  - PersistentVolume.yaml
+  - PersistentVolumeClaim.yaml
+  - Service.yaml
+  - StatefulSet-influxdb-telegram.yaml
