@@ -11,7 +11,7 @@ metadata:
     pv.kubernetes.io/provisioned-by: nfs.csi.k8s.io
 spec:
   capacity:
-    storage: 10Gi
+    storage: 200Gi
   accessModes:
     - ReadWriteOnce
   # Offers only retained storage
