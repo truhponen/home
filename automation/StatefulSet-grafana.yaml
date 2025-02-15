@@ -1,0 +1,34 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  serviceName: "grafana"
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      containers:
+      - name: grafana
+        image: grafana:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
+          name: grafana
+        volumeMounts:
+        - name: automation-nfs
+          mountPath: 	/var/lib/grafana
+          subPath: grafana
+      imagePullSecrets: 
+        - name: docker-hub
+      volumes:
+        - name: automation-nfs
+          nfs:
+            server: 192.168.68.150 # IP to our NFS server
+            path: /rpool/kubernetes/ # The exported directory
