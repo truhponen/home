@@ -31,6 +31,11 @@ spec:
       - name: telegraf-mqtt
         image: docker.io/telegraf:1.33.2
         imagePullPolicy: IfNotPresent
+        env:
+        - name: INFLUX_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: telegraf-mqtt-influxdb-access-token
         ports:
         - containerPort: 9411
           name: telegraf-mqtt
