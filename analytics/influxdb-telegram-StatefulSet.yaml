@@ -36,6 +36,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: telegraf-mqtt-influxdb-access-token
+              key: password
         ports:
         - containerPort: 9411
           name: telegraf-mqtt
