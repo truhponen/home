@@ -25,15 +25,6 @@ spec:
         - name: analytics
           mountPath: /var/lib/influxdb2
           subPath: influxdb
-      - name: telegraf
-        image: telegraf:latest
-        ports:
-        - containerPort: 9411
-          name: telegraf
-        volumeMounts:
-        - name: analytics
-          mountPath: /etc/telegraf
-          subPath: telegraf
       volumes:
         - name: analytics
           nfs:
