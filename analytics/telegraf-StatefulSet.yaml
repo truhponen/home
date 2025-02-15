@@ -24,7 +24,7 @@ spec:
         volumeMounts:
         - name: analytics
           mountPath: /etc/telegraf
-          subPath: telegraf
+          subPath: telegraf-mqtt
       volumes:
         - name: analytics
           nfs:
