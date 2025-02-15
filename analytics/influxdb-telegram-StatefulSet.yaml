@@ -35,7 +35,6 @@ spec:
         volumeMounts:
         - name: analytics
           mountPath: /etc/telegraf
-          # Note that pod will fail if configuration is not in folder
           subPath: telegraf-mqtt
       volumes:
         - name: analytics
