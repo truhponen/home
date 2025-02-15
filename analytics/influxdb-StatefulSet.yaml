@@ -38,6 +38,10 @@ spec:
         - name: influxdb
           nfs:
             server: 192.168.68.150 # IP to our NFS server
-            path: /rpool/kubernetes/analytics # The exported directory
+            path: /rpool/kubernetes/analytics/influxdb # The exported directory
+        - name: telegraf
+          nfs:
+            server: 192.168.68.150 # IP to our NFS server
+            path: /rpool/kubernetes/analytics/telegraf # The exported directory
 #          persistentVolumeClaim:
 #            claimName: influxdb
