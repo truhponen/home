@@ -35,7 +35,7 @@ spec:
           mountPath: /etc/telegraf
           subPath: telegraf
       volumes:
-        - name: influxdb
+        - name: analytics
           nfs:
             server: 192.168.68.150 # IP to our NFS server
             path: /rpool/kubernetes/analytics/ # The exported directory
