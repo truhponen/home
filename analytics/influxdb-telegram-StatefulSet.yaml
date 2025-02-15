@@ -33,7 +33,7 @@ spec:
         imagePullPolicy: IfNotPresent
         envFrom:
         - secretRef:
-            name: telegraf-mqtt-influx-token
+            name: telegraf-mqtt-influxdb-access-token
         ports:
         - containerPort: 9411
           name: telegraf-mqtt
