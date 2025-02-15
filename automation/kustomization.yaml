@@ -1,5 +1,6 @@
 namespace: prod
 resources:
+  - Namespace.yaml
   - PersistentVolume.yaml
   - PersistentVolumeClaim.yaml
   - Service.yaml
