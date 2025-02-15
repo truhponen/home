@@ -17,14 +17,23 @@ spec:
     spec:
       containers:
       - name: influxdb
-        image: influxdb:2.0.6
+        image: influxdb:latest
         ports:
         - containerPort: 8086
           name: influxdb
         volumeMounts:
         - name: influxdb
           mountPath: /var/lib/influxdb2
-          # subPath: influxdb
+          subPath: influxdb
+      - name: telegraf
+        image: telegraf:latest
+        ports:
+        - containerPort: 9411
+          name: influxdb
+        volumeMounts:
+        - name: telegraf
+          mountPath: /etc/telegraf
+          subPath: telegraf
       volumes:
         - name: influxdb
           nfs:
