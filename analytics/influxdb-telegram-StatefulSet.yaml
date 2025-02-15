@@ -18,7 +18,7 @@ spec:
       containers:
       # Influxdb container
       - name: influxdb
-        image: influxdb:latest
+        image: influxdb:2.7.11
         ports:
         - containerPort: 8086
           name: influxdb
@@ -28,7 +28,7 @@ spec:
           subPath: influxdb
       # Telegraf MQTT container
       - name: telegraf-mqtt
-        image: telegraf:latest
+        image: telegraf:1.33.2
         ports:
         - containerPort: 9411
           name: telegraf-mqtt
