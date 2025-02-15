@@ -18,7 +18,8 @@ spec:
       containers:
       # Influxdb container
       - name: influxdb
-        image: influxdb:2.7.11
+        image: docker.io/influxdb:2.7.11
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8086
           name: influxdb
@@ -28,7 +29,8 @@ spec:
           subPath: influxdb
       # Telegraf MQTT container
       - name: telegraf-mqtt
-        image: telegraf:1.33.2
+        image: docker.io/telegraf:1.33.2
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9411
           name: telegraf-mqtt
