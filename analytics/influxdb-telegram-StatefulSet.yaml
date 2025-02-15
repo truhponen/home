@@ -38,7 +38,8 @@ spec:
         - name: analytics
           mountPath: /etc/telegraf
           subPath: telegraf-mqtt
-      imagePullSecrets: docker-hub
+      imagePullSecrets: 
+        - name: docker-hub
       volumes:
         - name: analytics
           nfs:
