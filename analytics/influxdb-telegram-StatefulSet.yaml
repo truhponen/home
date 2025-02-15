@@ -3,13 +3,13 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: influxdb
+  name: influxdb-telegram
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: influxdb-telegram
-  serviceName: "influxdb"
+  serviceName: "influxdb-telegram"
   template:
     metadata:
       labels:
