@@ -1,4 +1,4 @@
-namespace: analytics
+namespace: prod
 resources:
   - analytics-Namespace.yaml
   - analytics-PersistentVolume.yaml
