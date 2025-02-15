@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: grafana
-        image: grafana:latest
+        image: grafana/grafana-enterprise:latest
         imagePullPolicy: IfNotPresent
         env:
         - name: GF_SECURITY_ALLOW_EMBEDDING
