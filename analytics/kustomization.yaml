@@ -3,6 +3,5 @@ resources:
   - analytics-Namespace.yaml
   - analytics-PersistentVolume.yaml
   - analytics-PersistentVolumeClaim.yaml
-  - influxdb-Service.yaml
-  - influxdb-StatefulSet.yaml
-  - telegraf-StatefulSet.yaml
+  - analytics-Service.yaml
+  - influxdb-telegram-StatefulSet.yaml
