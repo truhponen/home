@@ -1,0 +1,15 @@
+# Based on https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/deploy/example/pvc-nfs-csi-static.yaml
+# Based on https://medium.com/@nikhil.nagarajappa/installing-influxdb-in-k8s-2fe0e0647431
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: influxdb
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 6Gi
+  storageClassName: nfs-csi
+  volumeName: analytics
