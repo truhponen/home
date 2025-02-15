@@ -8,14 +8,15 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: influxdb
+      app: influxdb-telegram
   serviceName: "influxdb"
   template:
     metadata:
       labels:
-        app: influxdb
+        app: influxdb-telegram
     spec:
       containers:
+      # Influxdb container
       - name: influxdb
         image: influxdb:latest
         ports:
@@ -25,6 +26,17 @@ spec:
         - name: analytics
           mountPath: /var/lib/influxdb2
           subPath: influxdb
+      # Telegraf MQTT container
+      - name: telegraf-mqtt
+        image: telegraf:latest
+        ports:
+        - containerPort: 9411
+          name: telegraf-mqtt
+        volumeMounts:
+        - name: analytics
+          mountPath: /etc/telegraf
+          # Note that pod will fail if configuration is not in folder
+          subPath: telegraf-mqtt
       volumes:
         - name: analytics
           nfs:
