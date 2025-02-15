@@ -22,26 +22,22 @@ spec:
         - containerPort: 8086
           name: influxdb
         volumeMounts:
-        - name: influxdb
+        - name: analytics
           mountPath: /var/lib/influxdb2
           subPath: influxdb
       - name: telegraf
         image: telegraf:latest
         ports:
         - containerPort: 9411
-          name: influxdb
+          name: telegraf
         volumeMounts:
-        - name: telegraf
+        - name: analytics
           mountPath: /etc/telegraf
           subPath: telegraf
       volumes:
         - name: influxdb
           nfs:
             server: 192.168.68.150 # IP to our NFS server
-            path: /rpool/kubernetes/analytics/influxdb # The exported directory
-        - name: telegraf
-          nfs:
-            server: 192.168.68.150 # IP to our NFS server
-            path: /rpool/kubernetes/analytics/telegraf # The exported directory
+            path: /rpool/kubernetes/analytics/ # The exported directory
 #          persistentVolumeClaim:
 #            claimName: influxdb
