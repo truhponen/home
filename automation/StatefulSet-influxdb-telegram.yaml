@@ -15,6 +15,11 @@ spec:
       labels:
         app: influxdb-telegram
     spec:
+      securityContext:
+        runAsUser: 1978
+        runAsGroup: 1978
+        # fsGroup: 
+        # supplementalGroups: 
       containers:
       # Influxdb container
       - name: influxdb
