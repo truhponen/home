@@ -3,17 +3,17 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: influxdb-telegram
+  name: influxdb-telegraf
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: influxdb-telegram
-  serviceName: "influxdb-telegram"
+      app: influxdb-telegraf
+  serviceName: "influxdb-telegraf"
   template:
     metadata:
       labels:
-        app: influxdb-telegram
+        app: influxdb-telegraf
     spec:
       securityContext:
         runAsUser: 1978
@@ -38,7 +38,7 @@ spec:
         imagePullPolicy: IfNotPresent
         envFrom:
         - secretRef:
-            name: telegraf-mqtt-influxdb-access-token
+            name: telegraf
         ports:
         - containerPort: 9411
           name: telegraf-mqtt
@@ -46,7 +46,7 @@ spec:
         - name: automation-nfs
           mountPath: /etc/telegraf
           subPath: telegraf-mqtt
-      imagePullSecrets: 
+      imagePullSecrets:
         - name: docker-hub
       volumes:
         - name: automation-nfs

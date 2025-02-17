@@ -5,4 +5,4 @@ resources:
   - PersistentVolumeClaim.yaml
   - Service.yaml
   - StatefulSet-grafana.yaml
-  - StatefulSet-influxdb-telegram.yaml
+  - StatefulSet-influxdb-telegraf.yaml

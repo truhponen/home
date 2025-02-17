@@ -1,0 +1,4 @@
+.gitsecret/keys/random_seed
+!*.secret
+automation/Secret-docker-hub.yaml
+automation/Secret-telegraf.yaml
