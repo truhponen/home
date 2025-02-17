@@ -14,6 +14,9 @@ spec:
       labels:
         app: grafana
     spec:
+      securityContext:
+        runAsUser: 1978
+        runAsGroup: 1978
       containers:
       - name: grafana
         image: grafana/grafana-enterprise:latest
