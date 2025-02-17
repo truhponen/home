@@ -6,4 +6,3 @@ resources:
   - Service.yaml
   - StatefulSet-grafana.yaml
   - StatefulSet-influxdb-telegram.yaml
-  - StatefulSet-nginx.yaml
