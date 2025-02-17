@@ -27,7 +27,7 @@ spec:
         - containerPort: 8086
           name: influxdb
         volumeMounts:
-        - name: automation-nfs
+        - name: nfs
           mountPath: /var/lib/influxdb2
           subPath: influxdb
       # Telegraf MQTT container
@@ -41,15 +41,17 @@ spec:
         - containerPort: 9411
           name: telegraf-mqtt
         volumeMounts:
-        - name: automation-nfs
+        - name: nfs
           mountPath: /etc/telegraf
           subPath: telegraf-mqtt
       imagePullSecrets:
         - name: docker-hub
       volumes:
-        - name: automation-nfs
-          nfs:
-            server: 192.168.68.150 # IP to our NFS server
-            path: /rpool/kubernetes/ # The exported directory
+        - name: nfs
+          persistentVolumeClaim:
+            claimName: nfs
+#          nfs:
+#            server: 192.168.68.150 # IP to our NFS server
+#            path: /rpool/kubernetes/ # The exported directory
 #          persistentVolumeClaim:
 #            claimName: influxdb
