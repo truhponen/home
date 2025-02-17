@@ -28,4 +28,3 @@ spec:
       server: 192.168.68.150
       # Namespace has own NFS share
       share: /rpool/kubernetes
-      mountPermissions: "1978:1978"
