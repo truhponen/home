@@ -16,8 +16,8 @@ spec:
         app: influxdb-telegraf
     spec:
       securityContext:
-        runAsUser: 1978
-        runAsGroup: 1978
+        # runAsUser: 1978
+        # runAsGroup: 1978
         # fsGroup: 
         # supplementalGroups: 
       containers:
