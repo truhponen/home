@@ -23,5 +23,5 @@ spec:
         port: 8086
         targetPort: 8086
     selector:
-        app: influxdb-telegram
+        app: influxdb-telegraf
     type: LoadBalancer
