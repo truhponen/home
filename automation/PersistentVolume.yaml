@@ -4,9 +4,9 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   # One PersistentVolume for whole namespace, use mountvolume's subpaths to separate data
-  name: nfs
+  name: nfs-prod
   labels:
-    type: nfs
+    type: nfs-prod
   annotations:
     pv.kubernetes.io/provisioned-by: nfs.csi.k8s.io
 spec:
@@ -23,8 +23,8 @@ spec:
     driver: nfs.csi.k8s.io
     # volumeHandle format: {nfs-server-address}#{sub-dir-name}#{share-name}
     # make sure this value is unique for every share in the cluster
-    volumeHandle: 192.168.68.150/rpool/kubernetes
+    volumeHandle: 192.168.68.150/rpool/kubernetes/prod
     volumeAttributes:
       server: 192.168.68.150
       # Namespace has own NFS share
-      share: /rpool/kubernetes
+      share: /rpool/kubernetes/prod
