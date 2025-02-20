@@ -3,18 +3,16 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  # One PersistentVolume for whole namespace, use mountvolume's subpaths to separate data
-  name: nfs-prod
-  labels:
-    type: nfs-prod
   annotations:
     pv.kubernetes.io/provisioned-by: nfs.csi.k8s.io
+  # Namespace has own NFS share
+  name: nfs-prod
 spec:
   capacity:
     storage: 100Gi
+  # Namespace has own NFS share therefore needs to be "many"
   accessModes:
     - ReadWriteMany
-  # Offers only retained storage
   persistentVolumeReclaimPolicy: Retain
   storageClassName: nfs-csi
   mountOptions:
@@ -24,7 +22,7 @@ spec:
     # volumeHandle format: {nfs-server-address}#{sub-dir-name}#{share-name}
     # make sure this value is unique for every share in the cluster
     volumeHandle: 192.168.68.150/rpool/kubernetes/prod
-    volumeAttributes:
+    volumeAttributes: 
       server: 192.168.68.150
       # Namespace has own NFS share
       share: /rpool/kubernetes/prod
