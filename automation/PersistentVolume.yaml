@@ -27,4 +27,4 @@ spec:
     volumeAttributes:
       server: 192.168.68.150
       # Namespace has own NFS share
-      share: rpool/kubernetes/prod
+      share: /rpool/kubernetes/prod
