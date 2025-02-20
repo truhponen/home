@@ -47,6 +47,10 @@ spec:
           # subPath: telegraf-mqtt
       imagePullSecrets:
         - name: docker-hub
+      volumes:
+        - name: influxdb-telegraf
+          persistentVolumeClaim:
+           claimName: influxdb-telegraf
   volumeClaimTemplates:
   - metadata:
       name: influxdb-telegraf
