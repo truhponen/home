@@ -47,12 +47,11 @@ spec:
           subPath: telegraf-mqtt
       imagePullSecrets:
         - name: docker-hub
-      volumes:
-        - name: nfs
-          persistentVolumeClaim:
-            claimName: nfs
-#          nfs:
-#            server: 192.168.68.150 # IP to our NFS server
-#            path: /rpool/kubernetes/ # The exported directory
-#          persistentVolumeClaim:
-#            claimName: influxdb
+  volumeClaimTemplates:
+  - metadata:
+      name: nfs
+    spec:
+      accessModes: [ "ReadWriteMany" ]
+      resources:
+        requests:
+          storage: 10Gi
