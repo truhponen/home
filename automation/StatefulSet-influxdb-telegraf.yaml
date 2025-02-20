@@ -30,7 +30,7 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /var/lib/influxdb2
-          # subPath: influxdb
+          subPath: influxdb
       # Telegraf MQTT container
       - name: telegraf-mqtt
         image: docker.io/telegraf:1.33.2
@@ -44,7 +44,7 @@ spec:
         volumeMounts:
         - name: data
           mountPath: /etc/telegraf
-          # subPath: telegraf-mqtt
+          subPath: telegraf-mqtt
       imagePullSecrets:
         - name: docker-hub
 #      volumes:
