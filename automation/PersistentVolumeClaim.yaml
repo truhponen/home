@@ -5,9 +5,9 @@ metadata:
   name: nfs
 spec:
   accessModes:
-  - ReadWriteMany
+    - ReadWriteMany
   resources:
     requests:
       storage: 100Gi
-  storageClassName: nfs-csi
   volumeName: nfs-prod
+  storageClassName: nfs-csi
