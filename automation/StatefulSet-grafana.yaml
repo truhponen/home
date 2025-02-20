@@ -28,13 +28,17 @@ spec:
         - containerPort: 3000
           name: grafana
         volumeMounts:
-        - name: automation-nfs
+        - name: grafana
           mountPath: 	/var/lib/grafana
           subPath: grafana
       imagePullSecrets: 
         - name: docker-hub
       volumes:
-        - name: automation-nfs
-          nfs:
-            server: 192.168.68.150 # IP to our NFS server
-            path: /rpool/kubernetes/ # The exported directory
+        - name: grafana
+          persistentVolumeClaim:
+            claimName: nfs
+#      volumes:
+#        - name: automation-nfs
+#          nfs:
+#            server: 192.168.68.150 # IP to our NFS server
+#            path: /rpool/kubernetes/ # The exported directory
