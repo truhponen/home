@@ -28,7 +28,7 @@ spec:
         - containerPort: 8086
           name: influxdb
         volumeMounts:
-        - name: influxdb-telegraf
+        - name: data
           mountPath: /var/lib/influxdb2
           # subPath: influxdb
       # Telegraf MQTT container
@@ -42,7 +42,7 @@ spec:
         - containerPort: 9411
           name: telegraf-mqtt
         volumeMounts:
-        - name: influxdb-telegraf
+        - name: data
           mountPath: /etc/telegraf
           # subPath: telegraf-mqtt
       imagePullSecrets:
@@ -53,7 +53,7 @@ spec:
 #           claimName: nfs
   volumeClaimTemplates:
   - metadata:
-      name: influxdb-telegraf
+      name: data
     spec:
       accessModes: [ "ReadWriteMany" ]
       resources:
