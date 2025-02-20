@@ -50,10 +50,10 @@ spec:
       volumes:
         - name: influxdb
           persistentVolumeClaim:
-            claimName: pvc-deployment-nfs
+            claimName: nfs
         - name: telegraf-mqtt
           persistentVolumeClaim:
-            claimName: pvc-deployment-nfs
+            claimName: nfs
 #  volumeClaimTemplates:
 #  - metadata:
 #      name: telegraf-mqtt
