@@ -54,6 +54,7 @@ spec:
         - name: telegraf-mqtt
           persistentVolumeClaim:
             claimName: nfs
+            storageClassName: 'nfs-csi'
 #  volumeClaimTemplates:
 #  - metadata:
 #      name: telegraf-mqtt
