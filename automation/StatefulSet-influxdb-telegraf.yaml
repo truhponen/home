@@ -47,19 +47,15 @@ spec:
           subPath: telegraf-mqtt
       imagePullSecrets:
         - name: docker-hub
-      volumes:
-        - name: influxdb-telegraf
-          persistentVolumeClaim:
-            claimName: nfs
-#  volumeClaimTemplates:
-#  - metadata:
-#      name: telegraf-mqtt
-#    spec:
-#      accessModes: [ "ReadWriteMany" ]
-#      resources:
-#        requests:
-#          storage: 10Gi
-#      storageClassName: 'nfs-csi'
+  volumeClaimTemplates:
+  - metadata:
+      name: influxdb-telegraf
+    spec:
+      accessModes: [ "ReadWriteMany" ]
+      resources:
+        requests:
+          storage: 10Gi
+      storageClassName: 'nfs-csi'
 #  - metadata:
 #      name: influxdb
 #    spec:
