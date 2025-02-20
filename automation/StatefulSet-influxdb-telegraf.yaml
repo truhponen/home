@@ -28,7 +28,7 @@ spec:
         - containerPort: 8086
           name: influxdb
         volumeMounts:
-        - name: influxdb
+        - name: influxdb-telegraf
           mountPath: /var/lib/influxdb2
           subPath: influxdb
       # Telegraf MQTT container
@@ -42,19 +42,15 @@ spec:
         - containerPort: 9411
           name: telegraf-mqtt
         volumeMounts:
-        - name: telegraf-mqtt
+        - name: influxdb-telegraf
           mountPath: /etc/telegraf
           subPath: telegraf-mqtt
       imagePullSecrets:
         - name: docker-hub
       volumes:
-        - name: influxdb
+        - name: influxdb-telegraf
           persistentVolumeClaim:
             claimName: nfs
-        - name: telegraf-mqtt
-          persistentVolumeClaim:
-            claimName: nfs
-            storageClassName: 'nfs-csi'
 #  volumeClaimTemplates:
 #  - metadata:
 #      name: telegraf-mqtt
