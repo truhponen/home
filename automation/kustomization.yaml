@@ -8,4 +8,3 @@ resources:
   - Service.yaml
   - StatefulSet-grafana.yaml
   - StatefulSet-influxdb-telegraf.yaml
-  - StorageClass-nfs-prod.yaml
