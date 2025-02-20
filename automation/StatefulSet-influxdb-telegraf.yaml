@@ -50,16 +50,16 @@ spec:
       volumes:
         - name: influxdb-telegraf
           persistentVolumeClaim:
-           claimName: influxdb-telegraf
-  volumeClaimTemplates:
-  - metadata:
-      name: influxdb-telegraf
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      resources:
-        requests:
-          storage: 10Gi
-      storageClassName: 'nfs-prod'
+           claimName: nfs
+#  volumeClaimTemplates:
+#  - metadata:
+#      name: influxdb-telegraf
+#    spec:
+#      accessModes: [ "ReadWriteOnce" ]
+#      resources:
+#        requests:
+#          storage: 10Gi
+#      storageClassName: 'nfs-prod'
 #  - metadata:
 #      name: influxdb
 #    spec:
