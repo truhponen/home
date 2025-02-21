@@ -28,15 +28,15 @@ spec:
         - containerPort: 3000
           name: grafana
         volumeMounts:
-        - name: grafana
+        - name: dir
           mountPath: 	/var/lib/grafana
           subPath: grafana
       imagePullSecrets: 
         - name: docker-hub
       volumes:
-        - name: grafana
+        - name: dir
           persistentVolumeClaim:
-            claimName: nfs
+           claimName: nfs
 #      volumes:
 #        - name: automation-nfs
 #          nfs:
