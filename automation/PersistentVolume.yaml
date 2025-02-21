@@ -16,5 +16,5 @@ spec:
     nfs.csi.k8s.io: 192-168-68-150-rpool-kubernetes
     server: 192.168.68.150
     # Each namespace has own NFS share
-    path: /rpool/kubernetes
+    share: /rpool/kubernetes
     subDir: ${pvc.metadata.namespace}
