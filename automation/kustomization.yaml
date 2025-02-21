@@ -1,13 +1,8 @@
 namespace: prod
 resources:
   - Namespace.yaml
-<<<<<<< HEAD
   - PersistentVolume.yaml
   - PersistentVolumeClaim.yaml
-=======
-#  - PersistentVolume.yaml
-#  - PersistentVolumeClaim.yaml
->>>>>>> 122b597 (some changes)
   - Secret-docker-hub.yaml
   - Secret-telegraf.yaml
   - Service.yaml
