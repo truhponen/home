@@ -9,7 +9,11 @@ parameters:
   server: 192.168.68.150
   share: /rpool/kubernetes
   mountPermissions: '777'
+<<<<<<< HEAD:automation/StorageClass-nfs.yaml
   subDir: ${pvc.metadata.namespace}
+=======
+  subDir: /${pvc.metadata.namespace}
+>>>>>>> 122b597 (some changes):automation/StorageClass-nfs-prod.yaml
   # csi.storage.k8s.io/provisioner-secret is only needed for providing mountOptions in DeleteVolume
   # csi.storage.k8s.io/provisioner-secret-name: "mount-options"
   # csi.storage.k8s.io/provisioner-secret-namespace: "default"
