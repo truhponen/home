@@ -1,11 +1,11 @@
 namespace: prod
 resources:
   - Namespace.yaml
-  - PersistentVolume.yaml
+#  - PersistentVolume.yaml
 #  - PersistentVolumeClaim.yaml
   - Secret-docker-hub.yaml
   - Secret-telegraf.yaml
   - Service.yaml
 #  - StatefulSet-grafana.yaml
   - StatefulSet-influxdb-telegraf.yaml
-#  - StorageClass-nfs-prod.yaml
+  - StorageClass-nfs.yaml
