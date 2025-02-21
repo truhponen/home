@@ -13,11 +13,3 @@ spec:
   nfs:
     server: 192.168.68.150
     path: /rpool/kubernetes/prod
-#  csi:
-#    driver: nfs.csi.k8s.io
-#    volumeHandle: 192-168-68-150-rpool-kubernetes
-#    volumeAttributes:
-#      server: 192.168.68.150
-      # Each namespace has own NFS share
-#      share: /rpool/kubernetes
-#      subDir: ${pvc.metadata.namespace}
