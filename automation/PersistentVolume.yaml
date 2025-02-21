@@ -13,7 +13,7 @@ spec:
 #  nfs:
   csi:
     driver: nfs.csi.k8s.io
-    nfs.csi.k8s.io: 192-168-68-150-rpool-kubernetes
+    volumeHandle: 192-168-68-150-rpool-kubernetes
     volumeAttributes:
       server: 192.168.68.150
       # Each namespace has own NFS share
