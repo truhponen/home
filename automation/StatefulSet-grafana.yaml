@@ -38,8 +38,3 @@ spec:
         - name: dir
           persistentVolumeClaim:
            claimName: nfs
-#      volumes:
-#        - name: automation-nfs
-#          nfs:
-#            server: 192.168.68.150 # IP to our NFS server
-#            path: /rpool/kubernetes/ # The exported directory
