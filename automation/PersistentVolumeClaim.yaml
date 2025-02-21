@@ -10,5 +10,5 @@ spec:
   resources:
     requests:
       storage: 100Gi
-  volumeName: nfs-prod
-  storageClassName: nfs-csi
+  # volumeName: nfs-prod
+  storageClassName: nfs
