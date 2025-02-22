@@ -1,0 +1,8 @@
+# Own namespace for analytics applications
+---
+namespace: test
+resources:
+  - ../base
+  - PersistentVolume.yaml
+  - PersistentVolumeClaim.yaml
+  - Deployment.yaml
