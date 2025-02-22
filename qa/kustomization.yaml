@@ -1,5 +1,5 @@
 namespace: qa
 resources:
-  - ../
+  - ../base
 patches:
   - path: PersistentVolume.yaml
