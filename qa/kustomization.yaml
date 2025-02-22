@@ -1,5 +1,6 @@
 namespace: qa
 resources:
   - ../base
-patches:
-  - path: PersistentVolume.yaml
+  - Namespace.yaml
+  - PersistentVolume.yaml
+  - PersistentVolumeClaim.yaml

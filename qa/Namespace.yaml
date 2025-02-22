@@ -1,0 +1,6 @@
+# Own namespace for analytics applications
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: qa

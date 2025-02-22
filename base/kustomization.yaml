@@ -1,0 +1,6 @@
+resources:
+  - Secret-docker-hub.yaml
+  - Secret-telegraf.yaml
+  - Service.yaml
+  - StatefulSet-grafana.yaml
+  - StatefulSet-influxdb-telegraf.yaml

@@ -1,11 +1,6 @@
 namespace: prod
 resources:
+  - ../base
   - Namespace.yaml
   - PersistentVolume.yaml
   - PersistentVolumeClaim.yaml
-  - Secret-docker-hub.yaml
-  - Secret-telegraf.yaml
-  - Service.yaml
-  - StatefulSet-grafana.yaml
-  - StatefulSet-influxdb-telegraf.yaml
-#  - StorageClass-nfs.yaml
