@@ -2,6 +2,8 @@ namespace: qa
 resources:
   - ../base
 
-patches:
-  - path: patch-PersistentVolume.yaml
-  - path: patch-PersistentVolumeClaim.yaml
+patchesStrategicMerge:
+  - patch-PersistentVolume.yaml
+  - patch-PersistentVolumeClaim.yaml
+  
+  
