@@ -1,0 +1,8 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+spec:
+  csi:
+    volumeHandle: 192.168.68.150/rpool/kubernetes/test
+    volumeAttributes:
+      share: /rpool/kubernetes/test
