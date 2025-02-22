@@ -3,7 +3,7 @@ resources:
   - ../base
 
 patches:
-  - patch-PersistentVolume.yaml
-  - patch-PersistentVolumeClaim.yaml
+  - path: patch-PersistentVolume.yaml
+  - path: patch-PersistentVolumeClaim.yaml
   
   
