@@ -18,8 +18,7 @@ spec:
     driver: nfs.csi.k8s.io
     # volumeHandle format: {nfs-server-address}#{sub-dir-name}#{share-name}
     # make sure this value is unique for every share in the cluster
-    volumeHandle: 192.168.68.150/rpool/kubernetes
+    volumeHandle: 192.168.68.150/rpool/kubernetes/test
     volumeAttributes:
       server: 192.168.68.150
-      share: /rpool/kubernetes
-      subDir: "${pvc.metadata.namespace}"
+      share: /rpool/kubernetes/test
