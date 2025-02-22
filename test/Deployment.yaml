@@ -31,4 +31,4 @@ spec:
       volumes:
         - name: nfs
           persistentVolumeClaim:
-            claimName: pvc-deployment-nfs
+            claimName: pvc-nfs-static

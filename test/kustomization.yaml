@@ -3,7 +3,5 @@
 namespace: test
 resources:
   - ../base
-  - Namespace.yaml
-  - PersistentVolume.yaml
   - PersistentVolumeClaim.yaml
   - Deployment.yaml

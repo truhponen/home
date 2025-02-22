@@ -4,21 +4,22 @@ kind: PersistentVolume
 metadata:
   annotations:
     pv.kubernetes.io/provisioned-by: nfs.csi.k8s.io
-  name: pv-nfs
+  name: nfs
 spec:
   capacity:
-    storage: 10Gi
+    storage: 100Gi
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: nfs-csi
+  storageClassName: nfs
   mountOptions:
     - nfsvers=4.1
   csi:
     driver: nfs.csi.k8s.io
     # volumeHandle format: {nfs-server-address}#{sub-dir-name}#{share-name}
     # make sure this value is unique for every share in the cluster
-    volumeHandle: nfs-server.default.svc.cluster.local/share##
+    volumeHandle: 192.168.68.150/rpool/kubernetes
     volumeAttributes:
       server: 192.168.68.150
-      share: /rpool/kubernetes/test
+      share: /rpool/kubernetes
+      subDir: "${pvc.metadata.namespace}"

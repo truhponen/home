@@ -1,4 +1,6 @@
 resources:
+  - Namespace.yaml
+  - PersistentVolume.yaml
   - Secret-docker-hub.yaml
   - Secret-telegraf.yaml
   - Service.yaml
