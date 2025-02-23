@@ -1,6 +1,11 @@
 namespace: prod
 resources:
   - ../base
-  - Namespace.yaml
-  - PersistentVolume.yaml
-  - PersistentVolumeClaim.yaml
+
+patches:
+  - path: patch-PersistentVolume.yaml
+    target:
+      kind: PersistentVolume
+  - path: patch-PersistentVolumeClaim.yaml
+    target:
+      kind: PersistentVolumeClaim

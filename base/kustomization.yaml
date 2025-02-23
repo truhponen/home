@@ -1,6 +1,10 @@
 resources:
+# Non-namespaced objects - not kustomized
+  - PersistentVolume-prod.yaml
+  - PersistentVolume-qa.yaml
+  - PersistentVolume-test.yaml
+# Namespaced objects
   - Namespace.yaml
-  - PersistentVolume.yaml
   - PersistentVolumeClaim.yaml
   - Secret-docker-hub.yaml
   - Secret-telegraf.yaml
