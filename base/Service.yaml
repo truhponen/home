@@ -11,7 +11,7 @@ spec:
         targetPort: 3000
     selector:
         app: grafana
-    type: LoadBalancer
+    type: NodePort
 ---
 apiVersion: v1
 kind: Service
@@ -24,4 +24,4 @@ spec:
         targetPort: 8086
     selector:
         app: influxdb-telegraf
-    type: LoadBalancer
+    type: NodePort
