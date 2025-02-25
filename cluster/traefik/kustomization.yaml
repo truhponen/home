@@ -1,0 +1,9 @@
+namespace: traefik
+
+resources:
+  - ClusterRoleBinding.yaml
+  - ClusterRole.yaml
+  - Deployment.yaml
+  - Namespace.yaml
+  - ServiceAccount.yaml
+  - Service.yaml
