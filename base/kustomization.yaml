@@ -4,7 +4,6 @@ resources:
   - PersistentVolume-qa.yaml
   - PersistentVolume-test.yaml
 # Namespaced objects
-  - Ingress.yaml
   - Namespace.yaml
   - PersistentVolumeClaim.yaml
   - Secret-docker-hub.yaml

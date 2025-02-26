@@ -1,4 +1,23 @@
 ---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: influxdb
+  annotations:
+    ingress.class: "haproxy"
+spec:
+  rules:
+  - host: kube-influxdb.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: influxdb
+            port:
+              name: influxdb
+---
 apiVersion: v1
 kind: Service
 metadata:

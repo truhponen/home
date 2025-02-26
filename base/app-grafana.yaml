@@ -1,4 +1,21 @@
 ---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grafana
+spec:
+  rules:
+  - host: kube-grafana.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: grafana
+            port:
+              name: grafana
+---
 apiVersion: v1
 kind: Service
 metadata:
