@@ -10,4 +10,5 @@ resources:
   - Secret-docker-hub.yaml
   - Secret-telegraf.yaml
   - app-grafana.yaml
+  - app-jellyfin.yaml
   - app-influxdb-telegraf.yaml
