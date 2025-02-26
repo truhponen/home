@@ -41,10 +41,10 @@ spec:
         volumeMounts:
         - name: config
           mountPath: /config
-          subPath: jellyfin/config
+          subPath: jellyfin-config
         - name: cache
           mountPath: /cache
-          subPath: jellyfin/cache
+          subPath: jellyfin-cache
 #        - name: media
 #          mountPath: /media
 #          subPath: jellyfin/cache
