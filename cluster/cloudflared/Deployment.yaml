@@ -1,0 +1,27 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: cloudflared
+  labels:
+    app: cloudflared
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloudflared
+  template:
+    metadata:
+      labels:
+        app: cloudflared
+    spec:
+      containers:
+        - name: cloudflared
+          image: cloudflare/cloudflared:latest
+          args: 
+            - tunnel
+            - --no-autoupdate
+            - run
+            - --token
+            - eyJhIjoiYTAwODNiOGE1YmE3ZGFjMWJiODFhZGZjYTRiOTc2NWQiLCJ0IjoiOGVlM2Y2NjEtMjU4ZC00NDc2LTk1ZDktZWQyZDM3NDI3NThmIiwicyI6Ik9UTmhPV1l3TjJNdE1EQmpOUzAwTldaaExUZzNOak10WlRBNE9XSTRPV0kzTlRjeCJ9
+

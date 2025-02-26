@@ -1,9 +1,10 @@
 namespace: traefik
 
 resources:
+  - Namespace.yaml
+  - Ingress.yaml
   - ClusterRoleBinding.yaml
   - ClusterRole.yaml
   - Deployment.yaml
-  - Namespace.yaml
   - ServiceAccount.yaml
   - Service.yaml
