@@ -2,3 +2,4 @@
 !*.secret
 automation/Secret-docker-hub.yaml
 automation/Secret-telegraf.yaml
+cluster/cloudflared/Secret-cloudflared.yaml

@@ -23,5 +23,7 @@ spec:
             - --no-autoupdate
             - run
             - --token
-            - eyJhIjoiYTAwODNiOGE1YmE3ZGFjMWJiODFhZGZjYTRiOTc2NWQiLCJ0IjoiOGVlM2Y2NjEtMjU4ZC00NDc2LTk1ZDktZWQyZDM3NDI3NThmIiwicyI6Ik9UTmhPV1l3TjJNdE1EQmpOUzAwTldaaExUZzNOak10WlRBNE9XSTRPV0kzTlRjeCJ9
-
+            - $(cloudflared-token)
+          envFrom:
+            - secretRef:
+                name: cloudflared
