@@ -1,3 +1,3 @@
-Instructions moded to https://wiki.kotimme.cc/
+Instructions have been to https://wiki.kotimme.cc/
 
-This repository now contains mainly Kubernetes related stuff.
+This repository now contains mainly my Kubernetes cluster related stuff.
