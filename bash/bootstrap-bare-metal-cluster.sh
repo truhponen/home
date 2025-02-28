@@ -69,12 +69,6 @@ helm repo update
 helm install - https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/purelb/helm-customization.yaml --create-namespace --namespace=purelb purelb purelb/purelb
 
 echo "|"
-echo "Apply IP range for PureLB with ServiceGroup"
-echo "|"
-kubectl apply -f https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/purelb/servicegroup.yaml -n purelb
-
-
-echo "|"
 echo "Install Traefik Ingress controller with Helm and customizations"
 echo "|"
 helm repo add traefik https://traefik.github.io/charts
