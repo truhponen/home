@@ -24,7 +24,7 @@ echo "|"
 kubectl create ns kube-flannel
 kubectl label --overwrite ns kube-flannel pod-security.kubernetes.io/enforce=privileged
 helm repo add flannel https://flannel-io.github.io/flannel/
-helm install flannel --set podCidr="10.244.0.0/16" --namespace kube-flannel flannel/flannel
+helm install --set podCidr="10.244.0.0/16" --namespace kube-flannel flannel flannel/flannel
 
 echo "|"
 echo "Install PureLB bare metal loadbalancer with Helm"
