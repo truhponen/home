@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# Run this as root
+# Login as Kuberneter maintainer user with sudo rights
+# ... but run this as root
 # sudo -i
 # curl https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/bootstrap-bare-metal-cluster.sh | bash
 
@@ -29,11 +30,20 @@ curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/$CRIO_VERSION/deb/Release.
 echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/$CRIO_VERSION/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list
 
 echo "|"
-echo "Install Kubernetes packages"
+echo "Install Kubernetes programs with apt"
 echo "|"
 apt update
 apt install -y cri-o kubelet kubeadm kubectl
 apt-mark hold cri-o kubelet kubeadm kubectl
+
+echo "|"
+echo "Install Helm with apt"
+echo "|"
+curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -
+sudo apt install apt-transport-https --yes
+echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+sudo apt update
+sudo apt install helm2
 
 echo "|"
 echo "Start Cri-o"
@@ -53,13 +63,19 @@ echo "|"
 kubeadm init --pod-network-cidr=10.244.0.0/16
 
 echo "|"
-echo "Install Helm with apt"
+echo "Exit to regular user"
 echo "|"
-curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -
-sudo apt install apt-transport-https --yes
-echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
-sudo apt update
-sudo apt install helm2
+exit
+
+echo "|"
+echo "Make user configurations"
+echo "|"
+
+kubeadm alpha phase kubeconfig admin --kubeconfig-dir /etc/kubernetes --cert-dir /etc/kubernetes/pki
+
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 echo "|"
 echo "Install Cluster basic programs with Helm"
