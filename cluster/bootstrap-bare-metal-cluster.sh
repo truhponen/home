@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Run this as root
+# sudo -i
 # curl https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/bootstrap-bare-metal-cluster.sh | bash
 
 echo "This script is based on https://cri-o.io/"
