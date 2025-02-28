@@ -1,10 +1,14 @@
 namespace: traefik
-
 resources:
+# Not namespaced resources
+  - PersistentVolume-traefik.yaml
+# Namespaced resources
   - Namespace.yaml
+  - PersistentVolumeClaim.yaml
   - Ingress.yaml
   - ClusterRoleBinding.yaml
   - ClusterRole.yaml
   - Deployment.yaml
   - ServiceAccount.yaml
   - Service.yaml
+  - CronJob.yaml
