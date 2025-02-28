@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Run this script as kubernetes maintainer user
+# curl https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/2-create-user-configurations | bash
+
+echo "|"
+echo "Make user configurations"
+echo "|"
+
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
