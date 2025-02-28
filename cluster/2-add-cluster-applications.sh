@@ -9,12 +9,15 @@ echo "|"
 echo "Make user configurations"
 echo "|"
 
-# Not needed necessarily
-# kubeadm alpha phase kubeconfig admin --kubeconfig-dir /etc/kubernetes --cert-dir /etc/kubernetes/pki
-
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+echo "|"
+echo "Install Flannel container networking"
+echo "Not possible to use Helm when fresh installation"
+echo "|"
+kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
 
 echo "|"
 echo "Innitialize Helm, i.e. install required cluster side applications"
