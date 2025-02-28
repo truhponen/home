@@ -74,3 +74,11 @@ echo "|"
 helm repo add traefik https://traefik.github.io/charts
 helm repo update
 helm install -f https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/traefik/helm-customization.yaml --create-namespace --namespace=traefik traefik traefik/traefik
+
+echo "|"
+echo "Install CSI-driver NFS with Helm"
+echo "There might be errors as instructions install CSI to kube-system namespace"
+echo "|"
+helm repo add csi-driver-nfs https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
+helm repo update
+helm install csi-driver-nfs csi-driver-nfs/csi-driver-nfs --create-namespace --namespace=csi-driver-nfs --version v4.10.0
