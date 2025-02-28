@@ -6,10 +6,12 @@
 # curl https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/3-add-cluster-applications.sh | bash
 
 echo "|"
-echo "Install Flannel container networking"
-echo "Not possible to use Helm when fresh installation as Tiller doesn't run without CNI"
+echo "Install Flannel container networking with Helm"
 echo "|"
-kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
+kubectl create ns kube-flannel
+kubectl label --overwrite ns kube-flannel pod-security.kubernetes.io/enforce=privileged
+helm repo add flannel https://flannel-io.github.io/flannel/
+helm install flannel --set podCidr="10.244.0.0/16" --namespace kube-flannel flannel/flannel
 
 echo "|"
 echo "Install PureLB bare metal loadbalancer with Helm"
