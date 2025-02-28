@@ -66,7 +66,7 @@ echo "Install PureLB bare metal loadbalancer with Helm"
 echo "|"
 helm repo add purelb https://gitlab.com/api/v4/projects/20400619/packages/helm/stable
 helm repo update
-helm install --create-namespace --namespace=purelb purelb purelb/purelb
+helm install - https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/purelb/helm-customization.yaml --create-namespace --namespace=purelb purelb purelb/purelb
 
 echo "|"
 echo "Apply IP range for PureLB with ServiceGroup"
@@ -79,4 +79,4 @@ echo "Install Traefik Ingress controller with Helm and customizations"
 echo "|"
 helm repo add traefik https://traefik.github.io/charts
 helm repo update
-helm install -f https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/traefik/helm.yaml traefik traefik/traefik --create-namespace -n traefik
+helm install -f https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/traefik/helm-customization.yaml --create-namespace --namespace=traefik traefik traefik/traefik
