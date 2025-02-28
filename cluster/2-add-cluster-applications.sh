@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Run this script as kubernetes maintainer user
-# curl https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/bootstrap-bare-metal-cluster.sh | bash
+# curl https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/2-add-cluster-applications.sh | bash
 
 echo "|"
 echo "Make user configurations"
