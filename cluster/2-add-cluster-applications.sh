@@ -7,11 +7,11 @@ echo "|"
 echo "Make user configurations"
 echo "|"
 
-kubeadm alpha phase kubeconfig admin --kubeconfig-dir /etc/kubernetes --cert-dir /etc/kubernetes/pki
+#kubeadm alpha phase kubeconfig admin --kubeconfig-dir /etc/kubernetes --cert-dir /etc/kubernetes/pki
 
-mkdir -p $HOME/.kube
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-sudo chown $(id -u):$(id -g) $HOME/.kube/config
+#mkdir -p $HOME/.kube
+#sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+#sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 echo "|"
 echo "Innitialize Helm, i.e. install required cluster side applications"
