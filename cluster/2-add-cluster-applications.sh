@@ -15,7 +15,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 echo "|"
 echo "Install Flannel container networking"
-echo "Not possible to use Helm when fresh installation"
+echo "Not possible to use Helm when fresh installation as Tiller doesn't run without CNI"
 echo "|"
 kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
 
