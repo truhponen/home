@@ -1,6 +1,6 @@
 namespace: prod
 resources:
-  - ../base
+  - ../base/
 
 patches:
   - path: patch-PersistentVolumeClaim.yaml
