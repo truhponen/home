@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Run script after adding nodes to cluster or after removing taint from control-plane
+# kubectl taint nodes $(hostname) node-role.kubernetes.io/master:NoSchedule-
 # Run this script as kubernetes maintainer user
 # curl https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/2-add-cluster-applications.sh | bash
 
