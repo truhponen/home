@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# curl https://raw.githubusercontent.com/truhponen/home/refs/heads/main/bash/kubernetes-crio-flannel.sh | bash
+# curl https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/bootstrap-bare-metal-cluster.sh | bash
 
 echo "This script is based on https://cri-o.io/"
 echo "|"
