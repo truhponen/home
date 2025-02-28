@@ -12,11 +12,6 @@ echo "|"
 kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
 
 echo "|"
-echo "Innitialize Helm, i.e. install required cluster side applications"
-echo "|"
-helm init
-
-echo "|"
 echo "Install PureLB bare metal loadbalancer with Helm"
 echo "|"
 helm repo add purelb https://gitlab.com/api/v4/projects/20400619/packages/helm/stable
