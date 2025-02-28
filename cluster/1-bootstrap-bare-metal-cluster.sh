@@ -38,11 +38,9 @@ apt-mark hold cri-o kubelet kubeadm kubectl
 echo "|"
 echo "Install Helm with apt"
 echo "|"
-curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -
-sudo apt install apt-transport-https --yes
-echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
-sudo apt update
-sudo apt install helm2
+curl -LO https://git.io/get_helm.sh
+chmod 700 get_helm.sh
+./get_helm.sh
 
 echo "|"
 echo "Start Cri-o"
