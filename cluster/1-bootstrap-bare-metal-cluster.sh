@@ -17,7 +17,6 @@ echo "Add Kubernetes repository"
 echo "|"
 
 curl -fsSL https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-
 echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/ /" | tee /etc/apt/sources.list.d/kubernetes.list
 
 echo "|"
@@ -25,22 +24,22 @@ echo "Add Cri-o repository"
 echo "|"
 
 curl -fsSL https://pkgs.k8s.io/addons:/cri-o:/stable:/$CRIO_VERSION/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg
-
 echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://pkgs.k8s.io/addons:/cri-o:/stable:/$CRIO_VERSION/deb/ /" | tee /etc/apt/sources.list.d/cri-o.list
+
+echo "|"
+echo "Add Helm repository"
+echo "|"
+
+curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+sudo apt-get install apt-transport-https --yes
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
 
 echo "|"
 echo "Install Kubernetes programs with apt"
 echo "|"
 apt update
-apt install -y cri-o kubelet kubeadm kubectl
+apt install -y cri-o kubelet kubeadm kubectl helm
 apt-mark hold cri-o kubelet kubeadm kubectl
-
-echo "|"
-echo "Install Helm with apt"
-echo "|"
-curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
-chmod 700 get_helm.sh
-./get_helm.sh
 
 echo "|"
 echo "Start Cri-o"
