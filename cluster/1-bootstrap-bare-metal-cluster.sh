@@ -58,8 +58,3 @@ echo "|"
 echo "Init"
 echo "|"
 kubeadm init --pod-network-cidr=10.244.0.0/16
-
-echo "|"
-echo "Install Flannel container networking"
-echo "|"
-kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
