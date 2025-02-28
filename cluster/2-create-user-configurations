@@ -10,3 +10,10 @@ echo "|"
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+kubectl get all -A
+
+echo "|"
+echo "|"
+echo "If rousources were printed configs are probably OK"
+echo "|"
