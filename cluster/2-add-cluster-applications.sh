@@ -14,7 +14,8 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 echo "|"
-echo "Install Cluster basic programs with Helm"
+echo "Innitialize Helm, i.e. install required cluster side applications"
+helm init
 
 echo "|"
 echo "Install Flannel container networking with Helm"
