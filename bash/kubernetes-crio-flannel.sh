@@ -51,6 +51,32 @@ echo "|"
 kubeadm init --pod-network-cidr=10.244.0.0/16
 
 echo "|"
-echo "Flannel CNI"
+echo "Install Cluster basic programs for Cluster Helm"
+
 echo "|"
-kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
+echo "Install Flannel container networking with Helm"
+echo "|"
+kubectl create ns kube-flannel
+kubectl label --overwrite ns kube-flannel pod-security.kubernetes.io/enforce=privileged
+helm repo add flannel https://flannel-io.github.io/flannel/
+helm install flannel --set podCidr="10.244.0.0/16" --namespace kube-flannel flannel/flannel
+
+echo "|"
+echo "Install PureLB bare metal loadbalancer with Helm"
+echo "|"
+helm repo add purelb https://gitlab.com/api/v4/projects/20400619/packages/helm/stable
+helm repo update
+helm install --create-namespace --namespace=purelb purelb purelb/purelb
+
+echo "|"
+echo "Apply IP range for PureLB with ServiceGroup"
+echo "|"
+kubectl apply -f https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/purelb/servicegroup.yaml -n purelb
+
+
+echo "|"
+echo "Install Traefik Ingress controller with Helm and customizations"
+echo "|"
+helm repo add traefik https://traefik.github.io/charts
+helm repo update
+helm install -f helm.yaml traefik traefik/traefik --create-namespace -n traefik
