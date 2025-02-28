@@ -79,4 +79,4 @@ echo "Install Traefik Ingress controller with Helm and customizations"
 echo "|"
 helm repo add traefik https://traefik.github.io/charts
 helm repo update
-helm install -f helm.yaml traefik traefik/traefik --create-namespace -n traefik
+helm install -f https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/traefik/helm.yaml traefik traefik/traefik --create-namespace -n traefik
