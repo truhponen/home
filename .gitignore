@@ -1,9 +1,6 @@
 .gitsecret/keys/random_seed
 !*.secret
-automation/Secret-docker-hub.yaml
-automation/Secret-telegraf.yaml
-cluster/cloudflared/Secret-cloudflared.yaml
 base/Secret-docker-hub.yaml
 base/Secret-telegraf.yaml
-cluster/traefik/helm.yaml
+cluster/cloudflared/Secret-cloudflared.yaml
 cluster/traefik/Secret.yaml
