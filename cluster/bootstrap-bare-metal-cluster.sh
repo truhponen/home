@@ -30,8 +30,8 @@ echo "|"
 echo "Install Kubernetes packages"
 echo "|"
 apt update
-apt install -y cri-o kubelet kubeadm kubectl helm
-apt-mark hold cri-o kubelet kubeadm kubectl helm
+apt install -y cri-o kubelet kubeadm kubectl
+apt-mark hold cri-o kubelet kubeadm kubectl
 
 echo "|"
 echo "Start Cri-o"
@@ -51,7 +51,16 @@ echo "|"
 kubeadm init --pod-network-cidr=10.244.0.0/16
 
 echo "|"
-echo "Install Cluster basic programs for Cluster Helm"
+echo "Install Helm with apt"
+echo "|"
+curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -
+sudo apt install apt-transport-https --yes
+echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+sudo apt update
+sudo apt install helm2
+
+echo "|"
+echo "Install Cluster basic programs with Helm"
 
 echo "|"
 echo "Install Flannel container networking with Helm"
