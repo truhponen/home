@@ -51,14 +51,14 @@ spec:
         fsGroup: 1978
       containers:
       - name: grav
-        image: ghcr.io/music-assistant/server:latest
+        image: linuxserver/grav:latest
         imagePullPolicy: IfNotPresent
         ports:
         - name: grav
           containerPort: 80
         volumeMounts:
         - name: dir
-          mountPath: /var/www/html
+          mountPath: /config
           subPath: grav
 #      imagePullSecrets: 
 #        - name: ghcr.io
