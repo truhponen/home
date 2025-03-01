@@ -10,6 +10,7 @@ resources:
   - Secret-telegraf.yaml
 # Namespaced apps
   - app-grafana.yaml
+  - app-grav.yaml
   - app-jellyfin.yaml
   - app-influxdb-telegraf.yaml
   - app-musicassistant.yaml
