@@ -1,5 +1,4 @@
 namespace: test
-namePrefix: kube-
 resources:
   - ../base/
 
