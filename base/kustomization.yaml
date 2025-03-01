@@ -8,6 +8,8 @@ resources:
   - PersistentVolumeClaim.yaml
   - Secret-docker-hub.yaml
   - Secret-telegraf.yaml
+# Namespaced apps
   - app-grafana.yaml
   - app-jellyfin.yaml
   - app-influxdb-telegraf.yaml
+  - app-musicassistant.yaml
