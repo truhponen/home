@@ -1,12 +1,9 @@
 namespace: qa
 namePrefix: kube-
 resources:
-  - ../base
+  - ../base/
 
 patches:
-  - path: patch-PersistentVolume.yaml
-    target:
-      kind: PersistentVolume
   - path: patch-PersistentVolumeClaim.yaml
     target:
       kind: PersistentVolumeClaim
