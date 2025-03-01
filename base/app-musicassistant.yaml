@@ -53,11 +53,8 @@ spec:
       - name: musicassistant
         image: ghcr.io/music-assistant/server:latest
         imagePullPolicy: IfNotPresent
-        env:
-        - name: GF_SECURITY_ALLOW_EMBEDDING
-          value: "true"
         ports:
-        - containerPort: 3000
+        - containerPort: 8095
           name: musicassistant
         volumeMounts:
         - name: dir
