@@ -27,7 +27,7 @@ spec:
     ports:
       - name: influxdb
         port: 8086
-        targetPort: 8086
+        targetPort: influxdb
     selector:
         app: influxdb-telegraf
     type: NodePort
@@ -58,8 +58,8 @@ spec:
         image: docker.io/influxdb:2.7.11
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 8086
-          name: influxdb
+        - name: influxdb
+          containerPort: 8086
         volumeMounts:
         - name: dir
           mountPath: /var/lib/influxdb2
@@ -84,20 +84,3 @@ spec:
         - name: dir
           persistentVolumeClaim:
            claimName: nfs
-#  volumeClaimTemplates:
-#  - metadata:
-#      name: data
-#    spec:
-#      accessModes: [ "ReadWriteMany" ]
-#      resources:
-#        requests:
-#          storage: 10Gi
-#      storageClassName: nfs
-#  - metadata:
-#      name: influxdb
-#    spec:
-#      accessModes: [ "ReadWriteMany" ]
-#      resources:
-#        requests:
-#          storage: 10Gi
-#      storageClassName: 'nfs-csi'
