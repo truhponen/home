@@ -1,4 +1,5 @@
 namespace: qa
+namePrefix: kube-
 resources:
   - ../base
 
