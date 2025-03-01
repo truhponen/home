@@ -1,0 +1,8 @@
+apiVersion: builtin
+kind: PrefixSuffixTransformer
+metadata:
+  name: host-prefix-transformer
+prefix: "kube"
+fieldSpecs:
+- kind: Ingress
+  path: spec/rules/host
