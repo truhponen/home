@@ -1,5 +1,4 @@
 namespace: prod
-namePrefix: kube-
 resources:
   - ../base/
 
