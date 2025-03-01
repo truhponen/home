@@ -1,0 +1,71 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: musicassistant
+spec:
+  rules:
+# Host will be transformed with Kutomization
+  - host: musicassistant
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: musicassistant
+            port:
+              name: musicassistant
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: musicassistant
+spec:
+    ports:
+      - name: musicassistant
+        port: 3000
+        targetPort: 3000
+    selector:
+        app: musicassistant
+    type: NodePort
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: musicassistant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: musicassistant
+  serviceName: "musicassistant"
+  template:
+    metadata:
+      labels:
+        app: musicassistant
+    spec:
+      securityContext:
+        runAsUser: 1978
+        runAsGroup: 1978
+        fsGroup: 1978
+      containers:
+      - name: musicassistant
+        image: ghcr.io/music-assistant/server:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: GF_SECURITY_ALLOW_EMBEDDING
+          value: "true"
+        ports:
+        - containerPort: 3000
+          name: musicassistant
+        volumeMounts:
+        - name: dir
+          mountPath: 	/data
+          subPath: musicassistant
+#      imagePullSecrets: 
+#        - name: ghcr.io
+      volumes:
+        - name: dir
+          persistentVolumeClaim:
+           claimName: nfs
