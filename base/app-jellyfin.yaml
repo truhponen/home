@@ -6,7 +6,8 @@ metadata:
   annotations:
 spec:
   rules:
-  - host: kube-jellyfin.kotimme.cc
+# Host will be transformed with Kutomization
+  - host: jellyfin
     http:
       paths:
       - path: /

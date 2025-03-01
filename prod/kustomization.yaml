@@ -6,3 +6,6 @@ patches:
   - path: patch-PersistentVolumeClaim.yaml
     target:
       kind: PersistentVolumeClaim
+
+transformers:
+  - transformer-host.yaml

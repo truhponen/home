@@ -8,4 +8,4 @@ patches:
       kind: PersistentVolumeClaim
 
 transformers:
-  - host-prefix-transformer.yaml
+  - prefix-transformer-host.yaml

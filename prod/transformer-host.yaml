@@ -2,7 +2,8 @@ apiVersion: builtin
 kind: PrefixSuffixTransformer
 metadata:
   name: host-prefix-transformer
-prefix: "kube"
+prefix: "kube-"
+suffix: ".kotimme.cc"
 fieldSpecs:
 - kind: Ingress
   path: spec/rules/host
