@@ -54,8 +54,8 @@ spec:
         image: ghcr.io/music-assistant/server:latest
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 8095
-          name: musicassistant
+        - name: musicassistant
+          containerPort: 8095
         volumeMounts:
         - name: dir
           mountPath: 	/data
