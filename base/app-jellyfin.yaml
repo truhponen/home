@@ -26,7 +26,7 @@ spec:
     ports:
       - name: jellyfin
         port: 8096
-        targetPort: 8096
+        targetPort: jellyfin
     selector:
         app: jellyfin
     type: NodePort
@@ -55,8 +55,8 @@ spec:
         image: docker.io/jellyfin/jellyfin:latest
         imagePullPolicy: IfNotPresent
         ports:
-        - containerPort: 8096
-          name: jellyfin
+        - name: jellyfin
+          containerPort: 8096
         volumeMounts:
         - name: config
           mountPath: /config
