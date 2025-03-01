@@ -1,4 +1,9 @@
----
 namespace: test
+namePrefix: kube-
 resources:
-  - ../base
+  - ../base/
+
+patches:
+  - path: patch-PersistentVolumeClaim.yaml
+    target:
+      kind: PersistentVolumeClaim
