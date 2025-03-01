@@ -24,8 +24,8 @@ metadata:
 spec:
     ports:
       - name: grafana
-        port: 3000
-        targetPort: 3000
+        port: 80
+        targetPort: grafana
     selector:
         app: grafana
     type: NodePort
@@ -57,8 +57,8 @@ spec:
         - name: GF_SECURITY_ALLOW_EMBEDDING
           value: "true"
         ports:
-        - containerPort: 3000
-          name: grafana
+        - name: grafana
+          containerPort: 3000
         volumeMounts:
         - name: dir
           mountPath: 	/var/lib/grafana
