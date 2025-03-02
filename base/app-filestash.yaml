@@ -2,64 +2,64 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: musicassistant
+  name: filestash
 spec:
   rules:
 # Host will be transformed with Kutomization
-  - host: musicassistant
+  - host: filestash
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: musicassistant
+            name: filestash
             port:
-              name: musicassistant
+              name: filestash
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: musicassistant
+    name: filestash
 spec:
     ports:
-      - name: musicassistant
+      - name: filestash
         port: 80
-        targetPort: musicassistant
+        targetPort: filestash
     selector:
-        app: musicassistant
+        app: filestash
     type: NodePort
 ---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: musicassistant
+  name: filestash
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: musicassistant
-  serviceName: "musicassistant"
+      app: filestash
+  serviceName: "filestash"
   template:
     metadata:
       labels:
-        app: musicassistant
+        app: filestash
     spec:
       securityContext:
         runAsUser: 1978
         runAsGroup: 1978
         fsGroup: 1978
       containers:
-      - name: musicassistant
-        image: ghcr.io/music-assistant/server:latest
+      - name: filestash
+        image: machines/filestash:latest
         imagePullPolicy: IfNotPresent
         ports:
-        - name: musicassistant
-          containerPort: 8095
+        - name: filestash
+          containerPort: 8334
         volumeMounts:
         - name: dir
-          mountPath: 	/data
-          subPath: musicassistant
+          mountPath: /app/data/state/
+          subPath: filestash
 #      imagePullSecrets: 
 #        - name: ghcr.io
       volumes:
