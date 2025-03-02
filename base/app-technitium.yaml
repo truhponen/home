@@ -13,19 +13,19 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: technitium-console
+            name: console-port
             port:
-              name: technitium-console
+              name: console-port
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: technitium-console
+    name: console-port
 spec:
     ports:
-      - name: technitium-console
+      - name: console-port
         port: 80
-        targetPort: technitium-console
+        targetPort: console-port
     selector:
         app: technitium
     type: NodePort
@@ -33,12 +33,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: technitium-dns
+    name: dns-port
 spec:
     ports:
-      - name: technitium-dns
+      - name: dns-port
         port: 53
-        targetPort: technitium-dns
+        targetPort: dns-port
     selector:
         app: technitium
     type: LoadBalancer
@@ -73,9 +73,9 @@ spec:
         - secretRef:
             name: technitium
         ports:
-        - name: technitium-console
+        - name: console-port
           containerPort: 5380
-        - name: technitium-dns
+        - name: dns-port
           containerPort: 53
         volumeMounts:
         - name: dir
