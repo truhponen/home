@@ -10,6 +10,10 @@ ingressRoute:
     middlewares:
       - name: traefik-dashboard-auth
 
+service:
+  spec:
+    loadBalancerIP: "192.168.68.250"
+
 # Create the custom middlewares used by the IngressRoute dashboard (can also be created in another way).
 # /!\ Yes, you need to replace "changeme" password with a better one. /!\
 extraObjects:
