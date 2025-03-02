@@ -1,1 +1,89 @@
-
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: technitium
+spec:
+  rules:
+# Host will be transformed with Kutomization
+  - host: technitium
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: technitium-console
+            port:
+              name: technitium-console
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: technitium-console
+spec:
+    ports:
+      - name: technitium-console
+        port: 80
+        targetPort: technitium-console
+    selector:
+        app: technitium
+    type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: technitium-dns
+spec:
+    ports:
+      - name: technitium-dns
+        port: 53
+        targetPort: technitium-dns
+    selector:
+        app: technitium
+    type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: technitium
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: technitium
+  serviceName: "technitium"
+  template:
+    metadata:
+      labels:
+        app: technitium
+    spec:
+      securityContext:
+        runAsUser: 1978
+        runAsGroup: 1978
+        fsGroup: 1978
+      containers:
+      - name: technitium
+        image: technitium/dns-server:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: DNS_SERVER_DOMAIN
+          value: technitium
+        envFrom:
+        - secretRef:
+            name: technitium
+        ports:
+        - name: technitium-console
+          containerPort: 5380
+        - name: technitium-dns
+          containerPort: 53
+        volumeMounts:
+        - name: dir
+          mountPath: 	/etc/dns
+          subPath: technitium
+      imagePullSecrets: 
+        - name: docker-hub
+      volumes:
+        - name: dir
+          persistentVolumeClaim:
+           claimName: nfs
