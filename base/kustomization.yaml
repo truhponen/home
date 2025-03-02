@@ -9,6 +9,7 @@ resources:
   - Secret-docker-hub.yaml
   - Secret-telegraf.yaml
 # Namespaced apps
+  - app-filestash.yaml
   - app-grafana.yaml
   - app-grav.yaml
   - app-jellyfin.yaml
