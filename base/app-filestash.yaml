@@ -2,67 +2,66 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: grav
+  name: musicassistant
 spec:
   rules:
 # Host will be transformed with Kutomization
-  - host: grav
+  - host: musicassistant
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: grav
+            name: musicassistant
             port:
-              name: grav
+              name: musicassistant
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: grav
+    name: musicassistant
 spec:
     ports:
-      - name: grav
+      - name: musicassistant
         port: 80
-        targetPort: grav
+        targetPort: musicassistant
     selector:
-        app: grav
+        app: musicassistant
     type: NodePort
 ---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: grav
+  name: musicassistant
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: grav
-  serviceName: "grav"
+      app: musicassistant
+  serviceName: "musicassistant"
   template:
     metadata:
       labels:
-        app: grav
+        app: musicassistant
     spec:
-# Cannot be used with Grav
-#      securityContext:
-#        runAsUser: 1978
-#        runAsGroup: 1978
-#        fsGroup: 1978
+      securityContext:
+        runAsUser: 1978
+        runAsGroup: 1978
+        fsGroup: 1978
       containers:
-      - name: grav
-        image: truhponen/grav:latest
+      - name: musicassistant
+        image: ghcr.io/music-assistant/server:latest
         imagePullPolicy: IfNotPresent
         ports:
-        - name: grav
-          containerPort: 80
+        - name: musicassistant
+          containerPort: 8095
         volumeMounts:
         - name: dir
-          mountPath: /var/www/html
-          subPath: grav
-      imagePullSecrets:
-        - name: docker-hub
+          mountPath: 	/data
+          subPath: musicassistant
+#      imagePullSecrets: 
+#        - name: ghcr.io
       volumes:
         - name: dir
           persistentVolumeClaim:
