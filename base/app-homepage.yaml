@@ -1,0 +1,69 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: homepage
+spec:
+  rules:
+# Host will be transformed with Kutomization
+  - host: homepage
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: homepage
+            port:
+              name: homepage
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: homepage
+spec:
+    ports:
+      - name: homepage
+        port: 80
+        targetPort: homepage
+    selector:
+        app: homepage
+    type: NodePort
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: homepage
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homepage
+  serviceName: "homepage"
+  template:
+    metadata:
+      labels:
+        app: homepage
+    spec:
+# Cannot be used with homepage
+#      securityContext:
+#        runAsUser: 1978
+#        runAsGroup: 1978
+#        fsGroup: 1978
+      containers:
+      - name: homepage
+        image: ghcr.io/gethomepage/homepage:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: homepage
+          containerPort: 3000
+        volumeMounts:
+        - name: dir
+          mountPath: /app/config
+          subPath: homepage
+#      imagePullSecrets:
+#        - name: ghcr-io
+      volumes:
+        - name: dir
+          persistentVolumeClaim:
+           claimName: nfs
