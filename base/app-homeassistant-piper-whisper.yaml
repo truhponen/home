@@ -66,6 +66,9 @@ spec:
       - name: piper
         image: rhasspy/wyoming-piper:latest
         imagePullPolicy: IfNotPresent
+        args:
+        - --voice
+        - fi_FI-harri-medium
         ports:
         - name: piper
           containerPort: 10200
@@ -77,6 +80,11 @@ spec:
       - name: whisper
         image: rhasspy/wyoming-whisper:latest
         imagePullPolicy: IfNotPresent
+        args:
+        - --model
+        - tiny-int8
+        - --language
+        - fi
         ports:
         - name: whisper
           containerPort: 10300
