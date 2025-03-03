@@ -75,11 +75,11 @@ spec:
           subPath: piper
           
       - name: whisper
-        image: 
+        image: rhasspy/wyoming-whisper:latest
         imagePullPolicy: IfNotPresent
         ports:
-        - name: homeassistant
-          containerPort: 8123
+        - name: whisper
+          containerPort: 10300
         volumeMounts:
         - name: dir
           mountPath: /data
