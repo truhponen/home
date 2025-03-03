@@ -1,0 +1,71 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ssh-parser
+spec:
+  rules:
+# Host will be transformed with Kutomization
+  - host: ssh-parser
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: ssh-parser
+            port:
+              name: ssh-parser
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: ssh-parser
+spec:
+    ports:
+      - name: ssh-parser
+        port: 80
+        targetPort: ssh-parser
+    selector:
+        app: ssh-parser
+    type: NodePort
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ssh-parser
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ssh-parser
+  serviceName: "ssh-parser"
+  template:
+    metadata:
+      labels:
+        app: ssh-parser
+    spec:
+#      securityContext:
+#        runAsUser: 1978
+#        runAsGroup: 1978
+#        fsGroup: 1978
+      imagePullSecrets:
+        - name: docker-hub
+      containers:
+      - name: ssh-parser
+        image: nginx:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: ssh-parser
+          containerPort: 80
+        volumeMounts:
+        - name: dir
+          mountPath: /usr/share/nginx/html/
+          subPath: ssh-parser/html
+        - name: dir
+          mountPath: /etc/nginx/nginx.conf
+          subPath: ssh-parser/conf
+      volumes:
+        - name: dir
+          persistentVolumeClaim:
+           claimName: nfs
