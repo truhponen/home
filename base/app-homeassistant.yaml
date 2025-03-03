@@ -1,0 +1,92 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: homeassistant
+spec:
+  rules:
+# Host will be transformed with Kutomization
+  - host: homeassistant
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: homeassistant
+            port:
+              name: homeassistant
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: homeassistant
+spec:
+    ports:
+      - name: homeassistant
+        port: 80
+        targetPort: homeassistant
+    selector:
+        app: homeassistant
+    type: NodePort
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: homeassistant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: homeassistant
+  serviceName: "homeassistant"
+  template:
+    metadata:
+      labels:
+        app: homeassistant
+    spec:
+#      securityContext:
+#        runAsUser: 1978
+#        runAsGroup: 1978
+#        fsGroup: 1978
+#      imagePullSecrets:
+#        - name: ghcr-io
+      containers:
+      - name: homeassistant
+        image: ghcr.io/home-assistant/home-assistant:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: homeassistant
+          containerPort: 8123
+        volumeMounts:
+        - name: dir
+          mountPath: /config
+          subPath: homeassistant
+          
+      - name: piper
+        image: rhasspy/wyoming-piper:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: piper
+          containerPort: 10200
+        volumeMounts:
+        - name: dir
+          mountPath: /data
+          subPath: piper
+          
+      - name: whisper
+        image: 
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: homeassistant
+          containerPort: 8123
+        volumeMounts:
+        - name: dir
+          mountPath: /data
+          subPath: whisper
+          
+      volumes:
+        - name: dir
+          persistentVolumeClaim:
+           claimName: nfs
+        - name: time           
