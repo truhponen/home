@@ -47,12 +47,7 @@ spec:
     spec:
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
-      securityContext:
-        capabilities:
-          add:
-            - NET_ADMIN
-            - NET_RAW
-            - NET_BROADCAST
+#      securityContext:
 #        runAsUser: 1978
 #        runAsGroup: 1978
 #        fsGroup: 1978
@@ -62,6 +57,12 @@ spec:
       - name: homeassistant
         image: ghcr.io/home-assistant/home-assistant:latest
         imagePullPolicy: IfNotPresent
+        securityContext:
+          capabilities:
+            add:
+              - NET_ADMIN
+              - NET_RAW
+              - NET_BROADCAST
         ports:
         - name: homeassistant
           containerPort: 8123
