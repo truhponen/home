@@ -1,0 +1,75 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: picard
+spec:
+  rules:
+# Host will be transformed with Kutomization
+  - host: picard
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: picard
+            port:
+              name: picard
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: picard
+spec:
+    ports:
+      - name: picard
+        port: 80
+        targetPort: picard
+    selector:
+        app: picard
+    type: NodePort
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: picard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: picard
+  serviceName: "picard"
+  template:
+    metadata:
+      labels:
+        app: picard
+    spec:
+#      securityContext:
+#        runAsUser: 1978
+#        runAsGroup: 1978
+#        fsGroup: 1978
+      imagePullSecrets:
+        - name: docker-hub
+      containers:
+      - name: picard
+        image: mikenye/picard:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: picard
+          containerPort: 5800
+        volumeMounts:
+        - name: config
+          mountPath: /config
+          subPath: picard
+        - name: media
+          mountPath: /storage
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+           claimName: nfs
+        - name: media
+          nfs:
+            server: 192.168.68.150
+            path: /oricopool-1/media
+            readOnly: true
