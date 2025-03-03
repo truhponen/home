@@ -17,6 +17,7 @@ resources:
   - app-jellyfin.yaml
   - app-influxdb-telegraf.yaml
   - app-musicassistant.yaml
+  - app-picard.yaml
   - app-ssh-parser.yaml
   - app-technitium.yaml
 
