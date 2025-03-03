@@ -13,6 +13,7 @@ resources:
   - app-filestash.yaml
   - app-grafana.yaml
   - app-grav.yaml
+  - app-homeassistant-piper-whisper.yaml
   - app-homepage.yaml
   - app-jellyfin.yaml
   - app-influxdb-telegraf.yaml
