@@ -47,7 +47,12 @@ spec:
     spec:
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
-#      securityContext:
+      securityContext:
+        capabilities:
+          add:
+            - NET_ADMIN
+            - NET_RAW
+            - NET_BROADCAST
 #        runAsUser: 1978
 #        runAsGroup: 1978
 #        fsGroup: 1978
