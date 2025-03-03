@@ -45,10 +45,10 @@ spec:
       labels:
         app: ssh-parser
     spec:
-      securityContext:
-        runAsUser: 1978
-        runAsGroup: 1978
-        fsGroup: 1978
+#      securityContext:
+#        runAsUser: 1978
+#        runAsGroup: 1978
+#        fsGroup: 1978
       imagePullSecrets:
         - name: docker-hub
       containers:
