@@ -27,10 +27,10 @@ spec:
       labels:
         app: mosquitto
     spec:
-      securityContext:
-        runAsUser: 1978
-        runAsGroup: 1978
-        fsGroup: 1978
+#      securityContext:
+#        runAsUser: 1978
+#        runAsGroup: 1978
+#        fsGroup: 1978
       containers:
       - name: mosquitto
         image: eclipse-mosquitto:latest
