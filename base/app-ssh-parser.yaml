@@ -60,10 +60,10 @@ spec:
           containerPort: 80
         volumeMounts:
         - name: dir
-          mountPath: /usr/share/nginx/html/
+          mountPath: /usr/share/nginx/html
           subPath: ssh-parser/html
         - name: dir
-          mountPath: /etc/nginx/nginx.conf
+          mountPath: /etc/nginx
           subPath: ssh-parser/conf
       volumes:
         - name: dir
