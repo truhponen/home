@@ -26,4 +26,4 @@ resources:
 configMapGenerator:
   - name: app-ssh-parser-nginx-conf
     files:
-      - config/app-ssh-parser-nginx.conf
+      - config/app-ssh-parser/nginx.conf
