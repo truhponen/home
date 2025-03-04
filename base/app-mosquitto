@@ -1,0 +1,50 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: filestash
+spec:
+    ports:
+      - name: filestash
+        port: 80
+        targetPort: filestash
+    selector:
+        app: filestash
+    type: NodePort
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: filestash
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: filestash
+  serviceName: "filestash"
+  template:
+    metadata:
+      labels:
+        app: filestash
+    spec:
+#      securityContext:
+#        runAsUser: 1978
+#        runAsGroup: 1978
+#        fsGroup: 1978
+      containers:
+      - name: filestash
+        image: eclipse-mosquitto:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: filestash
+          containerPort: 8334
+        volumeMounts:
+        - name: dir
+          mountPath: /app/data/state/
+          subPath: filestash
+#      imagePullSecrets: 
+#        - name: ghcr.io
+      volumes:
+        - name: dir
+          persistentVolumeClaim:
+           claimName: nfs
