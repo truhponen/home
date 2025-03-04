@@ -23,3 +23,7 @@ resources:
   - app-ssh-parser.yaml
   - app-technitium.yaml
 
+configMapGenerator:
+  - name: app-ssh-parser-nginx-conf
+    files:
+      - config/app-ssh-parser-nginx.conf
