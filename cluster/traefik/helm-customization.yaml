@@ -5,8 +5,8 @@ ingressRoute:
     enabled: true
 
     # Custom match rule with host domain
-    matchRule: Host(`traefik.kotimme.cc`)
-    # entryPoints: ["websecure"]
+    matchRule: Host(`kube-traefik.kotimme.cc`)
+    entryPoints: ["websecure", "web"]
     # Add custom middlewares : authentication and redirection
     middlewares:
       - name: traefik-dashboard-auth
