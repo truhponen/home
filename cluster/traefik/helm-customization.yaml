@@ -8,8 +8,8 @@ ingressRoute:
     matchRule: Host(`kube-traefik.kotimme.cc`)
     entryPoints: ["websecure", "web"]
     # Add custom middlewares : authentication and redirection
-    middlewares:
-      - name: traefik-dashboard-auth
+#    middlewares:
+#      - name: traefik-dashboard-auth
 
 service:
   spec:
