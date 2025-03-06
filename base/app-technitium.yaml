@@ -13,7 +13,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: console-port
+            name: technitium-console
             port:
               name: console-port
 ---
