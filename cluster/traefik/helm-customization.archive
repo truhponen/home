@@ -5,7 +5,7 @@ ingressRoute:
     enabled: true
 
     # Custom match rule with host domain
-    matchRule: Host(`kube-traefik.kotimme.cc`)
+    matchRule: Host(`traefik.kotimme.cc`)
     # entryPoints: ["websecure"]
     # Add custom middlewares : authentication and redirection
     middlewares:
