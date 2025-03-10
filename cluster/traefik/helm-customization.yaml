@@ -13,7 +13,7 @@ certificatesResolvers:
   myresolver:
     acme:
       email: truhponen@gmail.com
-      storage: 
+      storage: acme.json
       dnsChallenge:
         provider: cloudflare
         delayBeforeCheck: 60
