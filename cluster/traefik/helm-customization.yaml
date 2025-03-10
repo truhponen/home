@@ -16,7 +16,7 @@ extraObjects:
     metadata:
       name: traefik-api
     spec:
-      type: ClusterIP
+      type: NodePort
       selector:
         app.kubernetes.io/name: traefik
         app.kubernetes.io/instance: traefik-default
