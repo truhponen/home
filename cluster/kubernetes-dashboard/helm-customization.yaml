@@ -35,59 +35,41 @@ service:
   spec:
     loadBalancerIP: "192.168.68.250"
 
-# Create the custom middlewares used by the IngressRoute dashboard (can also be created in another way).
-# /!\ Yes, you need to replace "changeme" password with a better one. /!\
 extraObjects:
 
-#  - kind: PersistentVolumeClaim
-#    apiVersion: v1
-#    metadata:
-#      name: nfs-traefik
-#    spec:
-#      accessModes:
-#        - ReadWriteMany
-#      resources:
-#        requests:
-#          storage: 10Gi
-
-#  - apiVersion: v1
-#    kind: PersistentVolume
-#    metadata:
-#      annotations:
-#        pv.kubernetes.io/provisioned-by: nfs.csi.k8s.io
-#      name: nfs-traefik
-#    spec:
-#      capacity:
-#        storage: 10Gi
-#      accessModes:
-#        - ReadWriteMany
-#      persistentVolumeReclaimPolicy: Retain
-#      storageClassName: nfs
-#      mountOptions:
-#        - nfsvers=4.1
-#      csi:
-#        driver: nfs.csi.k8s.io
-        # volumeHandle format: {nfs-server-address}#{sub-dir-name}#{share-name}
-        # make sure this value is unique for every share in the cluster
-#        volumeHandle: 192.168.68.150/rpool/kubernetes/cluster
-#        volumeAttributes:
-#          server: 192.168.68.150
-#          share: /rpool/kubernetes/cluster
-
-# Secret is created using Secret.yaml
-#  - apiVersion: v1
-#    kind: Secret
-#    metadata:
-#      name: traefik-dashboard-auth-secret
-#    type: kubernetes.io/basic-auth
-#    stringData:
-#      username: admin
-#      password: changeme
-
-  - apiVersion: traefik.io/v1alpha1
-    kind: Middleware
+  - apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRoleBinding
     metadata:
-      name: traefik-dashboard-auth
+      name: admin-user
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: cluster-admin
+    subjects:
+    - kind: ServiceAccount
+      name: admin-user
+      namespace: kubernetes-dashboard
+
+  - apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: admin-user
+      namespace: kubernetes-dashboard
+
+  - apiVersion: v1
+    kind: Service
+    metadata:
+      name: kubernetes-dashboard
+      namespace: kubernetes-dashboard
+      labels:
+        app.kubernetes.io/component: app
+        app.kubernetes.io/instance: kubernetes-dashboard
+        app.kubernetes.io/name: kong
     spec:
-      basicAuth:
-        secret: traefik-dashboard-auth-secret
+      type: NodePort
+      selector:
+        app.kubernetes.io/name: kong
+      ports:
+        - protocol: TCP
+          port: 433
+          targetPort: 8443
