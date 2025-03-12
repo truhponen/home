@@ -1,39 +1,12 @@
-#deployment:
-#  additionalVolumes:
-#  - name: nfs-traefik
-#    persistentVolumeClaim:
-#      claimName: nfs-traefik
-#additionalVolumeMounts:
-#- name: nfs-traefik
-#  mountPath: /etc/traefik/acme
-#  subPath: traefik
+ingress:
+  enabled: true
+  hosts:
+    - kubernetes.kotimme.cc
 
-
-#certificatesResolvers:
-#  myresolver:
-#    acme:
-#      email: truhponen@gmail.com
-#      storage: acme.json
-#      dnsChallenge:
-#        provider: cloudflare
-#        delayBeforeCheck: 60
-
-# Publish and protect Traefik Dashboard with basic Auth
-# Create an IngressRoute for the dashboard
-ingressRoute:
-  dashboard:
-    enabled: true
-
-    # Custom match rule with host domain
-    matchRule: "Host(`kube-traefik.kotimme.cc`)" # && PathPrefix(`/api`) || PathPrefix(`/dashboard`)"
-    entryPoints: ["websecure", "web"]
-    # Add custom middlewares : authentication and redirection
-    middlewares:
-      - name: traefik-dashboard-auth
-
-service:
-  spec:
-    loadBalancerIP: "192.168.68.250"
+web:
+  containers:
+    args:
+    - --authentication-mode=basic
 
 extraObjects:
 
