@@ -1,12 +1,14 @@
-ingress:
-  enabled: true
-  hosts:
-    - kubernetes.kotimme.cc
+app:
+  ingress:
+    enabled: true
+    hosts:
+      - kubernetes.kotimme.cc
+    ingressClassName: true
 
-web:
-  containers:
-    args:
-    - --authentication-mode=basic
+#web:
+#  containers:
+#    args:
+#    - --authentication-mode=basic
 
 extraObjects:
 
