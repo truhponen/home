@@ -3,7 +3,7 @@
 # Run script after adding nodes to cluster or after removing taint from control-plane
 # kubectl taint nodes $(hostname) node-role.kubernetes.io/control-plane:NoSchedule-
 # Run this script as kubernetes maintainer user
-# curl https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/3-add-cluster-applications.sh | bash
+# curl https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/4-add-cluster-applications.sh | bash
 
 echo "|"
 echo "Install Flannel container networking with Helm"
