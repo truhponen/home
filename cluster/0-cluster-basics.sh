@@ -8,7 +8,7 @@ echo "|"
 echo "Add Git-secret repository"
 echo "|"
 curl -fsSL https://gitsecret.jfrog.io/artifactory/api/gpg/key/public | gpg --dearmor -o /etc/apt/keyrings/git-secret-apt-keyring.gpg
-echo "deb [signed-by=/etc/apt/keyrings/git-secret-apt-keyring.gpg] https://gitsecret.jfrog.io/artifactory/git-secret-deb git-secret main" | tee /etc/apt/sources.list.d/git-secret.list
+echo "deb [signed-by=/etc/apt/keyrings/git-secret-apt-keyring.gpg] https://gitsecret.jfrog.io/artifactory/git-secret-deb git-secret main /" | tee /etc/apt/sources.list.d/git-secret.list
 
 echo "|"
 echo "Install basic programs with apt"
