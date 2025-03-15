@@ -8,4 +8,4 @@ echo "|"
 echo "Install basic programs with apt"
 echo "|"
 apt update
-apt install -y curl wget net-tools
+apt install -y wget net-tools
