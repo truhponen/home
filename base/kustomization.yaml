@@ -6,7 +6,6 @@ resources:
 # Namespaced objects
   - Namespace.yaml
   - PersistentVolumeClaim.yaml
-  - Secret-docker-hub.yaml
   - Secret-technitium.yaml
   - Secret-telegraf.yaml
 # Namespaced apps

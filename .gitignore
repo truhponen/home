@@ -5,3 +5,4 @@ base/Secret-telegraf.yaml
 cluster/cloudflared/Secret-cloudflared.yaml
 cluster/traefik/Secret.yaml
 base/Secret-technitium.yaml
+cluster/kubernetes-dashboard/Secret.yaml
