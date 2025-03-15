@@ -52,3 +52,8 @@ echo "|"
 swapoff -a
 modprobe br_netfilter
 sysctl -w net.ipv4.ip_forward=1
+
+echo "|"
+echo "Next run"
+echo "kubeadm join ... --token ... \
+        --discovery-token-ca-cert-hash ...
