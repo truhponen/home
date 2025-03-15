@@ -14,7 +14,7 @@ echo "|"
 echo "Install basic programs with apt"
 echo "|"
 apt update
-apt install -y git gpg wget net-tools git-secret
+apt install -y gpg git git-secret wget net-tools 
 
 echo "|"
 echo "Testing, that it worked"
