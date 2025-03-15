@@ -2,7 +2,7 @@
 
 # Run this script as root
 # sudo -i
-# curl https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/cluster-basics.sh | bash
+# curl https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/0-cluster-basics.sh | bash
 
 echo "|"
 echo "Install basic programs with apt"
