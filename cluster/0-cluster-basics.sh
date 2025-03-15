@@ -17,6 +17,6 @@ apt update
 apt install -y gpg git git-secret wget net-tools 
 
 echo "|"
-echo "Testing, that it worked"
+echo "Testing Git-secret - this should show version"
 echo "|"
 git secret --version
