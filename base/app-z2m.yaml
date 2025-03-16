@@ -1,0 +1,84 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: z2m
+spec:
+  rules:
+# Host will be transformed with Kutomization
+  - host: z2m
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: z2m
+            port:
+              name: z2m
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: z2m
+spec:
+    ports:
+      - name: z2m
+        port: 80
+        targetPort: z2m
+    selector:
+        app: z2m
+    type: NodePort
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: z2m
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: z2m
+  serviceName: "z2m"
+  template:
+    metadata:
+      labels:
+        app: z2m
+    spec:
+      securityContext:
+#        runAsUser: 1978
+#        runAsGroup: 1978
+        fsGroup: 1978
+      imagePullSecrets:
+        - name: docker-hub
+      containers:
+      - name: z2m
+        image: koenkk/zigbee2mqtt:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: TZ
+          value: "Europe/Helsinki"
+#        - name: DEBUG
+#          value: "zigbee-herdsman"
+        ports:
+        - name: z2m
+          containerPort: 8080
+        volumeMounts:
+        - name: dir
+          mountPath: /z2m/config
+          subPath: z2m
+        - name: udev
+          mountPath: /run/udev
+          readOnly: true
+        - name: usb
+          mountPath: /dev/ttyUSB0
+      volumes:
+        - name: dir
+          persistentVolumeClaim:
+           claimName: nfs
+        - name: udev
+          hostPath:
+            path: /run/udev
+        - name: usb
+          hostPath:
+            path: /dev/ttyUSB0
