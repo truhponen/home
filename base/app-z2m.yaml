@@ -50,7 +50,9 @@ spec:
 #        runAsGroup: 1978
         fsGroup: 1978
       imagePullSecrets:
-        - name: docker-hub
+      - name: docker-hub
+      nodeSelector:
+        devices: zigbee-coordinator
       containers:
       - name: z2m
         image: koenkk/zigbee2mqtt:latest
@@ -73,12 +75,12 @@ spec:
         - name: usb
           mountPath: /dev/ttyUSB0
       volumes:
-        - name: dir
-          persistentVolumeClaim:
-           claimName: nfs
-        - name: udev
-          hostPath:
-            path: /run/udev
-        - name: usb
-          hostPath:
-            path: /dev/ttyUSB0
+      - name: dir
+        persistentVolumeClaim:
+         claimName: nfs
+      - name: udev
+        hostPath:
+          path: /run/udev
+      - name: usb
+        hostPath:
+          path: /dev/ttyUSB0
