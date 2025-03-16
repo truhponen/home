@@ -54,6 +54,9 @@ spec:
       - name: homepage
         image: ghcr.io/gethomepage/homepage:latest
         imagePullPolicy: IfNotPresent
+        env:
+        - name: HOMEPAGE_ALLOWED_HOSTS
+          value: kube-homepage.kotimme.cc
         ports:
         - name: homepage
           containerPort: 3000
@@ -63,8 +66,6 @@ spec:
           subPath: homepage
 #      imagePullSecrets:
 #        - name: ghcr-io
-      environment:
-        HOMEPAGE_ALLOWED_HOSTS: kube-homepage.kotimme.cc
       volumes:
         - name: dir
           persistentVolumeClaim:
