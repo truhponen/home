@@ -12,6 +12,7 @@ echo "deb [signed-by=/etc/apt/keyrings/git-secret-apt-keyring.gpg] https://gitse
 
 echo "|"
 echo "Install basic programs with apt"
+echo "nfs-common is important, as kubernetes uses it for mounting"
 echo "|"
 apt update
 apt install -y gpg git git-secret wget net-tools nfs-common
