@@ -57,7 +57,7 @@ spec:
         imagePullPolicy: IfNotPresent
         env:
         - name: HTTP_PORT
-          value: 4000
+          value: "4000"
         ports:
         - name: mqtt-explorer
           containerPort: 4000
