@@ -63,6 +63,8 @@ spec:
           subPath: homepage
 #      imagePullSecrets:
 #        - name: ghcr-io
+      environment:
+        HOMEPAGE_ALLOWED_HOSTS: kube-homepage.kotimme.cc
       volumes:
         - name: dir
           persistentVolumeClaim:
