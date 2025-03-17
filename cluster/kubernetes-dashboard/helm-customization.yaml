@@ -30,7 +30,7 @@ extraObjects:
     kind: ServiceAccount
     metadata:
       name: admin-user
-      namespace: kubernetes-dashboard
+#      namespace: kubernetes-dashboard
 
  -  apiVersion: rbac.authorization.k8s.io/v1
     kind: ClusterRoleBinding
@@ -43,13 +43,13 @@ extraObjects:
     subjects:
     - kind: ServiceAccount
       name: admin-user
-      namespace: kubernetes-dashboard
+#      namespace: kubernetes-dashboard
 
  -  apiVersion: v1
     kind: Secret
     metadata:
       name: admin-user
-      namespace: kubernetes-dashboard
+#      namespace: kubernetes-dashboard
       annotations:
         kubernetes.io/service-account.name: "admin-user"
     type: kubernetes.io/service-account-token
