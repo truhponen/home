@@ -9,7 +9,6 @@ patches:
 
 transformers:
   - PrefixSuffixTransformer-host.yaml
-  - PrefixTransformer-secretName.yaml
 
 replacements:
   - path: replacements-hosts.yaml
