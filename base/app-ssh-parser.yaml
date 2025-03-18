@@ -8,7 +8,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
   tls:
-    secretName: ssh-parser-certs
+  - secretName: ssh-parser-certs
   rules:
 # Host will be transformed with Kutomization
   - host: ssh-parser
