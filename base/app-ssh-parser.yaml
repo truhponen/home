@@ -9,7 +9,7 @@ metadata:
 spec:
   tls:
   - secretName: ssh-parser-certs
-  - hosts:
+    hosts:
     - prod-ssh-parser.kotimme.cc
     - qa-ssh-parser.kotimme.cc
     - test-ssh-parser.kotimme.cc
