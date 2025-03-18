@@ -9,6 +9,7 @@ resources:
   - Secret-technitium.yaml
   - Secret-telegraf.yaml
 # Namespaced apps
+  - app-default.yaml
   - app-filestash.yaml
   - app-grafana.yaml
   - app-grav.yaml
