@@ -3,7 +3,13 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ssh-parser
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare-dns
 spec:
+  tls:
+  - hosts:
+    - ssh-parser
+    secretName: ssh-parser-certs
   rules:
 # Host will be transformed with Kutomization
   - host: ssh-parser
