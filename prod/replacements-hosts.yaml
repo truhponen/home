@@ -2,10 +2,12 @@
 source:
   kind: Ingress
   name: ssh-parser
-  fieldPath: .spec.rules.0.host
+  fieldPath: .metadata.namespace
 targets:
 - select:
     kind: Ingress
     name: ssh-parser
   fieldPaths:
   - spec.tls.0.hosts.0
+  options:
+    index: -1
