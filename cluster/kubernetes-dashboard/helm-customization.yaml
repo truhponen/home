@@ -16,10 +16,13 @@ app:
 
     ingressClassName: traefik
 
-    tls:
-      enabled: false
+    issuer:
+      name: cloudflare-dns
+      scope: cluster
+
 
 kong:
   proxy:
+    type: NodePort
     http:
       enabled: true
