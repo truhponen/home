@@ -1,32 +1,15 @@
-#deployment:
-#  additionalVolumes:
-#  - name: nfs-traefik
-#    persistentVolumeClaim:
-#      claimName: nfs-traefik
-#additionalVolumeMounts:
-#- name: nfs-traefik
-#  mountPath: /etc/traefik/acme
-#  subPath: traefik
+# values: https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
+# apply: helm upgrade --install traefik traefik/traefik --create-namespace --namespace traefik -f helm-customization.yaml
 
 
-#certificatesResolvers:
-#  myresolver:
-#    acme:
-#      email: truhponen@gmail.com
-#      storage: acme.json
-#      dnsChallenge:
-#        provider: cloudflare
-#        delayBeforeCheck: 60
-
-# Publish and protect Traefik Dashboard with basic Auth
-# Create an IngressRoute for the dashboard
 ingressRoute:
   dashboard:
     enabled: true
 
     # Custom match rule with host domain
-    matchRule: "Host(`traefik.kotimme.cc`)" # && PathPrefix(`/api`) || PathPrefix(`/dashboard`)"
+    matchRule: "Host(`traefik.kotimme.cc`)"
     entryPoints: ["websecure", "web"]
+
     # Add custom middlewares : authentication and redirection
     middlewares:
       - name: traefik-dashboard-auth
@@ -34,3 +17,7 @@ ingressRoute:
 service:
   spec:
     loadBalancerIP: "192.168.68.250"
+
+
+additionalArguments:
+  - "--serversTransport.insecureSkipVerify=true"
