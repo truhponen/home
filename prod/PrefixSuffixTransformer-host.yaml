@@ -2,7 +2,7 @@
 apiVersion: builtin
 kind: PrefixSuffixTransformer
 metadata:
-  name: host-prefix-suffix-transformer
+  name: PrefixSuffixTransformer-host
 prefix: "prod-"
 suffix: ".kotimme.cc"
 fieldSpecs:
