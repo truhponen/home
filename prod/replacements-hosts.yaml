@@ -10,4 +10,5 @@ targets:
   fieldPaths:
   - spec.tls.0.hosts.0
   options:
+    delimiter: '-'
     index: -1
