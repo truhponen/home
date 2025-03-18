@@ -9,8 +9,8 @@ metadata:
 spec:
   tls:
   - secretName: ssh-parser-certs
-#    hosts:
-#    - prod-ssh-parser.kotimme.cc
+    hosts:
+    - prod-ssh-parser.kotimme.cc
   rules:
 # Host will be transformed with Kutomization
   - host: ssh-parser
