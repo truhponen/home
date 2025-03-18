@@ -5,10 +5,9 @@ metadata:
   name: ssh-parser
   annotations:
     cert-manager.io/cluster-issuer: cloudflare-dns
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
   tls:
-  - hosts:
-    - prod-ssh-parser.kotimme.cc
     secretName: ssh-parser-certs
   rules:
 # Host will be transformed with Kutomization
