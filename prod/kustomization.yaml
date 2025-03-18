@@ -8,8 +8,7 @@ patches:
       kind: PersistentVolumeClaim
 
 transformers:
-  - PrefixSuffixTransformer-host.yaml
-  - PrefixTransformer-secretName.yaml
+  - PrefixSuffixTransformer.yaml
 
 replacements:
   - path: replacements-hosts.yaml
