@@ -1,4 +1,39 @@
 ---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: kubernetes.kotimme.cc
+  namespace: kubernetes-dashboard
+spec:
+  secretName: kubernetes-dashboard-certs
+  dnsNames:
+    - kubernetes.kotimme.cc
+  issuerRef:
+    name: cloudflare-dns
+    kind: ClusterIssuer
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kubernates
+  namespace: kubernetes-dashboard
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+spec:
+  tls:
+  - secretName: kubernetes-dashboard-certs
+  rules:
+  - host: kubernetes.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kubernetes-dashboard-kong-proxyd
+            port:
+              name: kong-proxy-tls
+---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
