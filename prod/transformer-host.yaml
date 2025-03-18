@@ -10,12 +10,3 @@ fieldSpecs:
   path: spec/rules/host
 - kind: Ingress
   path: spec/tls/hosts
----
-apiVersion: builtin
-kind: PrefixSuffixTransformer
-metadata:
-  name: host-prefix-transformer
-prefix: "prod-"
-fieldSpecs:
-- kind: Ingress
-  path: spec/tls/secretName
