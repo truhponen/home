@@ -8,17 +8,17 @@ app:
       namespaceFallbackList:
       - prod
 
-  ingress:
-    enabled: true
-
-    hosts:
-    - kubernetes.kotimme.cc
-
-    ingressClassName: traefik
-
-    issuer:
-      name: cloudflare-dns
-      scope: cluster
+#  ingress:
+#    enabled: true
+#
+#    hosts:
+#    - kubernetes.kotimme.cc
+#
+#    ingressClassName: traefik
+#
+#    issuer:
+#      name: cloudflare-dns
+#      scope: cluster
 
 
 kong:
