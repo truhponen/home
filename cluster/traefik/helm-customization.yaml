@@ -5,14 +5,25 @@
 ingressRoute:
   dashboard:
     enabled: true
+    
+    annotations:
+      cert-manager.io/cluster-issuer: cloudflare-dns
 
     # Custom match rule with host domain
     matchRule: "Host(`traefik.kotimme.cc`)"
-    entryPoints: ["websecure", "web"]
+    entryPoints: ["websecure"]
+
+    cert-manager.io/cluster-issuer: cloudflare-dns
 
     # Add custom middlewares : authentication and redirection
     middlewares:
       - name: traefik-dashboard-auth
+
+    tls:
+    - secretName: traefik-certs
+      hosts:
+      - traefik.kotimme.cc
+
 
 service:
   spec:
