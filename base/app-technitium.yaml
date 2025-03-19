@@ -4,8 +4,11 @@ kind: Ingress
 metadata:
   name: technitium
 spec:
+  tls:
+  - secretName: technitium-certs
+    hosts:
+    - prod-technitium.kotimme.cc
   rules:
-# Host will be transformed with Kutomization
   - host: technitium
     http:
       paths:
