@@ -5,6 +5,9 @@ metadata:
   name: root-star
 spec:
   secretName: root-star-certs
+  additionalOutputFormats:
+  - type: CombinedPEM
+  - type: DER
   dnsNames:
     - 'kotimme.cc'
     - '*.kotimme.cc'
