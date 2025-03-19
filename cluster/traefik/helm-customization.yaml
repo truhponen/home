@@ -13,17 +13,12 @@ ingressRoute:
     matchRule: "Host(`traefik.kotimme.cc`)"
     entryPoints: ["websecure"]
 
-    cert-manager.io/cluster-issuer: cloudflare-dns
-
     # Add custom middlewares : authentication and redirection
     middlewares:
       - name: traefik-dashboard-auth
 
     tls:
       secretName: traefik-certs
-#      hosts:
-#      - traefik.kotimme.cc
-
 
 service:
   spec:
