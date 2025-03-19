@@ -6,9 +6,12 @@ patches:
   - path: patch-PersistentVolumeClaim.yaml
     target:
       kind: PersistentVolumeClaim
+  - path: patch-Ingress.yaml
+    target:
+      kind: Ingress
 
-transformers:
-  - PrefixSuffixTransformer-host.yaml
+#transformers:
+#  - PrefixSuffixTransformer-host.yaml
 
 #replacements:
 #  - path: replacements-hosts.yaml
