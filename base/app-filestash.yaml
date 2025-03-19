@@ -4,9 +4,13 @@ kind: Ingress
 metadata:
   name: filestash
 spec:
+  tls:
+  - secretName: filestash-certs
+    hosts:
+    - prod-filestash.kotimme.cc
   rules:
 # Host will be transformed with Kutomization
-  - host: filestash
+  - host: prod-filestash.kotimme.cc
     http:
       paths:
       - path: /
