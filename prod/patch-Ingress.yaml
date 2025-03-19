@@ -2,6 +2,7 @@
 apiVersion: v1
 kind: Ingress
 metadata:
+  name: not-applicaple
   annotations:
     cert-manager.io/cluster-issuer: cloudflare-dns
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
