@@ -4,9 +4,12 @@ kind: Ingress
 metadata:
   name: picard
 spec:
+  tls:
+  - secretName: picard-certs
+    hosts:
+    - prod-picard.kotimme.cc
   rules:
-# Host will be transformed with Kutomization
-  - host: picard
+  - host: prod-picard.kotimme.cc
     http:
       paths:
       - path: /
