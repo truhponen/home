@@ -9,7 +9,6 @@ spec:
     hosts:
     - prod-influxdb.kotimme.cc
   rules:
-# Host will be transformed with Kutomization
   - host: prod-influxdb.kotimme.cc
     http:
       paths:
