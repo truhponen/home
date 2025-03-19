@@ -4,9 +4,13 @@ kind: Ingress
 metadata:
   name: influxdb
 spec:
+  tls:
+  - secretName: influxdb-certs
+    hosts:
+    - prod-influxdb.kotimme.cc
   rules:
 # Host will be transformed with Kutomization
-  - host: influxdb
+  - host: prod-influxdb.kotimme.cc
     http:
       paths:
       - path: /
