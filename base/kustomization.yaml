@@ -5,6 +5,7 @@ resources:
   - PersistentVolume-test.yaml
 # Namespaced objects
   - Namespace.yaml
+  - Certificate-root-star.yaml
   - PersistentVolumeClaim.yaml
   - Secret-technitium.yaml
   - Secret-telegraf.yaml
