@@ -4,9 +4,12 @@ kind: Ingress
 metadata:
   name: mqtt-explorer
 spec:
+  tls:
+  - secretName: mqtt-explorer-certs
+    hosts:
+    - prod-mqtt-explorer.kotimme.cc
   rules:
-# Host will be transformed with Kutomization
-  - host: mqtt-explorer
+  - host: prod-mqtt-explorer.kotimme.cc
     http:
       paths:
       - path: /
