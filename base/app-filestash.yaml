@@ -9,7 +9,6 @@ spec:
     hosts:
     - filestash.kotimme.cc
   rules:
-# Host will be transformed with Kutomization
   - host: prod-filestash.kotimme.cc
     http:
       paths:
