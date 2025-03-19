@@ -4,9 +4,13 @@ kind: Ingress
 metadata:
   name: grafana
 spec:
+  tls:
+  - secretName: grafana-certs
+    hosts:
+    - prod-grafana.kotimme.cc
   rules:
 # Host will be transformed with Kutomization
-  - host: grafana
+  - host: prod-grafana.kotimme.cc
     http:
       paths:
       - path: /
