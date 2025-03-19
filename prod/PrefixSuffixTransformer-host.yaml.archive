@@ -1,3 +1,5 @@
+# Removed patching spec/rules/host as it is not possible to patch spec/tls/hosts which is list
+
 ---
 apiVersion: builtin
 kind: PrefixSuffixTransformer
