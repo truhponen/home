@@ -4,9 +4,12 @@ kind: Ingress
 metadata:
   name: musicassistant
 spec:
+  tls:
+  - secretName: musicassistant-certs
+    hosts:
+    - prod-musicassistant.kotimme.cc
   rules:
-# Host will be transformed with Kutomization
-  - host: musicassistant
+  - host: prod-musicassistant.kotimme.cc
     http:
       paths:
       - path: /
