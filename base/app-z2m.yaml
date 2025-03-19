@@ -4,8 +4,11 @@ kind: Ingress
 metadata:
   name: z2m
 spec:
+  tls:
+  - secretName: z2m-certs
+    hosts:
+    - prod-z2m.kotimme.cc
   rules:
-# Host will be transformed with Kutomization
   - host: z2m
     http:
       paths:
