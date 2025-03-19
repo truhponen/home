@@ -4,6 +4,10 @@ kind: Ingress
 metadata:
   name: default
 spec:
+  tls:
+  - secretName: default-certs
+    hosts:
+    - *.kotimme.cc
   defaultBackend:
     service:
       name: grav
