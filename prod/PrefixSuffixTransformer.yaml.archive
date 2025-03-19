@@ -1,3 +1,5 @@
+# No need for combined field
+
 ---
 apiVersion: builtin
 kind: PrefixSuffixTransformer
