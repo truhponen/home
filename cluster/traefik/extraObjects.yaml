@@ -19,8 +19,6 @@ spec:
   secretName: traefik-certs
   dnsNames:
     - traefik.kotimme.cc
-  emailAddresses:
-    - truhponen@gmail.com
   issuerRef:
     name: cloudflare-dns
     kind: ClusterIssuer
