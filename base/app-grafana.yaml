@@ -9,7 +9,6 @@ spec:
     hosts:
     - prod-grafana.kotimme.cc
   rules:
-# Host will be transformed with Kutomization
   - host: prod-grafana.kotimme.cc
     http:
       paths:
