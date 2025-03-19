@@ -1,0 +1,97 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mqtt-explorer
+spec:
+  tls:
+  - secretName: mqtt-explorer-certs
+    hosts:
+    - prod-mqtt-explorer.kotimme.cc
+  rules:
+  - host: prod-mqtt-explorer.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: mqtt-explorer
+            port:
+              name: mqtt-explorer
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: mosquitto
+spec:
+    ports:
+      - name: mosquitto
+        port: 1883
+        targetPort: mosquitto
+    selector:
+        app: mosquitto
+    type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: mqtt-explorer
+spec:
+    ports:
+      - name: mqtt-explorer
+        port: 80
+        targetPort: mqtt-explorer
+    selector:
+        app: mqtt-explorer
+    type: NodePort
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mosquitto-mqtt-explorer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mosquitto-mqtt-explorer
+  serviceName: "mosquitto-mqtt-explorer"
+  template:
+    metadata:
+      labels:
+        app: mosquitto-mqtt-explorer
+    spec:
+      securityContext:
+#        runAsUser: 1978
+#        runAsGroup: 1978
+        fsGroup: 1978
+      imagePullSecrets:
+        - name: docker-hub
+      containers:
+      - name: mosquitto
+        image: eclipse-mosquitto:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: mosquitto
+          containerPort: 1883
+        volumeMounts:
+        - name: dir
+          mountPath: /mosquitto
+          subPath: mosquitto
+      - name: mqtt-explorer
+        image: smeagolworms4/mqtt-explorer:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: HTTP_PORT
+          value: "4000"
+        ports:
+        - name: mqtt-explorer
+          containerPort: 4000
+        volumeMounts:
+        - name: dir
+          mountPath: /mqtt-explorer/config
+          subPath: mqtt-explorer
+      volumes:
+        - name: dir
+          persistentVolumeClaim:
+           claimName: nfs
