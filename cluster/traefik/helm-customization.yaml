@@ -20,9 +20,9 @@ ingressRoute:
       - name: traefik-dashboard-auth
 
     tls:
-    - secretName: traefik-certs
-      hosts:
-      - traefik.kotimme.cc
+      secretName: traefik-certs
+#      hosts:
+#      - traefik.kotimme.cc
 
 
 service:
