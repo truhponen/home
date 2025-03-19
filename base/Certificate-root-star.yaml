@@ -6,8 +6,8 @@ metadata:
 spec:
   secretName: root-star-certs
   dnsNames:
-    - kotimme.cc
-    - *.kotimme.cc
+    - 'kotimme.cc'
+    - '*.kotimme.cc'
   issuerRef:
     name: cloudflare-dns
     kind: ClusterIssuer
