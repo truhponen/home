@@ -12,7 +12,6 @@ spec:
     hosts:
     - prod-ssh-parser.kotimme.cc
   rules:
-# Host will be transformed with Kutomization
   - host: prod-ssh-parser.kotimme.cc
     http:
       paths:
