@@ -10,5 +10,5 @@ patches:
 transformers:
   - PrefixSuffixTransformer-host.yaml
 
-replacements:
-  - path: replacements-hosts.yaml
+#replacements:
+#  - path: replacements-hosts.yaml
