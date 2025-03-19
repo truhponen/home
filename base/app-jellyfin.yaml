@@ -4,9 +4,12 @@ kind: Ingress
 metadata:
   name: jellyfin
 spec:
+  tls:
+  - secretName: jellyfin-certs
+    hosts:
+    - prod-jellyfin.kotimme.cc
   rules:
-# Host will be transformed with Kutomization
-  - host: jellyfin
+  - host: prod-jellyfin.kotimme.cc
     http:
       paths:
       - path: /
