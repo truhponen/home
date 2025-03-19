@@ -30,7 +30,7 @@ spec:
         port: 1883
         targetPort: mosquitto
     selector:
-        app: mosquitto
+        app: mosquitto-mqtt-explorer
     type: NodePort
 ---
 apiVersion: v1
@@ -43,7 +43,7 @@ spec:
         port: 80
         targetPort: mqtt-explorer
     selector:
-        app: mqtt-explorer
+        app: mosquitto-mqtt-explorer
     type: NodePort
 ---
 apiVersion: apps/v1
