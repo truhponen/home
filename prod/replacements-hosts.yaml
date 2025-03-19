@@ -1,3 +1,4 @@
+# Removed as replacement fails is name is not provided. i.e. it is not possible to do generic replacements
 ---
 source:
   kind: Ingress
