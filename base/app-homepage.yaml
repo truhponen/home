@@ -4,9 +4,13 @@ kind: Ingress
 metadata:
   name: homepage
 spec:
+  tls:
+  - secretName: homepage-certs
+    hosts:
+    - prod-homepage.kotimme.cc
   rules:
 # Host will be transformed with Kutomization
-  - host: homepage
+  - host: prod-homepage.kotimme.cc
     http:
       paths:
       - path: /
