@@ -7,6 +7,8 @@ metadata:
 spec:
   basicAuth:
     secret: traefik-dashboard-auth-secret
+
+# Certificate manifest is required to get certificate for Traefik using cert-manager
 ---
 apiVersion: cert-manager.io/v1
 kind: Certificate
