@@ -4,9 +4,13 @@ kind: Ingress
 metadata:
   name: homeassistant
 spec:
+  tls:
+  - secretName: homeassistant-certs
+    hosts:
+    - prod-homeassistant.kotimme.cc
   rules:
 # Host will be transformed with Kutomization
-  - host: homeassistant
+  - host: prod-homeassistant.kotimme.cc
     http:
       paths:
       - path: /
