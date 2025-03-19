@@ -7,7 +7,7 @@ spec:
   tls:
   - secretName: filestash-certs
     hosts:
-    - prod-filestash.kotimme.cc
+    - filestash.kotimme.cc
   rules:
 # Host will be transformed with Kutomization
   - host: prod-filestash.kotimme.cc
