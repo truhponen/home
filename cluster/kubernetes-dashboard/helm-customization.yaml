@@ -27,6 +27,9 @@ app:
       name: cloudflare-dns
       scope: cluster
 
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+
 
 kong:
   proxy:
