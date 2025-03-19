@@ -9,8 +9,6 @@ metadata:
 spec:
   tls:
   - secretName: ssh-parser-certs
-    hosts:
-    - ssh-parser
   rules:
 # Host will be transformed with Kutomization
   - host: ssh-parser
