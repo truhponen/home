@@ -1,3 +1,4 @@
+---
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
@@ -6,3 +7,19 @@ metadata:
 spec:
   basicAuth:
     secret: traefik-dashboard-auth-secret
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: traefik
+  namespace: traefik
+spec:
+  secretName: traefik-certs
+  dnsNames:
+    - traefik.kotimme.cc
+  emailAddresses:
+    - truhponen@gmail.com
+  issuerRef:
+    name: cloudflare-dns
+    kind: ClusterIssuer
+    group: cert-manager.io
