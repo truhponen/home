@@ -5,31 +5,22 @@ app:
   settings:
     global:
       clusterName: "Kotimme"
-
       defaultNamespace: prod
-
       namespaceFallbackList:
       - prod
 
   ingress:
     enabled: true
-
     hosts:
     - kubernetes.kotimme.cc
-
     ingressClassName: traefik
-
     useDefaultAnnotations: false
-
     pathType: Prefix
-
     issuer:
       name: cloudflare-dns
       scope: cluster
-
     annotations:
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
-
 
 kong:
   proxy:
