@@ -7,7 +7,7 @@ spec:
   tls:
   - secretName: default-certs
     hosts:
-    - *.kotimme.cc
+    - '*.kotimme.cc'
   defaultBackend:
     service:
       name: grav
