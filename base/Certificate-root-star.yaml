@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: root-star
+spec:
+  secretName: root-star-certs
+  dnsNames:
+    - kotimme.cc
+    - *.kotimme.cc
+  issuerRef:
+    name: cloudflare-dns
+    kind: ClusterIssuer
+    group: cert-manager.io
