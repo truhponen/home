@@ -4,9 +4,13 @@ kind: Ingress
 metadata:
   name: grav
 spec:
+  tls:
+  - secretName: grav-certs
+    hosts:
+    - prod-grav.kotimme.cc
   rules:
 # Host will be transformed with Kutomization
-  - host: grav
+  - host: prod-grav.kotimme.cc
     http:
       paths:
       - path: /
