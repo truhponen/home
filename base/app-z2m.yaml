@@ -9,7 +9,7 @@ spec:
     hosts:
     - prod-z2m.kotimme.cc
   rules:
-  - host: z2m
+  - host: prod-z2m.kotimme.cc
     http:
       paths:
       - path: /
