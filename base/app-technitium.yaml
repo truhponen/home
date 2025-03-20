@@ -9,7 +9,7 @@ spec:
     hosts:
     - prod-technitium.kotimme.cc
   rules:
-  - host: technitium
+  - host: prod-technitium.kotimme.cc
     http:
       paths:
       - path: /
