@@ -4,7 +4,7 @@ metadata:
   labels:
     k8s-app: oauth2-proxy
   name: oauth2-proxy
-  namespace: kube-system
+  namespace: kubernetes-dashboard
 spec:
   replicas: 1
   selector:
@@ -21,22 +21,13 @@ spec:
         - --email-domain=*
         - --upstream=file:///dev/null
         - --http-address=0.0.0.0:4180
-        # Register a new application
-        # https://github.com/settings/applications/new
-        env:
-        - name: OAUTH2_PROXY_CLIENT_ID
-          value: Ov23liE3sSMwomySifDf
-        - name: OAUTH2_PROXY_CLIENT_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: oauth-proxy-client-secret
-              key: secret
-        # docker run -ti --rm python:3-alpine python -c 'import secrets,base64; print(base64.b64encode(base64.b64encode(secrets.token_bytes(16))));'
-        - name: OAUTH2_PROXY_COOKIE_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: oauth-proxy-cookie-secret
-              key: secret
+        envFrom:
+        - secretRef:
+            name: oauth-proxy-client-id
+        - secretRef:
+            name: oauth-proxy-client-secret
+        - secretRef:
+            name: oauth-proxy-cookie-secret
         # Recommended: remove email-domain=* in args and set an allowlist
         # - name: OAUTH2_PROXY_GITHUB_USERS
         #   value: alice,bob
@@ -55,7 +46,7 @@ metadata:
   labels:
     k8s-app: oauth2-proxy
   name: oauth2-proxy
-  namespace: kube-system
+  namespace: kubernetes-dashboard
 spec:
   ports:
   - name: http
@@ -71,7 +62,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: oauth2-proxy
-  namespace: kube-system
+  namespace: kubernetes-dashboard
   annotations:
     cert-manager.io/cluster-issuer: cloudflare-dns
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
@@ -102,7 +93,7 @@ metadata:
     nginx.ingress.kubernetes.io/auth-url: "https://$host/oauth2/auth"
     nginx.ingress.kubernetes.io/auth-signin: "https://$host/oauth2/start?rd=$escaped_request_uri"
   name: external-auth-oauth2
-  namespace: kube-system
+  namespace: kubernetes-dashboard
 spec:
   ingressClassName: nginx
   rules:
