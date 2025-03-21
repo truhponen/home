@@ -7,3 +7,5 @@ cluster/traefik/Secret.yaml
 base/Secret-technitium.yaml
 cluster/kubernetes-dashboard/Secret.yaml
 cluster/cert-manager/Secret.yaml
+cluster/kubernetes-dashboard/Secret-oauth-proxy-client-secret.yaml
+cluster/kubernetes-dashboard/Secret-oauth-proxy-cookie-secret.yaml

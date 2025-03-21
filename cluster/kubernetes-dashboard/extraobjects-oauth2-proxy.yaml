@@ -19,8 +19,14 @@ spec:
       - args:
         - --provider=github
         - --email-domain=*
-        - --upstream=file:///dev/null
+        - --upstream=file:///dev/null #"static://204"
         - --http-address=0.0.0.0:4180
+        - --reverse-proxy=true
+        - --cookie-refresh=1h # adapt this to your preference
+        - --real-client-ip-header=X-Forwarded-For
+#        - --redirect-url="https\://oauth2.kotimme.cc/oauth2/callback"
+        - --whitelist-domain=".kotimme.cc"
+        - --cookie-domain=".kotimme.cc"
         envFrom:
         - secretRef:
             name: oauth-proxy-client-id
@@ -72,7 +78,7 @@ spec:
   - host: oauth2.kotimme.cc
     http:
       paths:
-      - path: /oauth2
+      - path: /#/login
         pathType: Prefix
         backend:
           service:
@@ -90,12 +96,12 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   annotations:
-    nginx.ingress.kubernetes.io/auth-url: "https://$host/oauth2/auth"
-    nginx.ingress.kubernetes.io/auth-signin: "https://$host/oauth2/start?rd=$escaped_request_uri"
+    cert-manager.io/cluster-issuer: cloudflare-dns
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
   name: external-auth-oauth2
   namespace: kubernetes-dashboard
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   rules:
   - host: oauth2.kotimme.cc
     http:
@@ -104,6 +110,11 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: kubernetes-dashboard
+            name: kubernetes-dashboard-kong-proxy
             port:
-              number: 80
+              number: 443
+  tls:
+  - hosts:
+    - oauth2.kotimme.cc
+    secretName: oauth2-certs
+
