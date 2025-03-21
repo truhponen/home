@@ -60,8 +60,8 @@ spec:
       containers:
       - args:
         - --provider=github
-        - --email-domain=*
-        - --upstream="https://kubernetes-dashboard-kong-proxy:443"
+#        - --email-domain=*
+        - --upstream="http://kubernetes-dashboard-web:8000"
         - --http-address=0.0.0.0:4180
         - --reverse-proxy=true
         - --cookie-refresh=1h # adapt this to your preference

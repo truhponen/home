@@ -9,3 +9,4 @@ cluster/kubernetes-dashboard/Secret.yaml
 cluster/cert-manager/Secret.yaml
 cluster/kubernetes-dashboard/Secret-oauth-proxy-client-secret.yaml
 cluster/kubernetes-dashboard/Secret-oauth-proxy-cookie-secret.yaml
+cluster/kubernetes-dashboard/Secret-oauth-proxy-github-users.yaml
