@@ -32,7 +32,7 @@ metadata:
 spec:
   ports:
   - name: oauth2-proxy
-    port: 4180
+    port: 80
     targetPort: oauth2-proxy
   selector:
     app: oauth2-proxy
@@ -54,7 +54,10 @@ spec:
         app: oauth2-proxy
     spec:
       containers:
-      - args:
+      - name: oauth2-proxy
+        image: quay.io/oauth2-proxy/oauth2-proxy:latest
+        imagePullPolicy: IfNotPresent
+        args:
         - --provider=keycloak-oidc
         - --redirect-url=https://oauth2.kotimme.cc/oauth2/callback
         - --oidc-issuer-url=https://keycloak.kotimme.cc/realms/kotimme
@@ -63,14 +66,6 @@ spec:
         #- --allowed-role=<client id>:<client role name> // Optional, required client role
         #- --allowed-group=admin # Optional, requires group client scope
         - --code-challenge-method=S256 # PKCE
-
-        #- --upstream="http://kubernetes-dashboard-web:8000"
-        #- --http-address=0.0.0.0:4180
-        #- --reverse-proxy=true
-        #- --cookie-refresh=1h # adapt this to your preference
-        #- --real-client-ip-header=X-Forwarded-For
-        #- --whitelist-domain=".kotimme.cc"
-        #- --cookie-domain=".kotimme.cc"
         envFrom:
         - secretRef:
             name: oauth-proxy-client-id
@@ -78,14 +73,6 @@ spec:
             name: oauth-proxy-client-secret
         - secretRef:
             name: oauth-proxy-cookie-secret
-        #- secretRef:
-        #    name: oauth-proxy-github-users
-        # Recommended: remove email-domain=* in args and set an allowlist
-        # - name: OAUTH2_PROXY_GITHUB_USERS
-        #   value: alice,bob
-        image: quay.io/oauth2-proxy/oauth2-proxy:latest
-        imagePullPolicy: IfNotPresent
-        name: oauth2-proxy
         ports:
         - name: oauth2-proxy
           containerPort: 4180
