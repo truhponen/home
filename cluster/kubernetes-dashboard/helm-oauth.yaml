@@ -46,7 +46,7 @@ config:
   # Default configuration, to be overridden
   configFile: |-
     email_domains = [ "*" ]
-    upstreams = [ "oauth.kotimme.cc" ]
+    upstreams = [ "https://kubernetes-dashboard-kong-proxy" ]
   # Custom configuration file: oauth2_proxy.cfg
   # configFile: |-
   #   pass_basic_auth = false
