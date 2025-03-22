@@ -61,7 +61,7 @@ spec:
         - --email-domain=*
         #- --allowed-role=<realm role name> // Optional, required realm role
         #- --allowed-role=<client id>:<client role name> // Optional, required client role
-        - --allowed-group=admin # Optional, requires group client scope
+        #- --allowed-group=admin # Optional, requires group client scope
         - --code-challenge-method=S256 # PKCE
 
         #- --upstream="http://kubernetes-dashboard-web:8000"
