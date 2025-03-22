@@ -7,6 +7,8 @@ global: {}
 
 ## Override the deployment namespace
 ##
+
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 namespaceOverride: "kubernetes-dashboard"
 
 # Force the target Kubernetes version (it uses Helm `.Capabilities` if not set).
@@ -44,6 +46,8 @@ config:
     #  - group1@example.com
     #  - group2@example.com
   # Default configuration, to be overridden
+  
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   configFile: |-
     email_domains = [ "*" ]
     upstreams = [ "http://kubernetes-dashboard-web:8000" ]
@@ -91,6 +95,7 @@ imagePullSecrets: []
 # This will default to 4443 if this value is not set and the httpScheme set to https
 # containerPort: 4180
 
+# >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 extraArgs:
   - --provider=keycloak-oidc
   - --redirect-url=https://oauth.kotimme.cc/oauth2/callback
@@ -140,6 +145,8 @@ authenticatedEmailsFile:
   # helm.sh/resource-policy: keep
 
 service:
+  
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   type: NodePort
   # when service.type is ClusterIP ...
   # clusterIP: 192.0.2.20
@@ -171,12 +178,16 @@ serviceAccount:
   annotations: {}
 
 ingress:
+
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   enabled: true
   className: traefik
   path: /
   # Only used if API capabilities (networking.k8s.io/v1) allow it
   pathType: ImplementationSpecific
   # Used to create an Ingress record.
+  
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   hosts:
     - oauth.kotimme.cc
   # Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
@@ -190,6 +201,8 @@ ingress:
   #       port:
   #         name: use-annotation
   labels: {}
+
+  # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   annotations:
     cert-manager.io/cluster-issuer: cloudflare-dns
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
