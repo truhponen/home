@@ -46,7 +46,7 @@ config:
   # Default configuration, to be overridden
   configFile: |-
     email_domains = [ "*" ]
-    upstreams = [ "https://kubernetes-dashboard-kong-proxy" ]
+    upstreams = [ "http://kubernetes-dashboard-web:8000" ]
   # Custom configuration file: oauth2_proxy.cfg
   # configFile: |-
   #   pass_basic_auth = false
@@ -171,14 +171,14 @@ serviceAccount:
   annotations: {}
 
 ingress:
-  enabled: false
-  # className: nginx
+  enabled: true
+  className: traefik
   path: /
   # Only used if API capabilities (networking.k8s.io/v1) allow it
   pathType: ImplementationSpecific
   # Used to create an Ingress record.
-  # hosts:
-    # - chart-example.local
+  hosts:
+    - oauth.kotimme.cc
   # Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
   # Warning! The configuration is dependant on your current k8s API version capabilities (networking.k8s.io/v1)
   # extraPaths:
@@ -190,14 +190,14 @@ ingress:
   #       port:
   #         name: use-annotation
   labels: {}
-  # annotations:
-  #   kubernetes.io/ingress.class: nginx
-  #   kubernetes.io/tls-acme: "true"
-  # tls:
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare-dns
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+  tls:
     # Secrets must be manually created in the namespace.
-    # - secretName: chart-example-tls
-    #   hosts:
-    #     - chart-example.local
+    - secretName: oauth2-proxy-certs
+      hosts:
+        - oauth.kotimme.cc
 
 resources: {}
   # limits:
