@@ -80,8 +80,8 @@ spec:
             name: oauth-proxy-client-id
         - secretRef:
             name: oauth-proxy-client-secret
-        #- secretRef:
-        #    name: oauth-proxy-cookie-secret
+        - secretRef:
+            name: oauth-proxy-cookie-secret
         #- secretRef:
         #    name: oauth-proxy-github-users
         # Recommended: remove email-domain=* in args and set an allowlist
