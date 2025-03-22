@@ -95,9 +95,6 @@ extraArgs:
     --provider=keycloak-oidc
     --redirect-url=https://oauth.kotimme.cc/oauth2/callback
     --oidc-issuer-url=https://keycloak.kotimme.cc/realms/kotimme
-    # --allowed-role=<realm role name> // Optional, required realm role
-    # --allowed-role=<client id>:<client role name> // Optional, required client role
-    # --allowed-group=</group name> // Optional, requires group client scope
     --code-challenge-method=S256
 extraEnv: []
 
