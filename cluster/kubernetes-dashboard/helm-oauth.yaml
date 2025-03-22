@@ -19,19 +19,19 @@ config:
   # Add config annotations
   annotations: {}
   # OAuth client ID
-  clientID: "kubernetes-dashboard"
+  clientID: "XXXXXXX"
   # OAuth client secret
-  clientSecret: "oauth-proxy-client-secret"
+  clientSecret: "XXXXXXXX"
   # Create a new secret with the following command
   # openssl rand -base64 32 | head -c 32 | base64
   # Use an existing secret for OAuth2 credentials (see secret.yaml for required fields)
   # Example:
   # existingSecret: secret
-  cookieSecret: "oauth-proxy-cookie-secret"
+  cookieSecret: "XXXXXXXXXXXXXXXX"
   # The name of the cookie that oauth2-proxy will create
   # If left empty, it will default to the release name
   cookieName: ""
-  keycloak-oidc: {}
+  # google: {}
     # adminEmail: xxxx
     # useApplicationDefaultCredentials: true
     # targetPrincipal: xxxx
@@ -46,7 +46,7 @@ config:
   # Default configuration, to be overridden
   configFile: |-
     email_domains = [ "*" ]
-    upstreams = [ "https://kubernetes-dashboard-kong-proxy" ]
+    upstreams = [ "oauth.kotimme.cc" ]
   # Custom configuration file: oauth2_proxy.cfg
   # configFile: |-
   #   pass_basic_auth = false
@@ -92,6 +92,13 @@ imagePullSecrets: []
 # containerPort: 4180
 
 extraArgs: {}
+    --provider=keycloak-oidc
+    --redirect-url=https://oauth.kotimme.cc/oauth2/callback
+    --oidc-issuer-url=https://keycloak.kotimme.cc/realms/kotimme
+    # --allowed-role=<realm role name> // Optional, required realm role
+    # --allowed-role=<client id>:<client role name> // Optional, required client role
+    # --allowed-group=</group name> // Optional, requires group client scope
+    --code-challenge-method=S256 // PKCE
 extraEnv: []
 
 envFrom: []
@@ -167,14 +174,14 @@ serviceAccount:
   annotations: {}
 
 ingress:
-  enabled: true
+  enabled: false
   # className: nginx
   path: /
   # Only used if API capabilities (networking.k8s.io/v1) allow it
   pathType: ImplementationSpecific
   # Used to create an Ingress record.
-  hosts:
-    - oauth.kotimme.cc
+  # hosts:
+    # - chart-example.local
   # Extra paths to prepend to every host configuration. This is useful when working with annotation based services.
   # Warning! The configuration is dependant on your current k8s API version capabilities (networking.k8s.io/v1)
   # extraPaths:
@@ -189,11 +196,11 @@ ingress:
   # annotations:
   #   kubernetes.io/ingress.class: nginx
   #   kubernetes.io/tls-acme: "true"
-  tls:
+  # tls:
     # Secrets must be manually created in the namespace.
-    - secretName: oauth-certs
-      hosts:
-        - oauth.kotimme.cc
+    # - secretName: chart-example-tls
+    #   hosts:
+    #     - chart-example.local
 
 resources: {}
   # limits:
