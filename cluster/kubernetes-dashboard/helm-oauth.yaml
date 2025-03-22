@@ -91,7 +91,7 @@ imagePullSecrets: []
 # This will default to 4443 if this value is not set and the httpScheme set to https
 # containerPort: 4180
 
-extraArgs: {}
+extraArgs:
     --provider=keycloak-oidc
     --redirect-url=https://oauth.kotimme.cc/oauth2/callback
     --oidc-issuer-url=https://keycloak.kotimme.cc/realms/kotimme
