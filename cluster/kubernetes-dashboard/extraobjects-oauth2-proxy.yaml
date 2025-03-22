@@ -8,7 +8,10 @@ metadata:
     cert-manager.io/cluster-issuer: cloudflare-dns
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
-  ingressClassName: traefik
+  tls:
+  - secretName: oauth2-certs
+    hosts:
+    - oauth2.kotimme.cc
   rules:
   - host: oauth2.kotimme.cc
     http:
@@ -19,11 +22,7 @@ spec:
           service:
             name: oauth2-proxy
             port:
-              number: 4180
-  tls:
-  - hosts:
-    - oauth2.kotimme.cc
-    secretName: oauth2-certs
+              name: oauth2-proxy
 ---
 apiVersion: v1
 kind: Service
@@ -34,7 +33,6 @@ spec:
   ports:
   - name: oauth2-proxy
     port: 4180
-    protocol: TCP
     targetPort: oauth2-proxy
   selector:
     app: oauth2-proxy
@@ -43,8 +41,6 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  labels:
-    app: oauth2-proxy
   name: oauth2-proxy
   namespace: kubernetes-dashboard
 spec:
@@ -88,11 +84,10 @@ spec:
         # - name: OAUTH2_PROXY_GITHUB_USERS
         #   value: alice,bob
         image: quay.io/oauth2-proxy/oauth2-proxy:latest
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         name: oauth2-proxy
         ports:
         - name: oauth2-proxy
           containerPort: 4180
-          protocol: TCP
 
 
