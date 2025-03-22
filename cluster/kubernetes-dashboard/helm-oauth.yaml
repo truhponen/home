@@ -92,10 +92,10 @@ imagePullSecrets: []
 # containerPort: 4180
 
 extraArgs:
-    --provider=keycloak-oidc
-    --redirect-url=https://oauth.kotimme.cc/oauth2/callback
-    --oidc-issuer-url=https://keycloak.kotimme.cc/realms/kotimme
-    --code-challenge-method=S256
+  - --provider=keycloak-oidc
+  - --redirect-url=https://oauth.kotimme.cc/oauth2/callback
+  - --oidc-issuer-url=https://keycloak.kotimme.cc/realms/kotimme
+  - --code-challenge-method=S256
 extraEnv: []
 
 envFrom: []
