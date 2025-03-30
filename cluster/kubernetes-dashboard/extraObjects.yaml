@@ -55,6 +55,9 @@ subjects:
 - kind: ServiceAccount
   name: admin-user
   namespace: kubernetes-dashboard
+- apiGroup: rbac.authorization.k8s.io
+  name: oidc:kubernetes-admin
+  kind: Group
 #---
 #apiVersion: v1
 #kind: Secret
