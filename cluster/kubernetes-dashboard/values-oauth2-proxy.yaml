@@ -108,7 +108,7 @@ extraArgs:
   - --provider=keycloak-oidc
   - --redirect-url=https://oauth.kotimme.cc/oauth2/callback
   - --ssl-upstream-insecure-skip-verify=true
-  - --upstream=http://kubernetes-dashboard-kong-proxy
+  - --upstream=https://kubernetes-dashboard-kong-proxy
 extraEnv: []
 
 envFrom: []
