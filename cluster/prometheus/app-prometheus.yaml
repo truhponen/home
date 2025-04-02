@@ -1,1 +1,71 @@
-
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: prometheus
+spec:
+  tls:
+  - secretName: prometheus-certs
+    hosts:
+    - prometheus.kotimme.cc
+  rules:
+  - host: prometheus.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: prometheus
+            port:
+              name: prometheus
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: prometheus
+spec:
+    ports:
+      - name: prometheus
+        port: 80
+        targetPort: prometheus
+    selector:
+        app: prometheus
+    type: NodePort
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: prometheus
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus
+  serviceName: "prometheus"
+  template:
+    metadata:
+      labels:
+        app: prometheus
+    spec:
+#      securityContext:
+#        runAsUser: 1978
+#        runAsGroup: 1978
+#        fsGroup: 1978
+      containers:
+      - name: prometheus
+        image: prom/prometheus
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: prometheus
+          containerPort: 9090
+        volumeMounts:
+        - name: dir
+          mountPath: /etc/prometheus
+          subPath: prometheus
+#      imagePullSecrets:
+#        - name: docker-hub
+      volumes:
+        - name: dir
+          persistentVolumeClaim:
+           claimName: nfs
