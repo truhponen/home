@@ -3,6 +3,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: prometheus
+  namespace: prometheus
 spec:
   tls:
   - secretName: prometheus-certs
@@ -23,7 +24,8 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: prometheus
+  name: prometheus
+  namespace: prometheus
 spec:
     ports:
       - name: prometheus
@@ -37,6 +39,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: prometheus
+  namespace: prometheus
 spec:
   replicas: 1
   selector:
