@@ -48,10 +48,10 @@ spec:
       labels:
         app: prometheus
     spec:
-#      securityContext:
+      securityContext:
 #        runAsUser: 1978
 #        runAsGroup: 1978
-#        fsGroup: 1978
+        fsGroup: 1978
       containers:
       - name: prometheus
         image: prom/prometheus
