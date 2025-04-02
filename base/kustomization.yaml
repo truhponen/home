@@ -23,6 +23,7 @@ resources:
 #  - app-mqtt-explorer.yaml
   - app-musicassistant.yaml
   - app-picard.yaml
+  - app-prometheus.yaml
   - app-ssh-parser.yaml
   - app-technitium.yaml
   - app-z2m.yaml
