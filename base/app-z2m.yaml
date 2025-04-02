@@ -38,7 +38,7 @@ kind: StatefulSet
 metadata:
   name: z2m
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: z2m
