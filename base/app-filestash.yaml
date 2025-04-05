@@ -49,8 +49,6 @@ spec:
         app: filestash
     spec:
 #      securityContext:
-#        runAsUser: 1978
-#        runAsGroup: 1978
 #        fsGroup: 1978
       containers:
       - name: filestash
