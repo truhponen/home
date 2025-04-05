@@ -50,8 +50,6 @@ spec:
     spec:
 # Cannot be used with homepage
 #      securityContext:
-#        runAsUser: 1978
-#        runAsGroup: 1978
 #        fsGroup: 1978
       containers:
       - name: homepage
