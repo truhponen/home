@@ -52,6 +52,7 @@ spec:
 #        runAsUser: 1978
 #        runAsGroup: 1978
         fsGroup: 1978
+        privileged: true
       imagePullSecrets:
       - name: docker-hub
       nodeSelector:
