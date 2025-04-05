@@ -65,7 +65,7 @@ spec:
       containers:
       - name: homeassistant
         image: ghcr.io/home-assistant/home-assistant:latest
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         securityContext:
           capabilities:
             add:
