@@ -72,7 +72,7 @@ spec:
           containerPort: 8080
         volumeMounts:
         - name: dir
-          mountPath: /z2m/config
+          mountPath: /app/data
           subPath: z2m
         - name: udev
           mountPath: /run/udev
