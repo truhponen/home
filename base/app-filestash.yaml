@@ -48,8 +48,8 @@ spec:
       labels:
         app: filestash
     spec:
-#      securityContext:
-#        fsGroup: 1978
+      securityContext:
+        fsGroup: 1978
       containers:
       - name: filestash
         image: machines/filestash:latest
