@@ -29,6 +29,12 @@ spec:
       - name: homeassistant
         port: 80
         targetPort: homeassistant
+      - name: piper
+        port: 10200
+        targetPort: piper
+      - name: whisper
+        port: 10300
+        targetPort: whisper
     selector:
         app: homeassistant
     type: NodePort
