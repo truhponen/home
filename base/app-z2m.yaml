@@ -52,6 +52,15 @@ spec:
 #        runAsUser: 1978
 #        runAsGroup: 1978
         fsGroup: 1978
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: devices
+                operator: In
+                values:
+                - zigbee-coordinator
       imagePullSecrets:
       - name: docker-hub
       nodeSelector:
