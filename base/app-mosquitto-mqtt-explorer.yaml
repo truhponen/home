@@ -63,8 +63,6 @@ spec:
         app: mosquitto-mqtt-explorer
     spec:
       securityContext:
-#        runAsUser: 1978
-#        runAsGroup: 1978
         fsGroup: 1978
       imagePullSecrets:
         - name: docker-hub
