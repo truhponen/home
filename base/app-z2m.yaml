@@ -7,9 +7,9 @@ spec:
   tls:
   - secretName: z2m-certs
     hosts:
-    - prod-z2m.kotimme.cc
+    - z2m.kotimme.cc
   rules:
-  - host: prod-z2m.kotimme.cc
+  - host: z2m.kotimme.cc
     http:
       paths:
       - path: /
