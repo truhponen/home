@@ -57,8 +57,6 @@ spec:
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
 #      securityContext:
-#        runAsUser: 1978
-#        runAsGroup: 1978
 #        fsGroup: 1978
 #      imagePullSecrets:
 #        - name: ghcr-io
