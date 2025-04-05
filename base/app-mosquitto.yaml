@@ -10,7 +10,7 @@ spec:
         targetPort: mosquitto
     selector:
         app: mosquitto
-    type: NodePort
+    type: LoadBalancer
 ---
 apiVersion: apps/v1
 kind: StatefulSet
