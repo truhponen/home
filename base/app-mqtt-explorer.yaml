@@ -7,9 +7,9 @@ spec:
   tls:
   - secretName: mqtt-explorer-certs
     hosts:
-    - prod-mqtt-explorer.kotimme.cc
+    - mqtt-explorer.kotimme.cc
   rules:
-  - host: prod-mqtt-explorer.kotimme.cc
+  - host: mqtt-explorer.kotimme.cc
     http:
       paths:
       - path: /
