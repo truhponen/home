@@ -66,11 +66,8 @@ spec:
           mountPath: /app/config
           subPath: homepage/config
         - name: dir
-          mountPath: /app/public/icons
-          subPath: homepage/icons
-        - name: dir
-          mountPath: /app/public/images
-          subPath: homepage/images
+          mountPath: /app/public
+          subPath: homepage/public
 #      imagePullSecrets:
 #        - name: ghcr-io
       volumes:
