@@ -9,7 +9,7 @@ spec:
     hosts:
     - filestash.kotimme.cc
   rules:
-  - host: prod-filestash.kotimme.cc
+  - host: filestash.kotimme.cc
     http:
       paths:
       - path: /
