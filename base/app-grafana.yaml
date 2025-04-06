@@ -49,6 +49,7 @@ spec:
         app: grafana
     spec:
       securityContext:
+        runAsGroup: 1978
         fsGroup: 1978
       containers:
       - name: grafana
