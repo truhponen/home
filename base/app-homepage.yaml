@@ -57,7 +57,7 @@ spec:
         imagePullPolicy: IfNotPresent
         env:
         - name: HOMEPAGE_ALLOWED_HOSTS
-          value: kube-homepage.kotimme.cc
+          value: homepage.kotimme.cc
         ports:
         - name: homepage
           containerPort: 3000
