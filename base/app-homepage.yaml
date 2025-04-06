@@ -62,24 +62,18 @@ spec:
         - name: homepage
           containerPort: 3000
         volumeMounts:
-        - name: config
+        - name: dir
           mountPath: /app/config
           subPath: homepage/config
-        - name: icons
+        - name: dir
           mountPath: /app/public/icons
           subPath: homepage/icons
-        - name: images
+        - name: dir
           mountPath: /app/public/images
           subPath: homepage/images
 #      imagePullSecrets:
 #        - name: ghcr-io
       volumes:
-        - name: config
-          persistentVolumeClaim:
-           claimName: nfs
-        - name: icons
-          persistentVolumeClaim:
-           claimName: nfs
-        - name: images
+        - name: dir
           persistentVolumeClaim:
            claimName: nfs
