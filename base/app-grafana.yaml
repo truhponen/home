@@ -53,7 +53,7 @@ spec:
       containers:
       - name: grafana
         image: grafana/grafana-enterprise:latest
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         env:
         - name: GF_SECURITY_ALLOW_EMBEDDING
           value: "true"
