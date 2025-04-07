@@ -62,7 +62,10 @@ spec:
         volumeMounts:
         - name: pvc-nfs
           mountPath: /var/lib/influxdb2
-          subPath: influxdb
+          subPath: influxdb/data
+        - name: pvc-nfs
+          mountPath: /etc/influxdb2
+          subPath: influxdb/config
       # Telegraf MQTT container
       - name: telegraf-mqtt
         image: docker.io/telegraf:1.33.2
