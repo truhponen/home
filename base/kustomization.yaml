@@ -25,7 +25,7 @@ resources:
   - app-musicassistant.yaml
   - app-picard.yaml
   - app-prometheus.yaml
-  - app-ssh-parser.yaml
+  - app-sshparser.yaml
   - app-technitium.yaml
   - app-z2m.yaml
 
