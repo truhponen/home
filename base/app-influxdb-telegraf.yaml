@@ -7,9 +7,9 @@ spec:
   tls:
   - secretName: influxdb-certs
     hosts:
-    - prod-influxdb.kotimme.cc
+    - influxdb.kotimme.cc
   rules:
-  - host: prod-influxdb.kotimme.cc
+  - host: influxdb.kotimme.cc
     http:
       paths:
       - path: /
