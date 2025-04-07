@@ -30,6 +30,6 @@ resources:
   - app-z2m.yaml
 
 configMapGenerator:
-  - name: app-ssh-parser-nginx-conf
+  - name: app-sshparser-nginx-conf
     files:
-      - config/app-ssh-parser/nginx.conf
+      - config/app-sshparser/nginx.conf
