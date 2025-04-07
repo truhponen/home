@@ -65,7 +65,7 @@ spec:
         volumeMounts:
         - name: dir
           mountPath: /usr/share/nginx/html
-          subPath: sshparser/html
+          subPath: sshparser
         - name: conf
           mountPath: /etc/nginx
       volumes:
