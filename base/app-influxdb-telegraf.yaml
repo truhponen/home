@@ -74,7 +74,7 @@ spec:
         - containerPort: 9411
           name: telegraf-mqtt
         volumeMounts:
-        - name: configMap-telegraf-conf
+        - name: configmap-telegraf-conf
           mountPath: /etc/telegraf
       imagePullSecrets:
         - name: docker-hub
@@ -82,6 +82,6 @@ spec:
         - name: pvc-nfs
           persistentVolumeClaim:
            claimName: nfs
-        - name: configMap-telegraf-conf
+        - name: configmap-telegraf-conf
           configMap:
             name: app-influxdb-telegraf-telegraf-conf
