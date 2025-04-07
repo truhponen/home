@@ -67,7 +67,7 @@ spec:
           mountPath: /usr/share/nginx/html
           subPath: ssh-parser/html
         - name: conf
-          mountPath: /etc/nginx
+          mountPath: /etc/nginx/nginx.conf
       volumes:
         - name: dir
           persistentVolumeClaim:
