@@ -2,70 +2,70 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: ssh-parser
+  name: sshparser
   annotations:
     cert-manager.io/cluster-issuer: cloudflare-dns
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:
   tls:
-  - secretName: ssh-parser-certs
+  - secretName: sshparser-certs
     hosts:
-    - ssh-parser.kotimme.cc
+    - sshparser.kotimme.cc
   rules:
-  - host: ssh-parser.kotimme.cc
+  - host: sshparser.kotimme.cc
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: ssh-parser
+            name: sshparser
             port:
-              name: ssh-parser
+              name: sshparser
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: ssh-parser
+    name: sshparser
 spec:
     ports:
-      - name: ssh-parser
+      - name: sshparser
         port: 80
-        targetPort: ssh-parser
+        targetPort: sshparser
     selector:
-        app: ssh-parser
+        app: sshparser
     type: NodePort
 ---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: ssh-parser
+  name: sshparser
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ssh-parser
-  serviceName: "ssh-parser"
+      app: sshparser
+  serviceName: "sshparser"
   template:
     metadata:
       labels:
-        app: ssh-parser
+        app: sshparser
     spec:
       securityContext:
         fsGroup: 1978
       imagePullSecrets:
         - name: docker-hub
       containers:
-      - name: ssh-parser
+      - name: sshparser
         image: nginx:latest
         imagePullPolicy: IfNotPresent
         ports:
-        - name: ssh-parser
+        - name: sshparser
           containerPort: 80
         volumeMounts:
         - name: dir
           mountPath: /usr/share/nginx/html
-          subPath: ssh-parser/html
+          subPath: sshparser/html
         - name: conf
           mountPath: /etc/nginx
       volumes:
@@ -74,4 +74,4 @@ spec:
            claimName: nfs
         - name: conf
           configMap:
-            name: app-ssh-parser-nginx-conf
+            name: app-sshparser-nginx-conf
