@@ -7,9 +7,9 @@ spec:
   tls:
   - secretName: grafana-certs
     hosts:
-    - prod-grafana.kotimme.cc
+    - grafana.kotimme.cc
   rules:
-  - host: prod-grafana.kotimme.cc
+  - host: grafana.kotimme.cc
     http:
       paths:
       - path: /
