@@ -10,9 +10,9 @@ spec:
   tls:
   - secretName: ssh-parser-certs
     hosts:
-    - sshparser.kotimme.cc
+    - ssh-parser.kotimme.cc
   rules:
-  - host: sshparser.kotimme.cc
+  - host: ssh-parser.kotimme.cc
     http:
       paths:
       - path: /
