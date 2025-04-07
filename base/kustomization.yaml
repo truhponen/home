@@ -33,3 +33,6 @@ configMapGenerator:
   - name: app-sshparser-nginx-conf
     files:
       - config/app-sshparser/nginx.conf
+  - name: app-influxdb-telegraf-telegraf-conf
+    files:
+      - config/app-influxdb-telegraf/telegraf.conf
