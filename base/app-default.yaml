@@ -23,5 +23,5 @@ metadata:
   name: root-redirect
 spec:
   redirectRegex:
-    regex: ^https://kotimme.cc/(.*)
-    replacement: https://wiki.kotimme.cc/${1}
+    regex: ^https://.*
+    replacement: https://wiki.kotimme.cc/
