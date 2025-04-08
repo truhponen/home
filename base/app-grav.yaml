@@ -20,6 +20,27 @@ spec:
             port:
               name: grav
 ---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: wiki
+spec:
+  tls:
+  - secretName: wiki-certs
+    hosts:
+    - wiki.kotimme.cc
+  rules:
+  - host: wiki.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: grav
+            port:
+              name: grav
+---
 apiVersion: v1
 kind: Service
 metadata:
