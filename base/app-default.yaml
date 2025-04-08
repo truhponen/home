@@ -15,3 +15,13 @@ spec:
       name: grav
       port:
         name: grav
+---
+# Redirect with domain replacement
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: root-redirect
+spec:
+  redirectRegex:
+    regex: ^https://kotimme.cc/(.*)
+    replacement: https://wiki.kotimme.cc/${1}
