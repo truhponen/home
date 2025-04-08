@@ -1,0 +1,10 @@
+---
+# Redirect with domain replacement
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: root-redirect
+spec:
+  redirectRegex:
+    regex: ^http://localhost/(.*)
+    replacement: http://mydomain/${1}
