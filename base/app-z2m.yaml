@@ -78,21 +78,21 @@ spec:
         - name: z2m
           containerPort: 8080
         volumeMounts:
-        - name: dir
+        - name: pvc-nfs
           mountPath: /app/data
           subPath: z2m
         - name: udev
           mountPath: /run/udev
           readOnly: true
-        - name: usb
-          mountPath: /dev/ttyUSB0
+        - name: coordinator
+          mountPath: /dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_d26ec6380919ec119f4839cc47486eb0-if00-port0
       volumes:
-      - name: dir
+      - name: pvc-nfs
         persistentVolumeClaim:
          claimName: nfs
       - name: udev
         hostPath:
           path: /run/udev
-      - name: usb
+      - name: coordinator
         hostPath:
-          path: /dev/ttyUSB0
+          path: /dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_d26ec6380919ec119f4839cc47486eb0-if00-port0
