@@ -7,9 +7,9 @@ spec:
   tls:
   - secretName: grav-certs
     hosts:
-    - prod-grav.kotimme.cc
+    - grav.kotimme.cc
   rules:
-  - host: prod-grav.kotimme.cc
+  - host: grav.kotimme.cc
     http:
       paths:
       - path: /
