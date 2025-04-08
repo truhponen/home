@@ -7,9 +7,9 @@ spec:
   tls:
   - secretName: picard-certs
     hosts:
-    - prod-picard.kotimme.cc
+    - picard.kotimme.cc
   rules:
-  - host: prod-picard.kotimme.cc
+  - host: picard.kotimme.cc
     http:
       paths:
       - path: /
