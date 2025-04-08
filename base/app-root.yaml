@@ -12,15 +12,15 @@ spec:
     - kotimme.cc
   rules:
   - host: kotimme.cc
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: grav
-            port:
-              name: grav
+#    http:
+#      paths:
+#      - path: /
+#        pathType: Prefix
+#        backend:
+#          service:
+#            name: grav
+#            port:
+#              name: grav
 ---
 # Redirect with domain replacement
 apiVersion: traefik.io/v1alpha1
