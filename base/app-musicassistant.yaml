@@ -7,9 +7,9 @@ spec:
   tls:
   - secretName: musicassistant-certs
     hosts:
-    - prod-musicassistant.kotimme.cc
+    - musicassistant.kotimme.cc
   rules:
-  - host: prod-musicassistant.kotimme.cc
+  - host: musicassistant.kotimme.cc
     http:
       paths:
       - path: /
