@@ -12,6 +12,6 @@ spec:
     - '*.kotimme.cc'
   defaultBackend:
     service:
-      name: wiki
+      name: grav
       port:
-        name: wiki
+        name: grav
