@@ -9,12 +9,18 @@ spec:
   tls:
   - secretName: root-certs
     hosts:
-    - 'kotimme.cc'
-  defaultBackend:
-    service:
-      name: wiki
-      port:
-        name: wiki
+    - kotimme.cc
+  rules:
+  - host: kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: grav
+            port:
+              name: grav
 ---
 # Redirect with domain replacement
 apiVersion: traefik.io/v1alpha1
