@@ -7,9 +7,9 @@ spec:
   tls:
   - secretName: jellyfin-certs
     hosts:
-    - prod-jellyfin.kotimme.cc
+    - jellyfin.kotimme.cc
   rules:
-  - host: prod-jellyfin.kotimme.cc
+  - host: jellyfin.kotimme.cc
     http:
       paths:
       - path: /
