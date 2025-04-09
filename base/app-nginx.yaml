@@ -23,6 +23,30 @@ spec:
             port:
               name: nginx
 ---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nt-maintenancepage
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare-dns
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+spec:
+  tls:
+  - secretName: nt-maintenancepage-certs
+    hosts:
+    - nt-maintenancepage.kotimme.cc
+  rules:
+  - host: nt-maintenancepage.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx
+            port:
+              name: nginx
+---
 apiVersion: v1
 kind: Service
 metadata:
