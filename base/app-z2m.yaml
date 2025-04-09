@@ -73,6 +73,7 @@ spec:
             - SYS_ADMIN
             - DAC_READ_SEARCH
             - MKNOD
+            - CREAT
 #          privileged: true
         env:
         - name: TZ
