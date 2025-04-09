@@ -67,8 +67,11 @@ spec:
       - name: z2m
         image: koenkk/zigbee2mqtt:latest
         imagePullPolicy: IfNotPresent
-#        securityContext:
-#          privileged: true
+        securityContext:
+          capabilities:
+            add:
+            - SYS_ADMIN
+          privileged: true
         env:
         - name: TZ
           value: "Europe/Helsinki"
