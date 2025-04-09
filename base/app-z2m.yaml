@@ -69,9 +69,11 @@ spec:
         imagePullPolicy: IfNotPresent
         securityContext:
           capabilities:
-#            add:
-#            - SYS_ADMIN
-          privileged: true
+            add:
+            - SYS_ADMIN
+            - DAC_READ_SEARCH
+            - MKNOD
+#          privileged: true
         env:
         - name: TZ
           value: "Europe/Helsinki"
