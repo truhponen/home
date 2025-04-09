@@ -71,7 +71,7 @@ spec:
           capabilities:
             add:
             - SYS_ADMIN
-          privileged: true
+#          privileged: true
         env:
         - name: TZ
           value: "Europe/Helsinki"
