@@ -30,7 +30,7 @@ resources:
   - app-z2m.yaml
 
 configMapGenerator:
-  - name: app-sshparser-nginx-conf
+  - name: app-nginx-nginx-conf
     files:
       - config/app-nginx/nginx.conf
   - name: app-influxdb-telegraf-telegraf-conf
