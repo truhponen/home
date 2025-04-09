@@ -55,11 +55,7 @@ spec:
         image: ghcr.io/music-assistant/server:latest
         imagePullPolicy: IfNotPresent
         securityContext:
-          capabilities:
-            add:
-              - NET_ADMIN
-              - NET_RAW
-              - NET_BROADCAST
+          privileged: true
         ports:
         - name: musicassistant
           containerPort: 8095
