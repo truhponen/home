@@ -69,9 +69,9 @@ spec:
         imagePullPolicy: IfNotPresent
         securityContext:
           capabilities:
-            add:
-            - CAP_SYS_ADMIN
-#          privileged: true
+#            add:
+#            - SYS_ADMIN
+          privileged: true
         env:
         - name: TZ
           value: "Europe/Helsinki"
