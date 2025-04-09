@@ -19,53 +19,53 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: sshparser
+            name: nginx
             port:
-              name: sshparser
+              name: nginx
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: sshparser
+    name: nginx
 spec:
     ports:
-      - name: sshparser
+      - name: nginx
         port: 80
-        targetPort: sshparser
+        targetPort: nginx
     selector:
-        app: sshparser
+        app: nginx
     type: NodePort
 ---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: sshparser
+  name: nginx
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: sshparser
+      app: nginx
   serviceName: "sshparser"
   template:
     metadata:
       labels:
-        app: sshparser
+        app: nginx
     spec:
       securityContext:
         fsGroup: 1978
       imagePullSecrets:
         - name: docker-hub
       containers:
-      - name: sshparser
+      - name: nginx
         image: nginx:latest
         imagePullPolicy: IfNotPresent
         ports:
-        - name: sshparser
+        - name: nginx
           containerPort: 80
         volumeMounts:
         - name: dir
           mountPath: /usr/share/nginx/html
-          subPath: sshparser
+          subPath: nginx
         - name: conf
           mountPath: /etc/nginx
       volumes:
@@ -74,4 +74,4 @@ spec:
            claimName: nfs
         - name: conf
           configMap:
-            name: app-sshparser-nginx-conf
+            name: app-nginx-nginx-conf
