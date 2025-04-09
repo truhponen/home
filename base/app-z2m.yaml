@@ -70,7 +70,7 @@ spec:
         securityContext:
           capabilities:
             add:
-            - SYS_ADMIN
+            - CAP_SYS_ADMIN
 #          privileged: true
         env:
         - name: TZ
