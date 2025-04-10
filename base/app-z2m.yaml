@@ -88,7 +88,7 @@ spec:
           mountPath: /run/udev
           readOnly: true
         - name: coordinator
-          mountPath: /dev/ttyUSB0
+          mountPath: /dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_d26ec6380919ec119f4839cc47486eb0-if00-port0
       volumes:
       - name: pvc-nfs
         persistentVolumeClaim:
@@ -98,4 +98,4 @@ spec:
           path: /run/udev
       - name: coordinator
         hostPath:
-          path: /dev/ttyUSB0
+          path: /dev/serial/by-id/usb-ITead_Sonoff_Zigbee_3.0_USB_Dongle_Plus_d26ec6380919ec119f4839cc47486eb0-if00-port0
