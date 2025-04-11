@@ -55,6 +55,8 @@ spec:
         image: ghcr.io/music-assistant/server:latest
         imagePullPolicy: IfNotPresent
         securityContext:
+          appArmorProfile:
+            type: unconfined
           capabilities:
             add:
               - NET_ADMIN
