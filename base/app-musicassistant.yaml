@@ -1,3 +1,6 @@
+# This manifest install Music Assistant container and required resources
+
+# Ingress is for UI
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -19,6 +22,8 @@ spec:
             name: musicassistant
             port:
               name: ui
+
+# Service's type is "loadBalancer" so that players we have IP in LAN. This allows players to access stream have access to Musicassistants tcp-port.
 ---
 apiVersion: v1
 kind: Service
@@ -36,6 +41,8 @@ spec:
         app: musicassistant
     type: LoadBalancer
     loadBalancerIP: 192.168.68.242
+
+# Container has been deployed as StatefulSet with replicas-amount 1 as there can be only one container and contaner has persistent storage.
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -58,16 +65,16 @@ spec:
       - name: musicassistant
         image: ghcr.io/music-assistant/server:latest
         imagePullPolicy: IfNotPresent
-        securityContext:
-          appArmorProfile:
-            type: Unconfined
-          capabilities:
-            add:
-              - NET_ADMIN
-              - NET_RAW
-              - NET_BROADCAST
-              - SYS_ADMIN
-              - DAC_READ_SEARCH
+#        securityContext:
+#          appArmorProfile:
+#            type: Unconfined
+#          capabilities:
+#            add:
+#              - NET_ADMIN
+#              - NET_RAW
+#              - NET_BROADCAST
+#              - SYS_ADMIN
+#              - DAC_READ_SEARCH
         ports:
         - name: ui
           containerPort: 8095
