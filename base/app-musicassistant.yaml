@@ -29,6 +29,9 @@ spec:
       - name: musicassistant
         port: 80
         targetPort: musicassistant
+      - name: musicassistant-original
+        port: 8089
+        targetPort: musicassistant
     selector:
         app: musicassistant
     type: LoadBalancer
