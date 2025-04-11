@@ -26,12 +26,12 @@ metadata:
     name: musicassistant
 spec:
     ports:
-      - name: musicassistant
+      - name: ui
         port: 80
-        targetPort: musicassistant
-      - name: musicassistant-tcp
+        targetPort: ui
+      - name: tcp
         port: 8098
-        targetPort: musicassistant
+        targetPort: tcp
     selector:
         app: musicassistant
     type: LoadBalancer
@@ -69,9 +69,9 @@ spec:
               - SYS_ADMIN
               - DAC_READ_SEARCH
         ports:
-        - name: musicassistant
+        - name: ui
           containerPort: 8095
-        - name: musicassistant-tcp
+        - name: tcp
           containerPort: 8098
         volumeMounts:
         - name: dir
