@@ -29,8 +29,8 @@ spec:
       - name: musicassistant
         port: 80
         targetPort: musicassistant
-      - name: musicassistant-original
-        port: 8089
+      - name: musicassistant-tcp
+        port: 8098
         targetPort: musicassistant
     selector:
         app: musicassistant
@@ -71,6 +71,8 @@ spec:
         ports:
         - name: musicassistant
           containerPort: 8095
+        - name: musicassistant-tcp
+          containerPort: 8098
         volumeMounts:
         - name: dir
           mountPath: 	/data
