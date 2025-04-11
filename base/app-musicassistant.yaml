@@ -18,7 +18,7 @@ spec:
           service:
             name: musicassistant
             port:
-              name: musicassistant
+              name: ui
 ---
 apiVersion: v1
 kind: Service
