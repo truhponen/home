@@ -65,14 +65,14 @@ spec:
       - name: musicassistant
         image: ghcr.io/music-assistant/server:latest
         imagePullPolicy: IfNotPresent
-#        securityContext:
+        securityContext:
 #          appArmorProfile:
 #            type: Unconfined
-#          capabilities:
-#            add:
-#              - NET_ADMIN
-#              - NET_RAW
-#              - NET_BROADCAST
+          capabilities:
+            add:
+              - NET_ADMIN
+              - NET_RAW
+              - NET_BROADCAST
 #              - SYS_ADMIN
 #              - DAC_READ_SEARCH
         ports:
