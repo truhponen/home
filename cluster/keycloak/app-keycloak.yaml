@@ -104,6 +104,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: postgres
+  namespace: keycloak
 spec:
   replicas: 1
   selector:
