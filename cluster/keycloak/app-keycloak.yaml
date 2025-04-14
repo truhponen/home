@@ -76,7 +76,7 @@ spec:
         args: ["start-dev"]
         envFrom:
         - secretRef:
-          name: keycloak
+            name: keycloak
         env:
         - name: KC_PROXY_HEADERS
           value: "xforwarded"
