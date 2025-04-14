@@ -48,7 +48,7 @@ spec:
   type: NodePort
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: keycloak
   namespace: keycloak
@@ -59,30 +59,36 @@ spec:
   selector:
     matchLabels:
       app: keycloak
+  serviceName: "keycloak"
   template:
     metadata:
       labels:
         app: keycloak
     spec:
+#      securityContext:
+#        fsGroup: 1978
+#      imagePullSecrets:
+#        - name: docker-hub
       containers:
-        - name: keycloak
-          image: quay.io/keycloak/keycloak:26.1.4
-          args: ["start-dev"]
-          env:
-            - name: KEYCLOAK_ADMIN
-              value: "admin"
-            - name: KEYCLOAK_ADMIN_PASSWORD
-              value: "admin"
-            - name: KC_PROXY_HEADERS
-              value: "xforwarded"
-            - name: KC_HTTP_ENABLED
-              value: "true"
-            - name: KC_HEALTH_ENABLED
-              value: "true"
-          ports:
-            - name: http
-              containerPort: 8080
-          readinessProbe:
-            httpGet:
-              path: /health/ready
-              port: 9000
+      - name: keycloak
+        image: quay.io/keycloak/keycloak:26.1.4
+        imagePullPolicy: IfNotPresent
+        args: ["start-dev"]
+        env:
+        - name: KEYCLOAK_ADMIN
+          value: "admin"
+        - name: KEYCLOAK_ADMIN_PASSWORD
+          value: "admin"
+        - name: KC_PROXY_HEADERS
+          value: "xforwarded"
+        - name: KC_HTTP_ENABLED
+          value: "true"
+        - name: KC_HEALTH_ENABLED
+          value: "true"
+        ports:
+        - name: http
+          containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /health/ready
+            port: 9000
