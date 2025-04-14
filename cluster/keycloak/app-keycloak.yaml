@@ -74,11 +74,10 @@ spec:
         image: quay.io/keycloak/keycloak:26.1.4
         imagePullPolicy: IfNotPresent
         args: ["start-dev"]
+        envFrom:
+        - secretRef:
+          name: keycloak
         env:
-        - name: KEYCLOAK_ADMIN
-          value: "admin"
-        - name: KEYCLOAK_ADMIN_PASSWORD
-          value: "admin"
         - name: KC_PROXY_HEADERS
           value: "xforwarded"
         - name: KC_HTTP_ENABLED
