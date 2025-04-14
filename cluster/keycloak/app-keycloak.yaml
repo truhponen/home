@@ -41,6 +41,25 @@ spec:
   selector:
     app: keycloak
   type: NodePort
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: keycloak
+  labels:
+    app: postgres
+spec:
+  ports:
+    - name: postgres
+      port: 5432
+      targetPort: 5432
+  selector:
+    app: postgres
+  type: NodePort
+
+
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -109,7 +128,7 @@ spec:
             name: postgres
         ports:
         - name: postgres
-          containerPort: 80
+          containerPort: 5432
         volumeMounts:
         - name: dir
           mountPath: /var/lib/postgresql/data
