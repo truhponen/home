@@ -4,6 +4,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: nfs
+  namespace: keycloak
 spec:
   accessModes:
     - ReadWriteMany
