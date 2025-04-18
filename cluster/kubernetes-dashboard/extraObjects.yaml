@@ -56,7 +56,7 @@ subjects:
   name: admin-user
   namespace: kubernetes-dashboard
 - apiGroup: rbac.authorization.k8s.io
-  name: oicd-role:kubernetes-dashboard:admin-user
+  name: oicd-role:role:admin-user
   kind: Group
 #---
 #apiVersion: v1
