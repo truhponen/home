@@ -102,7 +102,6 @@ imagePullSecrets: []
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 extraArgs:
   - --code-challenge-method=S256
-  - --cookie-expire=0
   - --oidc-issuer-url=https://keycloak.kotimme.cc/realms/kotimme
   - --pass-authorization-header=true
   - --provider=keycloak-oidc
