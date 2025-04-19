@@ -101,11 +101,12 @@ imagePullSecrets: []
 
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 extraArgs:
-  - --code-challenge-method=S256
-  - --oidc-issuer-url=https://keycloak.kotimme.cc/realms/kotimme
-  - --pass-authorization-header=true
   - --provider=keycloak-oidc
+  - --oidc-issuer-url=https://keycloak.kotimme.cc/realms/kotimme
   - --redirect-url=https://oauth.kotimme.cc/oauth2/callback
+  - --code-challenge-method=S256
+  - --cookie-expire=0
+  - --pass-authorization-header=true
   - --ssl-upstream-insecure-skip-verify=true
   - --upstream=https://kubernetes-dashboard-kong-proxy
 extraEnv: []
