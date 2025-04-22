@@ -58,6 +58,10 @@ subjects:
 - apiGroup: rbac.authorization.k8s.io
   name: oicd-role:admin-user
   kind: Group
+- apiGroup: rbac.authorization.k8s.io
+  name: oicd-truhponen@gmail.com
+  kind: User
+
 #---
 #apiVersion: v1
 #kind: Secret
