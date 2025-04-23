@@ -1,5 +1,5 @@
 # https://github.com/kubernetes/dashboard/blob/master/charts/kubernetes-dashboard/values.yaml
-# helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --create-namespace --namespace kubernetes-dashboard -f helm-customization.yaml
+# helm upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard --create-namespace --namespace kubernetes-dashboard -f values-kubernetes-dashboard.yaml
 
 app:
   settings:

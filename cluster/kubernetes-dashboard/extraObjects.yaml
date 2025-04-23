@@ -1,47 +1,10 @@
-#---
-#apiVersion: cert-manager.io/v1
-#kind: Certificate
-#metadata:
-#  name: kubernetes.kotimme.cc
-#  namespace: kubernetes-dashboard
-#spec:
-#  secretName: kubernetes-dashboard-certs
-#  dnsNames:
-#    - kubernetes.kotimme.cc
-#  issuerRef:
-#    name: cloudflare-dns
-#    kind: ClusterIssuer
-#---
-#apiVersion: networking.k8s.io/v1
-#kind: Ingress
-#metadata:
-#  name: kubernetes-dashboard
-#  namespace: kubernetes-dashboard
-#  annotations:
-#    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-#    cert-manager.io/cluster-issuer: cloudflare-dns
-#spec:
-#  tls:
-#  - hosts:
-#    - kubernetes.kotimme.cc
-#    secretName: kubernetes-dashboard-certs
-#  rules:
-#  - host: kubernetes.kotimme.cc
-#    http:
-#      paths:
-#      - path: /
-#        pathType: Prefix
-#        backend:
-#          service:
-#            name: kubernetes-dashboard-kong-proxy
-#            port:
-#              name: kong-proxy-tls
 ---
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: admin-user
   namespace: kubernetes-dashboard
+
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
@@ -55,19 +18,7 @@ subjects:
 - kind: ServiceAccount
   name: admin-user
   namespace: kubernetes-dashboard
-- apiGroup: rbac.authorization.k8s.io
-  name: oicd-role:admin-user
-  kind: Group
-- apiGroup: rbac.authorization.k8s.io
-  name: oicd-truhponen@gmail.com
-  kind: User
+- kind: Group
+  name: oidc-admin-user
+  apiGroup: rbac.authorization.k8s.io
 
-#---
-#apiVersion: v1
-#kind: Secret
-#metadata:
-#  name: admin-user
-#  namespace: kubernetes-dashboard
-#  annotations:
-#    kubernetes.io/service-account.name: "admin-user"
-#type: kubernetes.io/service-account-token
