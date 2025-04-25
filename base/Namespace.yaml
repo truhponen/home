@@ -1,4 +1,4 @@
-# Own namespace for analytics applications
+# Own namespace for different environments
 ---
 apiVersion: v1
 kind: Namespace
