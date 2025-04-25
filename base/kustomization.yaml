@@ -20,8 +20,6 @@ resources:
   - app-jellyfin.yaml
   - app-influxdb-telegraf.yaml
   - app-mosquitto-mqtt-explorer.yaml
-#  - app-mosquitto.yaml
-#  - app-mqtt-explorer.yaml
   - app-musicassistant.yaml
   - app-nginx.yaml
   - app-picard.yaml
