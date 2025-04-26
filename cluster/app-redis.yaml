@@ -52,9 +52,6 @@ spec:
       - name: redis
         image: redis:latest
         imagePullPolicy: IfNotPresent
-        env:
-        - name: HOMEPAGE_ALLOWED_HOSTS
-          value: homepage.kotimme.cc
         ports:
         - name: redis
           containerPort: 6379
