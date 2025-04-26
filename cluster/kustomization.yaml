@@ -6,6 +6,8 @@ resources:
 # Namespaced objects
   - Namespace.yaml
 # Namespaced apps
+  - app-kubernetes-dashboard-oauth2-proxy.yaml
+  - app-kubernetes-dashboard.yaml
   - app-redis.yaml
 
 #configMapGenerator:
