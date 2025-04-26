@@ -16,3 +16,4 @@ base/Secret-influxdb.yaml
 cluster/keycloak/Secret-keycloak.yaml
 cluster/keycloak/Secret-postgres.yaml
 cluster/Secret-kubernetes-dashboard-oauth2-proxy.yaml
+cluster/Secret-kubernetes-dashboard.yaml

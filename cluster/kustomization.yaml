@@ -5,6 +5,8 @@ resources:
   - PersistentVolume-cluster.yaml
 # Namespaced objects
   - Namespace.yaml
+  - Secret-kubernetes-dashboard-oauth2-proxy.yaml
+  - Secret-kubernetes-dashboard.yaml
 # Namespaced apps
   - app-kubernetes-dashboard-ClusterRoleBinding.yaml
   - app-kubernetes-dashboard-oauth2-proxy.yaml

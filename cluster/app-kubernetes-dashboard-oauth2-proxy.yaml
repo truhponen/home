@@ -16,27 +16,6 @@ metadata:
   namespace: kubernetes-dashboard
 automountServiceAccountToken: true
 ---
-# Source: oauth2-proxy/templates/secret.yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  labels:
-    app: oauth2-proxy    
-    helm.sh/chart: oauth2-proxy-7.12.8
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/component: authentication-proxy
-    app.kubernetes.io/part-of: oauth2-proxy
-    app.kubernetes.io/name: oauth2-proxy
-    app.kubernetes.io/instance: oauth2-proxy
-    app.kubernetes.io/version: "7.8.2"
-  name: oauth2-proxy
-  namespace: kubernetes-dashboard
-type: Opaque
-data:
-  cookie-secret: "WFhYWFhYWFhYWFhYWFhYWA=="
-  client-secret: "WFhYWFhYWFg="
-  client-id: "WFhYWFhYWA=="
----
 # Source: oauth2-proxy/templates/configmap.yaml
 apiVersion: v1
 kind: ConfigMap
