@@ -229,7 +229,7 @@ metadata:
 spec:
   ingressClassName: "traefik"
   rules:
-    - host: "oauth.kotimme.cc"
+    - host: "oauthv2.kotimme.cc"
       http:
         paths:
           - path: /
@@ -241,5 +241,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-      - oauth.kotimme.cc
-      secretName: oauth2-proxy-certs
+      - oauthv22.kotimme.cc
+      secretName: oauth2v2-proxy-certs
