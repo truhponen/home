@@ -1,5 +1,4 @@
 # origin: https://github.com/oauth2-proxy/manifests/blob/main/helm/oauth2-proxy/values.yaml
-# helm upgrade --install oauth2-proxy oauth2-proxy/oauth2-proxy -n kubernetes-dashboard -f values-oauth2-proxy.yaml
 # helm template oauth2-proxy oauth2-proxy/oauth2-proxy -f values-oauth2-proxy.yaml > ../app-kubernetes-dashboard-oauth2-proxy.yaml
 
 global: {}
@@ -396,7 +395,7 @@ htpasswdFile:
 # Configure the session storage type, between cookie and redis
 sessionStorage:
   # Can be one of the supported session storage cookie|redis
-  type: cookie
+  type: redis
   redis:
     # Name of the Kubernetes secret containing the redis & redis sentinel password values (see also `sessionStorage.redis.passwordKey`)
     existingSecret: ""
@@ -409,7 +408,7 @@ sessionStorage:
     clientType: "standalone"
     standalone:
       # URL of redis standalone server for redis session storage (e.g. `redis://HOST[:PORT]`). Automatically generated if not set
-      connectionUrl: ""
+      connectionUrl: "redis://redis:6379"
     cluster:
       # List of Redis cluster connection URLs. Array or single string allowed.
       connectionUrls: []

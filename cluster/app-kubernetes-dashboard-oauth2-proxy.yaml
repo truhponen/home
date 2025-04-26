@@ -118,7 +118,7 @@ spec:
           - --metrics-address=0.0.0.0:44180
           - --provider=keycloak-oidc
           - --oidc-issuer-url=https://keycloak.kotimme.cc/realms/kotimme
-          - --redirect-url=https://oauthv2.kotimme.cc/oauth2/callback
+          - --redirect-url=https://oauth.kotimme.cc/oauth2/callback
           - --code-challenge-method=S256
           - --cookie-expire=0
           - --pass-authorization-header=true
@@ -141,6 +141,10 @@ spec:
             secretKeyRef:
               name:  oauth2-proxy
               key: cookie-secret
+        - name: OAUTH2_PROXY_SESSION_STORE_TYPE
+          value: "redis"
+        - name: OAUTH2_PROXY_REDIS_CONNECTION_URL
+          value: redis://redis:6379
         ports:
           - containerPort: 4180
             name: http
@@ -208,7 +212,7 @@ metadata:
 spec:
   ingressClassName: "traefik"
   rules:
-    - host: "oauthv2.kotimme.cc"
+    - host: "oauth.kotimme.cc"
       http:
         paths:
           - path: /
@@ -220,5 +224,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-      - oauthv22.kotimme.cc
-      secretName: oauth2v2-proxy-certs
+      - oauth.kotimme.cc
+      secretName: oauth2-proxy-certs

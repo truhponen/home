@@ -121,7 +121,7 @@ metadata:
     
   name: kubernetes-dashboard-csrf
 data:
-  private.key: "aTRtR3BBaWp0ZnkxVThCS040Lys3WmppUDhJbm1sNWlXZW8vT0Rwc3VJZzNtSUR5YzhvUFVoTXFCTkE2dTVnZGFRNmFDRUM5VW8wNnBVN3hzS0xMRkNjN1lHbzluM2hFaXV6NHRodkYzQ3JHM1lTNjJjaXVmczFqTEZIdHlCK1dNME1JMkIrK2pyZmFkdCsxbTZNS0NFaUkzUXZkTG5RVUl5eWhEMW9uOFpGbVAyVVNHZVNZT0xDSlZlYXdNY2JpODFNL2Z1Y25tL3YyMnh5NzJmRzNzaE9NZzcvL0xnRWRBMUpFcnVkRDA1eUpRNW5EZU5zOXZBZ3JtSS9ua21memp0SFVHVXE1aWdITmpwblFkamNtZ24wMUdvVlhBeUxVUnB5YVNGc3hId1prWVhOOFJEZWh4dHAxTEFpdFZFNHFQTjJ1ZUFraGEySHBBbkhLU0F4KytBPT0="
+  private.key: "UHRQSWxXUytCeW9XbDN4MEloL2h0MysrejV1QXZSaFBaK0tCcUdVSVlzalg5Y2Myb1N4WWFRQ1BsYU4xcC8vYWxtc2dLVi9LK1RwajFTbHRiQkpaL0Z0eUwwK2lTU3ZkMUJuSTZSQTQ5K2JpUmgyQ1RZdGJIYXFzNkJoVHhmeHVRbTcrQ2JnSXVFQzRmQkZSVFVzTkN5SHJwUEdaaDNqM3ptbm1RY01NMG54elBwZjdFbDZienRhYjI3Q1RrZ1Mwb09Oa0xpR3hXVUlGRXoyL1dDaWVRWFNwNkdxbFJOS2R4cVcrMlVDWlo3TFZ5NEF4WFN6bFlpS2d6VW4vLzlZc0plNnFtaFl5a2tDY2o4VmxRUGVBT1ozRlVJaDBKOGNwbE5zUTY3VnFsK1hkRlRrRkxrZ20zUmdac0xXZlN6eG1Cb1hVNWNHVWVqTjdsVjFrK3dxUThnPT0="
 ---
 # Source: kubernetes-dashboard/templates/config/gateway.yaml
 # Copyright 2017 The Kubernetes Authors.
@@ -959,7 +959,7 @@ spec:
         app.kubernetes.io/version: 1.11.1
         app.kubernetes.io/component: api
       annotations:
-        checksum/config: c7b002af3fd3fa4f3e0e5c3a87ab0b724c5fc30d8b80ded7cb93ff8411e5b656
+        checksum/config: a8c4871faddbc941fb8266267d4de3ce607b1974193571b4274b6c0ab2ff8f11
     spec:
       containers:
         - name: kubernetes-dashboard-api
@@ -1072,7 +1072,7 @@ spec:
         app.kubernetes.io/version: 1.2.4
         app.kubernetes.io/component: auth
       annotations:
-        checksum/config: b99e1c26afb57f493b18e8a7cfa36c79b5bbc0b61669c19c523d848b494c0c34
+        checksum/config: 337d2c82fdc382adabed63d2a136f6a1c9b9c5c4509220956cfdbfede65f9b6e
     spec:
       containers:
         - name: kubernetes-dashboard-auth
@@ -1391,10 +1391,10 @@ spec:
   ingressClassName: traefik
   tls:
     - hosts:
-      - kubernetesv2.kotimme.cc
+      - kubernetes.kotimme.cc
       secretName: kubernetes-dashboard-certs
   rules:
-    - host: kubernetesv2.kotimme.cc
+    - host: kubernetes.kotimme.cc
       http:
         paths:
           - path: /
