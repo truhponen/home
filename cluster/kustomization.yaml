@@ -3,6 +3,7 @@ namespace: cluster
 resources:
 # Non-namespaced objects
   - PersistentVolume-cluster.yaml
+  - PersistentVolumeClaim.yaml
 # Namespaced objects
   - Namespace.yaml
   - Secret-keycloak.yaml

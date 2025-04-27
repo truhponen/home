@@ -61,6 +61,8 @@ spec:
       labels:
         app: redis
     spec:
+      securityContext:
+        fsGroup: 1978
       containers:
       - name: redis
         image: redis:latest
@@ -69,7 +71,7 @@ spec:
         - name: redis
           containerPort: 6379
       - name: redisinsight
-        image: redisinsight:latest
+        image: redis/redisinsight:latest
         imagePullPolicy: IfNotPresent
         ports:
         - name: redisinsight
@@ -84,4 +86,3 @@ spec:
         - name: pvc-nfs
           persistentVolumeClaim:
            claimName: nfs
-        

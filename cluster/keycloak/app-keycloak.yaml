@@ -13,9 +13,9 @@ spec:
   tls:
   - secretName: keycloak-certs
     hosts:
-    - keycloak.kotimme.cc
+    - keycloak-old.kotimme.cc
   rules:
-  - host: keycloak.kotimme.cc
+  - host: keycloak-old.kotimme.cc
     http:
       paths:
       - path: /
