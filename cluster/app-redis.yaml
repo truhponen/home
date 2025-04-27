@@ -74,12 +74,14 @@ spec:
         ports:
         - name: redisinsight
           containerPort: 5540
-#        volumeMounts:
-#        - name: config
-#          mountPath: /usr/local/etc/redis/redis.conf
+        volumeMounts:
+        - name: pvc-nfs
+          mountPath: /data
+          subPath: redis/redisinsight
 #      imagePullSecrets:
 #        - name: ghcr-io
-#      volumes:
-#        - name: redis
-#          configMap:
-#            name: app-redis-redis-conf
+      volumes:
+        - name: pvc-nfs
+          persistentVolumeClaim:
+           claimName: nfs
+        
