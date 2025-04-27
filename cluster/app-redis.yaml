@@ -1,24 +1,24 @@
-#---
-#apiVersion: networking.k8s.io/v1
-#kind: Ingress
-#metadata:
-#  name: homepage
-#spec:
-#  tls:
-#  - secretName: homepage-certs
-#    hosts:
-#    - homepage.kotimme.cc
-#  rules:
-#  - host: homepage.kotimme.cc
-#    http:
-#      paths:
-#      - path: /
-#        pathType: Prefix
-#        backend:
-#          service:
-#            name: homepage
-#            port:
-#              name: homepage
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: redis
+spec:
+  tls:
+  - secretName: redis-certs
+    hosts:
+    - redis.kotimme.cc
+  rules:
+  - host: redis.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: redisinsight
+            port:
+              name: redisinsight
 ---
 apiVersion: v1
 kind: Service
@@ -32,6 +32,19 @@ spec:
     selector:
         app: redis
     type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: redisinsight
+spec:
+    ports:
+      - name: redisinsight
+        port: 80
+        targetPort: redisinsight
+    selector:
+        app: redisinsight
+    type: NodePort
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -55,6 +68,12 @@ spec:
         ports:
         - name: redis
           containerPort: 6379
+      - name: redisinsight
+        image: redisinsight:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: redisinsight
+          containerPort: 5540
 #        volumeMounts:
 #        - name: config
 #          mountPath: /usr/local/etc/redis/redis.conf
