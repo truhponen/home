@@ -62,6 +62,7 @@ spec:
         app: redis
     spec:
       securityContext:
+        runAsUser: 1978 #fsGroup is not enough as redis creates files with 755 and 744
         fsGroup: 1978
       containers:
       - name: redis
