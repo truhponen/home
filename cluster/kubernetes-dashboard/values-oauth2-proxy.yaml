@@ -105,6 +105,7 @@ extraArgs:
   - --redirect-url=https://oauth.kotimme.cc/oauth2/callback
   - --code-challenge-method=S256
   - --cookie-expire=0
+  - --cookie-csrf-expire=5m
   - --pass-authorization-header=true
   - --ssl-upstream-insecure-skip-verify=true
   - --upstream=https://kubernetes-dashboard-kong-proxy
