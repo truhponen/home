@@ -1,41 +1,52 @@
-# Based on Helm chart
 ---
+# Source: oauth2-proxy/templates/serviceaccount.yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   labels:
-    app: oauth2-proxy
+    app: oauth2-proxy    
+    helm.sh/chart: oauth2-proxy-7.12.8
+    app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: authentication-proxy
     app.kubernetes.io/part-of: oauth2-proxy
     app.kubernetes.io/name: oauth2-proxy
     app.kubernetes.io/instance: oauth2-proxy
+    app.kubernetes.io/version: "7.8.2"
   name: oauth2-proxy
   namespace: kubernetes-dashboard
 automountServiceAccountToken: true
 ---
+# Source: oauth2-proxy/templates/configmap.yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:
   labels:
-    app: oauth2-proxy
+    app: oauth2-proxy    
+    helm.sh/chart: oauth2-proxy-7.12.8
+    app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: authentication-proxy
     app.kubernetes.io/part-of: oauth2-proxy
     app.kubernetes.io/name: oauth2-proxy
     app.kubernetes.io/instance: oauth2-proxy
+    app.kubernetes.io/version: "7.8.2"
   name: oauth2-proxy
   namespace: kubernetes-dashboard
 data:
   oauth2_proxy.cfg: "email_domains = [ \"*\" ]\nupstreams = [ \"file:///dev/null\" ]"
 ---
+# Source: oauth2-proxy/templates/service.yaml
 apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: oauth2-proxy
+    app: oauth2-proxy    
+    helm.sh/chart: oauth2-proxy-7.12.8
+    app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: authentication-proxy
     app.kubernetes.io/part-of: oauth2-proxy
     app.kubernetes.io/name: oauth2-proxy
     app.kubernetes.io/instance: oauth2-proxy
+    app.kubernetes.io/version: "7.8.2"
   name: oauth2-proxy
   namespace: kubernetes-dashboard
 spec:
@@ -51,26 +62,30 @@ spec:
       appProtocol: http
       targetPort: metrics
       name: metrics
-  selector:
+  selector:    
     app.kubernetes.io/name: oauth2-proxy
     app.kubernetes.io/instance: oauth2-proxy
 ---
+# Source: oauth2-proxy/templates/deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: oauth2-proxy
+    app: oauth2-proxy    
+    helm.sh/chart: oauth2-proxy-7.12.8
+    app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: authentication-proxy
     app.kubernetes.io/part-of: oauth2-proxy
     app.kubernetes.io/name: oauth2-proxy
     app.kubernetes.io/instance: oauth2-proxy
+    app.kubernetes.io/version: "7.8.2"
   name: oauth2-proxy
   namespace: kubernetes-dashboard
 spec:
   replicas: 1
   revisionHistoryLimit: 10
   selector:
-    matchLabels:
+    matchLabels:      
       app.kubernetes.io/name: oauth2-proxy
       app.kubernetes.io/instance: oauth2-proxy
   template:
@@ -81,11 +96,14 @@ spec:
         checksum/google-secret: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
         checksum/redis-secret: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
       labels:
-        app: oauth2-proxy
+        app: oauth2-proxy        
+        helm.sh/chart: oauth2-proxy-7.12.8
+        app.kubernetes.io/managed-by: Helm
         app.kubernetes.io/component: authentication-proxy
         app.kubernetes.io/part-of: oauth2-proxy
         app.kubernetes.io/name: oauth2-proxy
         app.kubernetes.io/instance: oauth2-proxy
+        app.kubernetes.io/version: "7.8.2"
     spec:
       serviceAccountName: oauth2-proxy
       enableServiceLinks: true
@@ -100,10 +118,10 @@ spec:
           - --metrics-address=0.0.0.0:44180
           - --provider=keycloak-oidc
           - --oidc-issuer-url=https://keycloak.kotimme.cc/realms/kotimme
-          - --login-url=http://keycloak.cluster.svc.cluster.local/realms/kotimme/protocol/openid-connect/auth
-          - --redeem-url=http://keycloak.cluster.svc.cluster.local/realms/kotimme/protocol/openid-connect/token
-          - --profile-url=http://keycloak.cluster.svc.cluster.local/realms/kotimme/protocol/openid-connect/userinfo
-          - --oidc-jwks-url=http://keycloak.cluster.svc.cluster.local/realms/kotimme/protocol/openid-connect/certs
+          - --login-url=http://keycloak/realms/kotimme/protocol/openid-connect/auth
+          - --redeem-url=http://keycloak/realms/kotimme/protocol/openid-connect/token
+          - --profile-url=http://keycloak/realms/kotimme/protocol/openid-connect/userinfo
+          - --oidc-jwks-url=http://keycloak/realms/kotimme/protocol/openid-connect/certs
           - --redirect-url=https://oauth.kotimme.cc/oauth2/callback
           - --code-challenge-method=S256
           - --cookie-refresh=10m
@@ -178,15 +196,19 @@ spec:
           name: oauth2-proxy
         name: configmain
 ---
+# Source: oauth2-proxy/templates/ingress.yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   labels:
-    app: oauth2-proxy
+    app: oauth2-proxy    
+    helm.sh/chart: oauth2-proxy-7.12.8
+    app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: authentication-proxy
     app.kubernetes.io/part-of: oauth2-proxy
     app.kubernetes.io/name: oauth2-proxy
     app.kubernetes.io/instance: oauth2-proxy
+    app.kubernetes.io/version: "7.8.2"
   name: oauth2-proxy
   namespace: kubernetes-dashboard
   annotations:
