@@ -43,7 +43,7 @@ spec:
         port: 80
         targetPort: redisinsight
     selector:
-        app: redisinsight
+        app: redis
     type: NodePort
 ---
 apiVersion: apps/v1
