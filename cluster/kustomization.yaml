@@ -5,9 +5,12 @@ resources:
   - PersistentVolume-cluster.yaml
 # Namespaced objects
   - Namespace.yaml
+  - Secret-keycloak.yaml
   - Secret-kubernetes-dashboard-oauth2-proxy.yaml
   - Secret-kubernetes-dashboard.yaml
+  - Secret-postgres.yaml
 # Namespaced apps
+  - app-keycloak.yaml
   - app-kubernetes-dashboard-ClusterRoleBinding.yaml
   - app-kubernetes-dashboard-oauth2-proxy.yaml
   - app-kubernetes-dashboard.yaml
