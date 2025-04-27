@@ -120,8 +120,8 @@ spec:
           - --oidc-issuer-url=https://keycloak.kotimme.cc/realms/kotimme
           - --redirect-url=https://oauth.kotimme.cc/oauth2/callback
           - --code-challenge-method=S256
-          - --cookie-expire=0
-          - --cookie-csrf-expire=5m
+          - --cookie-refresh=10m
+          - --cookie-expire=30m
           - --pass-authorization-header=true
           - --ssl-upstream-insecure-skip-verify=true
           - --upstream=https://kubernetes-dashboard-kong-proxy

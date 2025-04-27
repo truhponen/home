@@ -71,6 +71,10 @@ spec:
         ports:
         - name: redis
           containerPort: 6379
+        volumeMounts:
+        - name: pvc-nfs
+          mountPath: /data
+          subPath: redis/redis
       - name: redisinsight
         image: redis/redisinsight:latest
         imagePullPolicy: IfNotPresent
