@@ -12,6 +12,7 @@ resources:
   - Secret-telegraf.yaml
 # Namespaced apps
   - app-default.yaml
+  - app-excalidraw.yaml
   - app-filestash.yaml
   - app-grafana.yaml
   - app-grav.yaml
