@@ -104,7 +104,7 @@ spec:
           - --redeem-url=http://keycloak.cluster.svc.cluster.local:keycloak/realms/kotimme/protocol/openid-connect/token
           - --profile-url=http://keycloak.cluster.svc.cluster.local:keycloak/realms/kotimme/protocol/openid-connect/userinfo
           - --oidc-jwks-url=http://keycloak.cluster.svc.cluster.local:keycloak/realms/kotimme/protocol/openid-connect/certs
-          - --redirect-url=https://oauth.kotimme.cc/oauth2/callback
+          - --redirect-url=https://kubernetes.kotimme.cc/oauth2/callback
           - --code-challenge-method=S256
           - --cookie-refresh=10m
           - --cookie-expire=720h
@@ -195,7 +195,7 @@ metadata:
 spec:
   ingressClassName: "traefik"
   rules:
-    - host: "oauth.kotimme.cc"
+    - host: "kubernetes.kotimme.cc"
       http:
         paths:
           - path: /
@@ -207,5 +207,5 @@ spec:
                   number: 80
   tls:
     - hosts:
-      - oauth.kotimme.cc
+      - kubernetes.kotimme.cc
       secretName: oauth2-proxy-certs
