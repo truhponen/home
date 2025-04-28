@@ -31,7 +31,7 @@ spec:
         targetPort: excalidraw
     selector:
         app: excalidraw
-    type: ClusterIP
+    type: NodePort
 ---
 apiVersion: apps/v1
 kind: StatefulSet
