@@ -1391,10 +1391,10 @@ spec:
   ingressClassName: traefik
   tls:
     - hosts:
-      - kubernetes.kotimme.cc
+      - kubernetes-bearer.kotimme.cc
       secretName: kubernetes-dashboard-certs
   rules:
-    - host: kubernetes.kotimme.cc
+    - host: kubernetes-bearer.kotimme.cc
       http:
         paths:
           - path: /
