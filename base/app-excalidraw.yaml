@@ -1,0 +1,69 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: excalidraw
+spec:
+  tls:
+  - secretName: excalidraw-certs
+    hosts:
+    - excalidraw.kotimme.cc
+  rules:
+  - host: excalidraw.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: excalidraw
+            port:
+              name: excalidraw
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: excalidraw
+spec:
+    ports:
+      - name: excalidraw
+        port: 80
+        targetPort: excalidraw
+    selector:
+        app: excalidraw
+    type: ClusterIP
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: excalidraw
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: excalidraw
+  serviceName: "excalidraw"
+  template:
+    metadata:
+      labels:
+        app: excalidraw
+    spec:
+      securityContext:
+        fsGroup: 1978
+      containers:
+      - name: excalidraw
+        image: excalidraw/excalidraw:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: excalidraw
+          containerPort: 80
+#        volumeMounts:
+#        - name: pvc-nfs
+#          mountPath: /app/data/state/
+#          subPath: filestash
+#      imagePullSecrets: 
+#        - name: ghcr.io
+#      volumes:
+#        - name: pvc-nfs
+#          persistentVolumeClaim:
+#           claimName: nfs
