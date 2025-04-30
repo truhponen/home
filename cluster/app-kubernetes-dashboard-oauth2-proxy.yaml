@@ -107,7 +107,7 @@ spec:
           - --oidc-jwks-url=http://keycloak.cluster.svc.cluster.local:keycloak/realms/kotimme/protocol/openid-connect/certs
           - --redirect-url=https://kubernetes.kotimme.cc/oauth2/callback
           - --code-challenge-method=S256
-          - --cookie-refresh=9.
+          - --cookie-refresh=9m
           - --cookie-expire=29m
           - --pass-authorization-header=true
           - --ssl-upstream-insecure-skip-verify=true
