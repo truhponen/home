@@ -108,7 +108,7 @@ spec:
           - --redirect-url=https://kubernetes.kotimme.cc/oauth2/callback
           - --code-challenge-method=S256
           - --cookie-refresh=9m
-          - --cookie-expire=29m
+          - --cookie-expire=30m
           - --pass-authorization-header=true
           - --ssl-upstream-insecure-skip-verify=true
           - --upstream=https://kubernetes-dashboard-kong-proxy
