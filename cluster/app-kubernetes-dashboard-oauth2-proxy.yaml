@@ -101,7 +101,7 @@ spec:
           - --skip-provider-button=true
           - --provider=keycloak-oidc
           - --oidc-issuer-url=https://keycloak.kotimme.cc/realms/kotimme
-          - --login-url=http://keycloak.cluster.svc.cluster.local:keycloak/realms/kotimme/protocol/openid-connect/auth
+          #- --login-url=http://keycloak.cluster.svc.cluster.local:keycloak/realms/kotimme/protocol/openid-connect/auth
           - --redeem-url=http://keycloak.cluster.svc.cluster.local:keycloak/realms/kotimme/protocol/openid-connect/token
           - --profile-url=http://keycloak.cluster.svc.cluster.local:keycloak/realms/kotimme/protocol/openid-connect/userinfo
           - --oidc-jwks-url=http://keycloak.cluster.svc.cluster.local:keycloak/realms/kotimme/protocol/openid-connect/certs
