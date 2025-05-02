@@ -100,11 +100,11 @@ spec:
           - --metrics-address=0.0.0.0:44180
           - --skip-provider-button=true
           - --provider=keycloak-oidc
-          - --oidc-issuer-url=http://keycloak.cluster.svc.cluster.local:80/realms/kotimme
+          - --oidc-issuer-url=http://keycloak.cluster.svc.cluster.local/realms/kotimme
           - --login-url=https://keycloak.kotimme.cc/realms/kotimme/protocol/openid-connect/auth
-          #- --redeem-url=http://keycloak.cluster.svc.cluster.local:80/realms/kotimme/protocol/openid-connect/token
-          #- --profile-url=http://keycloak.cluster.svc.cluster.local:80/realms/kotimme/protocol/openid-connect/userinfo
-          #- --oidc-jwks-url=http://keycloak.cluster.svc.cluster.local:80/realms/kotimme/protocol/openid-connect/certs
+          #- --redeem-url=http://keycloak.cluster.svc.cluster.local/realms/kotimme/protocol/openid-connect/token
+          #- --profile-url=http://keycloak.cluster.svc.cluster.local/realms/kotimme/protocol/openid-connect/userinfo
+          #- --oidc-jwks-url=http://keycloak.cluster.svc.cluster.local/realms/kotimme/protocol/openid-connect/certs
           - --redirect-url=https://kubernetes.kotimme.cc/oauth2/callback
           - --code-challenge-method=S256
           - --cookie-refresh=9m
