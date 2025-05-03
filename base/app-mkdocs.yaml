@@ -76,10 +76,10 @@ spec:
         ports:
         - name: mkdocs
           containerPort: 8000
-#        volumeMounts:
-#        - name: pvc-nfs
-#          mountPath: /docs
-#          subPath: mkdocs
+        volumeMounts:
+        - name: pvc-nfs
+          mountPath: /docs
+          subPath: mkdocs
       imagePullSecrets:
         - name: docker-hub
       volumes:
