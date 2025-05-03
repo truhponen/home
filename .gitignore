@@ -16,3 +16,4 @@ cluster/Secret-keycloak.yaml
 cluster/Secret-postgres.yaml
 cluster/Secret-cloudflared.yaml
 cluster/Secret-traefik.yaml
+cluster/values-traefik/Secret.yaml
