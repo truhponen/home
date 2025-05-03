@@ -1,6 +1,0 @@
-namespace: cloudflared
-
-resources:
-  - Namespace.yaml
-  - Deployment.yaml
-  - Secret-cloudflared.yaml
