@@ -1,0 +1,25 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: traefik-dashboard-auth
+  namespace: traefik
+spec:
+  basicAuth:
+    secret: traefik-dashboard-auth-secret
+
+# Certificate manifest is required to get certificate for Traefik using cert-manager
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: traefik-certs
+  namespace: traefik
+spec:
+  secretName: traefik-certs
+  dnsNames:
+    - traefik.kotimme.cc
+  issuerRef:
+    name: cloudflare-dns
+    kind: ClusterIssuer
+    group: cert-manager.io

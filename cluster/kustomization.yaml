@@ -11,6 +11,7 @@ resources:
   - Secret-kubernetes-dashboard-oauth2-proxy.yaml
   - Secret-kubernetes-dashboard.yaml
   - Secret-postgres.yaml
+  - Secret-traefik.yaml
 # Namespaced apps
   - app-cloudflared.yaml
   - app-keycloak.yaml
@@ -19,6 +20,8 @@ resources:
   - app-kubernetes-dashboard.yaml
   - app-portainer.yaml
   - app-redis.yaml
+  - app-traefik-dashboard-middleware-certificate.yaml
+  - app-traefik.yaml
 
 #configMapGenerator:
 #  - name: app-redis-redis-conf

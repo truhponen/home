@@ -1,5 +1,6 @@
 # values: https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
-# apply: helm upgrade --install traefik traefik/traefik --create-namespace --namespace traefik -f helm-customization.yaml
+# apply: helm upgrade --install traefik traefik/traefik --create-namespace --namespace traefik -f values-traefik.yaml
+# create file: helm template traefik traefik/traefik -n cluster -f values-traefik.yaml > app-traefik.yaml
 
 
 ingressRoute:
