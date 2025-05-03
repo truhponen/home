@@ -1,0 +1,88 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mkdocs
+spec:
+  tls:
+  - secretName: mkdocs-certs
+    hosts:
+    - mkdocs.kotimme.cc
+  rules:
+  - host: mkdocs.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: mkdocs
+            port:
+              name: mkdocs
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: notes
+spec:
+  tls:
+  - secretName: notes-certs
+    hosts:
+    - notes.kotimme.cc
+  rules:
+  - host: notes.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: mkdocs
+            port:
+              name: mkdocs
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: mkdocs
+spec:
+    ports:
+      - name: mkdocs
+        port: 80
+        targetPort: mkdocs
+    selector:
+        app: mkdocs
+    type: NodePort
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mkdocs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mkdocs
+  serviceName: "mkdocs"
+  template:
+    metadata:
+      labels:
+        app: mkdocs
+    spec:
+      containers:
+      - name: mkdocs
+        image: squidfunk/mkdocs-material:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: mkdocs
+          containerPort: 80
+        volumeMounts:
+        - name: dir
+          mountPath: /var/www/html
+          subPath: mkdocs
+      imagePullSecrets:
+        - name: docker-hub
+      volumes:
+        - name: dir
+          persistentVolumeClaim:
+           claimName: nfs
