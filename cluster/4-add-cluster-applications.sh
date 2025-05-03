@@ -21,13 +21,6 @@ helm repo update
 helm install purelb purelb/purelb -f https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/purelb/helm-customization.yaml --create-namespace --namespace purelb
 
 echo "|"
-echo "Install Traefik Ingress controller with Helm and customizations"
-echo "|"
-helm repo add traefik https://traefik.github.io/charts
-helm repo update
-helm install traefik traefik/traefik -f https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/traefik/helm-customization.yaml --create-namespace --namespace traefik
-
-echo "|"
 echo "Install CSI-driver NFS with Helm"
 echo "There might be errors as instructions install CSI to kube-system namespace"
 echo "|"
@@ -35,10 +28,17 @@ helm repo add csi-driver-nfs https://raw.githubusercontent.com/kubernetes-csi/cs
 helm repo update
 helm install csi-driver-nfs csi-driver-nfs/csi-driver-nfs --create-namespace --namespace csi-driver-nfs --version v4.10.0
 
-echo "|"
-echo "Install Kubernetes dashboards"
-echo "ThisInstall Kubernetes dashboards"
-echo "|"
-helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
-helm repo update
-helm install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard -f https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/kubernetes-dashboard/helm-customization.yaml --create-namespace --namespace kubernetes-dashboard
+# echo "|"
+# echo "Install Traefik Ingress controller with Helm and customizations"
+# echo "|"
+# helm repo add traefik https://traefik.github.io/charts
+# helm repo update
+# helm install traefik traefik/traefik -f https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/traefik/helm-customization.yaml --create-namespace --namespace traefik
+
+# echo "|"
+# echo "Install Kubernetes dashboards"
+# echo "ThisInstall Kubernetes dashboards"
+# echo "|"
+# helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
+# helm repo update
+# helm install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard -f https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/kubernetes-dashboard/helm-customization.yaml --create-namespace --namespace kubernetes-dashboard
