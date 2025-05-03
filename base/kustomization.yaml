@@ -20,6 +20,7 @@ resources:
   - app-homepage.yaml
   - app-jellyfin.yaml
   - app-influxdb-telegraf.yaml
+  - app-mkdocs.yaml
   - app-mosquitto-mqtt-explorer.yaml
   - app-musicassistant.yaml
   - app-nginx.yaml
