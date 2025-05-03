@@ -75,14 +75,14 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - name: mkdocs
-          containerPort: 80
+          containerPort: 8000
         volumeMounts:
-        - name: dir
-          mountPath: /var/www/html
+        - name: pvc-nfs
+          mountPath: /docs
           subPath: mkdocs
       imagePullSecrets:
         - name: docker-hub
       volumes:
-        - name: dir
+        - name: pvc-nfs
           persistentVolumeClaim:
            claimName: nfs
