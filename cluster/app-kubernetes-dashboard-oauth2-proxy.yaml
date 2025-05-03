@@ -100,7 +100,7 @@ spec:
           - --metrics-address=0.0.0.0:44180
           - --skip-provider-button=true
           - --provider=keycloak-oidc
-          #- --oidc-issuer-url=http://keycloak.cluster.svc.cluster.local/realms/kotimme
+          - --oidc-issuer-url=http://keycloak.cluster.svc.cluster.local/realms/kotimme
           - --skip-oidc-discovery=true
           - --login-url=https://keycloak.kotimme.cc/realms/kotimme/protocol/openid-connect/auth
           - --redeem-url=http://keycloak.cluster.svc.cluster.local/realms/kotimme/protocol/openid-connect/token
