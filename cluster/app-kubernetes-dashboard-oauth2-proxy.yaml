@@ -113,7 +113,7 @@ spec:
           - --redirect-url=https://kubernetes.kotimme.cc/oauth2/callback
           - --code-challenge-method=S256
           # Configuration are based on instruction https://oauth2-proxy.github.io/oauth2-proxy/configuration/session_storage/#redis-storage
-          - --cookie-refresh=9m
+          - --cookie-refresh=16h
           - --cookie-expire=120h
           - --pass-authorization-header=true
           - --ssl-upstream-insecure-skip-verify=true
