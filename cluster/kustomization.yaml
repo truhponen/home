@@ -12,12 +12,12 @@ resources:
   - Secret-kubernetes-dashboard.yaml
   - Secret-postgres.yaml
   - Secret-traefik.yaml
+  - ServiceAccount-admin-user.yaml
 # Namespaced apps
   - app-cloudflared.yaml
   - app-keycloak.yaml
-  - app-kubernetes-dashboard-ClusterRoleBinding.yaml
-  - app-kubernetes-dashboard-oauth2-proxy.yaml
   - app-kubernetes-dashboard.yaml
+  - app-oauth2-proxy-kubernetes-dashboard.yaml
   - app-portainer.yaml
   - app-redis.yaml
   - app-traefik-dashboard-middleware-certificate.yaml
