@@ -646,7 +646,7 @@ metadata:
     app.kubernetes.io/component: app
 spec:
   replicas: 1
-  revisionHistoryLimit: 10
+  revisionHistoryLimit: 0
   selector:
     matchLabels:
       app.kubernetes.io/name: kong
@@ -942,7 +942,7 @@ metadata:
   name: kubernetes-dashboard-api
 spec:
   replicas: 1
-  revisionHistoryLimit: 10
+  revisionHistoryLimit: 0
   selector:
     matchLabels:
       app.kubernetes.io/instance: kubernetes-dashboard
@@ -1055,7 +1055,7 @@ metadata:
   name: kubernetes-dashboard-auth
 spec:
   replicas: 1
-  revisionHistoryLimit: 10
+  revisionHistoryLimit: 0
   selector:
     matchLabels:
       app.kubernetes.io/instance: kubernetes-dashboard
@@ -1165,7 +1165,7 @@ metadata:
   name: kubernetes-dashboard-metrics-scraper
 spec:
   replicas: 1
-  revisionHistoryLimit: 10
+  revisionHistoryLimit: 0
   selector:
     matchLabels:
       app.kubernetes.io/instance: kubernetes-dashboard
@@ -1277,7 +1277,7 @@ metadata:
   name: kubernetes-dashboard-web
 spec:
   replicas: 1
-  revisionHistoryLimit: 10
+  revisionHistoryLimit: 0
   selector:
     matchLabels:
       app.kubernetes.io/instance: kubernetes-dashboard
