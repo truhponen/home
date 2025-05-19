@@ -21,7 +21,7 @@ kind: Certificate
 metadata:
   name: root-star-certs-02360-site
 spec:
-  secretName: root-star-certs
+  secretName: root-star-certs-02360-site
   additionalOutputFormats:
   - type: CombinedPEM
   - type: DER
