@@ -1,3 +1,9 @@
+# LATEST=$(curl -s https://api.github.com/repos/prometheus-operator/prometheus-operator/releases/latest | jq -cr .tag_name)
+# curl -sL https://github.com/prometheus-operator/prometheus-operator/releases/download/${LATEST}/bundle.yaml > bundle.yaml
+# split file in two "app" and "cdr"
+# apply CDRs with "kubectl update -f". Using kubectl create or apply creates errors
+
+
 ---
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
