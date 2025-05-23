@@ -20,3 +20,25 @@ spec:
             name: prometheus-k8s
             port:
               name: web
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grafana
+  namespace: monitoring
+spec:
+  tls:
+  - secretName: grafana-certs
+    hosts:
+    - prometheus-grafana.kotimme.cc
+  rules:
+  - host: prometheus-grafana.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: grafana
+            port:
+              name: http
