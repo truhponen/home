@@ -32,8 +32,6 @@ configMapGenerator:
   - name: app-nginx-nginx-conf
     files:
       - config/app-nginx/nginx.conf
-  - name: app-nginx-mime-types
-    files:
       - config/app-nginx/mime.types
   - name: app-influxdb-telegraf-telegraf-conf
     files:
