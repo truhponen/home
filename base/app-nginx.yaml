@@ -116,6 +116,8 @@ spec:
           subPath: nginx
         - name: conf
           mountPath: /etc/nginx
+        - name: mime-types
+          mountPath: /etc/nginx
       volumes:
         - name: dir
           persistentVolumeClaim:
@@ -123,3 +125,6 @@ spec:
         - name: conf
           configMap:
             name: app-nginx-nginx-conf
+        - name: mime-types
+          configMap:
+            name: app-nginx-mime-types
