@@ -1,0 +1,44 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: technitium
+spec:
+  tls:
+  - secretName: technitium-certs
+    hosts:
+    - technitium.kotimme.cc
+  rules:
+  - host: technitium.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: technitium
+            port:
+              name: technitium
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: technitium
+spec:
+    ports:
+      - name: technitium
+        port: 80
+        targetPort: technitium
+    type: ClusterIP
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: technitium
+subsets:
+- addresses:
+  - ip: 192.168.68.111
+  ports:
+  - name: technitium
+    port: 5380
+    protocol: TCP
