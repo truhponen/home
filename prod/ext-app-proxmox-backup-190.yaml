@@ -18,7 +18,7 @@ spec:
           service:
             name: proxmox-backup-190
             port:
-              name: proxmox-backup-190
+              name: web
 ---
 apiVersion: v1
 kind: Service
@@ -26,9 +26,9 @@ metadata:
     name: proxmox-backup-190
 spec:
     ports:
-      - name: proxmox-backup-190
+      - name: web
         port: 443
-        targetPort: proxmox-backup-190
+        targetPort: web
     type: ClusterIP
 ---
 apiVersion: v1
@@ -39,6 +39,6 @@ subsets:
 - addresses:
   - ip: 192.168.68.190
   ports:
-  - name: proxmox-backup-190
+  - name: web
     port: 8007
     protocol: TCP
