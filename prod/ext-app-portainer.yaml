@@ -1,0 +1,44 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: portainer
+spec:
+  tls:
+  - secretName: portainer-certs
+    hosts:
+    - portainer.kotimme.cc
+  rules:
+  - host: portainer.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: portainer
+            port:
+              name: portainer
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: portainer
+spec:
+    ports:
+      - name: portainer
+        port: 443
+        targetPort: portainer
+    type: ClusterIP
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: portainer
+subsets:
+- addresses:
+  - ip: 192.168.68.109
+  ports:
+  - name: portainer
+    port: 9443
+    protocol: TCP
