@@ -1,6 +1,7 @@
 namespace: prod
 resources:
   - ../base/
+  - ext-app-proxmox-150.yaml
 
 patches:
   - path: patch-PersistentVolumeClaim.yaml
