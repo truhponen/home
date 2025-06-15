@@ -1,7 +1,10 @@
 namespace: prod
 resources:
   - ../base/
+  - ext-app-haproxy.yaml
+  - ext-app-portainer.yaml
   - ext-app-proxmox-150.yaml
+  - ext-app-proxmox-backup-190
 
 patches:
   - path: patch-PersistentVolumeClaim.yaml
