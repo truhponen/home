@@ -1,0 +1,60 @@
+
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: external-ip
+subsets:
+- addresses:
+  - ip: 10.0.40.1
+  ports:
+  - name: app
+    port: 5678
+    protocol: TCP
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: proxmox-150
+spec:
+  tls:
+  - secretName: proxmox-150-certs
+    hosts:
+    - proxmox-150.kotimme.cc
+  rules:
+  - host: proxmox-150.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: proxmox-150
+            port:
+              name: proxmox-150
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: proxmox-150
+spec:
+    ports:
+      - name: proxmox-150
+        port: 80
+        targetPort: proxmox-150
+    selector:
+        app: grafana
+    type: ClusterIP
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: proxmox-150
+subsets:
+- addresses:
+  - ip: 192.168.68.150
+  ports:
+  - name: proxmox-150
+    port: 5678
+    protocol: TCP
