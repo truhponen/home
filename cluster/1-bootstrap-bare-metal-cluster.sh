@@ -54,5 +54,5 @@ modprobe br_netfilter
 sysctl -w net.ipv4.ip_forward=1
 
 echo "|"
-echo "Initialize cluster by running 'kubeadm init --pod-network-cidr=10.244.0.0/16' or join existing cluster with 'kubeadm join 192.168.68.160:6443 --token ...'"
+echo "Initialize cluster by running 'kubeadm init --pod-network-cidr=10.244.0.0/16' or get join command with 'kubeadm token create --print-join-command'"
 echo "|"
