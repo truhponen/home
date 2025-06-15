@@ -5,7 +5,7 @@ resources:
   - ext-app-omg433.yaml
   - ext-app-portainer.yaml
   - ext-app-proxmox-150.yaml
-  - eext-app-proxmox-backup-190.yaml
+  - ext-app-proxmox-backup-190.yaml
 
 patches:
   - path: patch-PersistentVolumeClaim.yaml
