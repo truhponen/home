@@ -27,7 +27,7 @@ metadata:
 spec:
     ports:
       - name: proxmox-150
-        port: 80
+        port: 443
         targetPort: proxmox-150
     type: ClusterIP
 ---
