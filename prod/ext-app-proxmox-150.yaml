@@ -29,8 +29,6 @@ spec:
       - name: proxmox-150
         port: 80
         targetPort: proxmox-150
-    selector:
-        app: grafana
     type: ClusterIP
 ---
 apiVersion: v1
