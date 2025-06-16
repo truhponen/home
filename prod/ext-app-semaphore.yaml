@@ -1,0 +1,44 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: semaphore
+spec:
+  tls:
+  - secretName: semaphore-certs
+    hosts:
+    - semaphore.kotimme.cc
+  rules:
+  - host: semaphore.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: semaphore
+            port:
+              name: semaphore
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: semaphore
+spec:
+    ports:
+      - name: semaphore
+        port: 80
+        targetPort: semaphore
+    type: ClusterIP
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: semaphore
+subsets:
+- addresses:
+  - ip: 192.168.68.109
+  ports:
+  - name: semaphore
+    port: 3000
+    protocol: TCP
