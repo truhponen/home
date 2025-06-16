@@ -4,7 +4,7 @@ kind: Ingress
 metadata:
   name: default
   annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: prod-redirect-to-root@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: prod-redirect-to-wiki@kubernetescrd
 spec:
   tls:
   - secretName: default-certs
