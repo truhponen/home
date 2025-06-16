@@ -23,7 +23,7 @@ ingressRoute:
 
 service:
   spec:
-    loadBalancerIP: "192.168.68.250"
+    loadBalancerIP: "192.168.68.210"
 
 
 additionalArguments:
