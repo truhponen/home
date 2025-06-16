@@ -2,6 +2,27 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  name: root
+spec:
+  tls:
+  - secretName: root-certs
+    hosts:
+    - kotimme.cc
+  rules:
+  - host: kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: grav
+            port:
+              name: grav
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
   name: grav
 spec:
   tls:
