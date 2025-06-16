@@ -1,8 +1,19 @@
+# Redirect with domain replacement
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: redirect-to-wiki
+spec:
+  redirectRegex:
+    regex: .*
+    replacement: https://wiki.kotimme.cc/
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: root
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: prod-redirect-to-wiki@kubernetescrd
 spec:
   tls:
   - secretName: root-certs
@@ -24,6 +35,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: grav
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: prod-redirect-to-wiki@kubernetescrd
 spec:
   tls:
   - secretName: grav-certs
