@@ -40,7 +40,7 @@ spec:
     selector:
         app: musicassistant
     type: LoadBalancer
-    loadBalancerIP: 192.168.68.242
+    loadBalancerIP: 192.168.68.203
 
 # Container has been deployed as StatefulSet with replicas-amount 1 as there can be only one container and contaner has persistent storage.
 ---
