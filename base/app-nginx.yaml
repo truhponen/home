@@ -26,6 +26,30 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  name: lets-go-further
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare-dns
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+spec:
+  tls:
+  - secretName: lets-go-further-certs
+    hosts:
+    - lets-go-further.kotimme.cc
+  rules:
+  - host: lets-go-further.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx
+            port:
+              name: nginx
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
   name: lets-go
   annotations:
     cert-manager.io/cluster-issuer: cloudflare-dns
