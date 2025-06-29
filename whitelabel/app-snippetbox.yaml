@@ -54,6 +54,9 @@ spec:
       - name: snippetbox
         image: docker.io/truhponen/snippetbox:latest
         imagePullPolicy: IfNotPresent
+        args:
+        - "-dsn"
+        - "web:kOt1mm@tcp\(192.168.68.200:31550\)/snippetbox?parseTime=true"
         ports:
         - name: snippetbox
           containerPort: 4000
