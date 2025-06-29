@@ -11,6 +11,11 @@ resources:
   - app-mysql.yaml
   - app-snippetbox.yaml
 
+patches:
+  - path: patch-Ingress.yaml
+    target:
+      kind: Ingress
+
 #configMapGenerator:
 #  - name: app-redis-redis-conf
 #    files:
