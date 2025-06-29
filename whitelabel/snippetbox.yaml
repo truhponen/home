@@ -1,0 +1,79 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: snippetbox
+spec:
+  tls:
+  - secretName: snippetbox-certs
+    hosts:
+    - snippetbox.kotimme.cc
+  rules:
+  - host: snippetbox.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: snippetbox
+            port:
+              name: snippetbox
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: snippetbox
+spec:
+    ports:
+      - name: snippetbox
+        port: 80
+        targetPort: snippetbox
+    selector:
+        app: snippetbox
+    type: NodePort
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: snippetbox
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: snippetbox
+  serviceName: "snippetbox"
+  template:
+    metadata:
+      labels:
+        app: snippetbox
+    spec:
+      securityContext:
+        fsGroup: 1978
+#      containers:
+#      - name: snippetbox
+#        image: docker.io/truhponen/snippetbox:latest
+#        imagePullPolicy: IfNotPresent
+#        ports:
+#        - name: snippetbox
+#          containerPort: 4000
+      - name: mysql
+        image: mysql:latest
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - secretRef:
+            name: mysql
+        ports:
+        - name: mysql
+          containerPort: 3306
+        volumeMounts:
+        - name: datadir
+          mountPath: /var/lib/mysql
+          subPath: mysql
+        
+#      imagePullSecrets:
+#        - name: docker-hub
+      volumes:
+        - name: datadir
+          persistentVolumeClaim:
+           claimName: nfs
