@@ -23,6 +23,11 @@ resources:
   - app-traefik-dashboard-middleware-certificate.yaml
   - app-traefik.yaml
 
+patches:
+  - path: patch-Ingress.yaml
+    target:
+      kind: Ingress
+      
 #configMapGenerator:
 #  - name: app-redis-redis-conf
 #    files:
