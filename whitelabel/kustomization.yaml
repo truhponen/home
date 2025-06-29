@@ -9,7 +9,7 @@ resources:
   - Secret-mysql.yaml
 # Namespaced apps
   - app-mysql.yaml
-#  - app-snippetbox.yaml
+  - app-snippetbox.yaml
 
 #configMapGenerator:
 #  - name: app-redis-redis-conf
