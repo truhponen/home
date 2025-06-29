@@ -1,0 +1,14 @@
+namespace: whitelabel
+
+resources:
+# Namespaced objects
+  - Namespace.yaml
+  - Secret-mysql.yaml
+# Namespaced apps
+  - app-mysql.yaml
+#  - app-snippetbox.yaml
+
+#configMapGenerator:
+#  - name: app-redis-redis-conf
+#    files:
+#      - config/app-redis/redis.conf
