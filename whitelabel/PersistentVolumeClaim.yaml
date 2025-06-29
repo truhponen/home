@@ -9,6 +9,6 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 100Gi
+      storage: 10Gi
   volumeName: nfs-whitelabel
   storageClassName: nfs
