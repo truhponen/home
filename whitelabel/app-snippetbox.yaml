@@ -27,7 +27,7 @@ metadata:
 spec:
     ports:
       - name: snippetbox
-        port: 80
+        port: 443
         targetPort: snippetbox
     selector:
         app: snippetbox
@@ -50,30 +50,10 @@ spec:
     spec:
       securityContext:
         fsGroup: 1978
-#      containers:
-#      - name: snippetbox
-#        image: docker.io/truhponen/snippetbox:latest
-#        imagePullPolicy: IfNotPresent
-#        ports:
-#        - name: snippetbox
-#          containerPort: 4000
-      - name: mysql
-        image: mysql:latest
+      containers:
+      - name: snippetbox
+        image: docker.io/truhponen/snippetbox:latest
         imagePullPolicy: IfNotPresent
-        envFrom:
-        - secretRef:
-            name: mysql
         ports:
-        - name: mysql
-          containerPort: 3306
-        volumeMounts:
-        - name: datadir
-          mountPath: /var/lib/mysql
-          subPath: mysql
-        
-#      imagePullSecrets:
-#        - name: docker-hub
-      volumes:
-        - name: datadir
-          persistentVolumeClaim:
-           claimName: nfs
+        - name: snippetbox
+          containerPort: 4000
