@@ -1,7 +1,10 @@
 namespace: whitelabel
 
 resources:
+# Non-namespaced objects
+  - PersistentVolume-whitelabel.yaml
 # Namespaced objects
+  - PersistentVolumeClaim.yaml
   - Namespace.yaml
   - Secret-mysql.yaml
 # Namespaced apps
