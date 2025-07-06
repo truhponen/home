@@ -12,8 +12,6 @@ resources:
   - Secret-kubernetes-dashboard-oauth2-proxy.yaml
   - Secret-kubernetes-dashboard.yaml
   - Secret-traefik.yaml
-  - Secret-tt-rss.yaml
-  - Secret-tt-rss-postgres.yaml
   - ServiceAccount-admin-user.yaml
 # Namespaced apps
   - app-cloudflared.yaml
