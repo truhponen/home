@@ -66,6 +66,7 @@ spec:
         env:
         - name: APP_NAME
           value: RSS
+        
         volumeMounts:
         - name: pvc-nfs
           mountPath: /app/storage
