@@ -61,19 +61,24 @@ spec:
 #        - name: docker-hub
       containers:
       - name: rss
-        image: codeberg.org/danb/rss:latest
+        image: freshrss/freshrss
         imagePullPolicy: IfNotPresent
         env:
-        - name: APP_NAME
-          value: RSS
+        - name: TZ
+          value: Europe/Helsinki
+        - name: CRON_MIN
+          value: '1,31'
         ports:
         - name: http
           containerPort: 80
         
         volumeMounts:
         - name: pvc-nfs
-          mountPath: /app/storage
-          subPath: rss
+          mountPath: /var/www/FreshRSS/data
+          subPath: rss/data
+        - name: pvc-nfs
+          mountPath: /var/www/FreshRSS/extensions
+          subPath: rss/extensions
           
       volumes:
         - name: pvc-nfs
