@@ -8,9 +8,9 @@ resources:
   - Namespace.yaml
   - Secret-cloudflared.yaml
   - Secret-keycloak.yaml
+  - Secret-keycloak-postgres.yaml
   - Secret-kubernetes-dashboard-oauth2-proxy.yaml
   - Secret-kubernetes-dashboard.yaml
-  - Secret-postgres.yaml
   - Secret-traefik.yaml
   - ServiceAccount-admin-user.yaml
 # Namespaced apps
