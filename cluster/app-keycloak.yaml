@@ -92,7 +92,7 @@ spec:
         volumeMounts:
         - name: dir
           mountPath: /var/lib/postgresql/data
-          subPath: postgres
+          subPath: postgres/keycloak
       volumes:
         - name: dir
           persistentVolumeClaim:
