@@ -24,7 +24,6 @@ resources:
   - app-redis.yaml
   - app-traefik-dashboard-middleware-certificate.yaml
   - app-traefik.yaml
-  - app-tt-rss.yaml
 
 patches:
   - path: patch-Ingress.yaml
