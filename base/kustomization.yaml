@@ -8,7 +8,7 @@ resources:
   - Certificate-root-star.yaml
   - PersistentVolumeClaim.yaml
   - Secret-docker-hub.yaml
-  - Secret-rss-postgres.yaml
+  - Secret-rss.yaml
   - Secret-technitium.yaml
   - Secret-telegraf.yaml
 # Namespaced apps
