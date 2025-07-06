@@ -77,7 +77,7 @@ spec:
       - name: tt-rss-updater
         image: cthulhoo/ttrss-fpm-pgsql-static:latest
         imagePullPolicy: IfNotPresent
-        args:
+        command:
         - /opt/tt-rss/updater.sh
         envFrom:
         - secretRef:
