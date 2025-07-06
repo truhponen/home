@@ -25,22 +25,6 @@ spec:
             name: keycloak
             port:
               name: http
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: keycloak
-  namespace: keycloak
-  labels:
-    app: keycloak
-spec:
-  ports:
-    - name: http
-      port: 80
-      targetPort: 8080
-  selector:
-    app: keycloak
-  type: NodePort
 
 ---
 apiVersion: v1
@@ -98,43 +82,3 @@ spec:
           httpGet:
             path: /health/ready
             port: 9000
-
----
-apiVersion: apps/v1
-kind: StatefulSet
-metadata:
-  name: postgres
-  namespace: keycloak
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: postgres
-  serviceName: "postgres"
-  template:
-    metadata:
-      labels:
-        app: postgres
-    spec:
-      securityContext:
-        fsGroup: 1978
-      imagePullSecrets:
-        - name: docker-hub
-      containers:
-      - name: postgres
-        image: postgres:latest
-        imagePullPolicy: IfNotPresent
-        envFrom:
-        - secretRef:
-            name: postgres
-        ports:
-        - name: postgres
-          containerPort: 5432
-        volumeMounts:
-        - name: dir
-          mountPath: /var/lib/postgresql/data
-          subPath: postgres
-      volumes:
-        - name: dir
-          persistentVolumeClaim:
-           claimName: nfs
