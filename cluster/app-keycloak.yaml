@@ -29,14 +29,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres
+  name: keycloak
+  namespace: keycloak
   labels:
-    app: postgres
+    app: keycloak
 spec:
   ports:
-    - name: postgres
-      port: 5432
-      targetPort: 5432
+    - name: http
+      port: 80
+      targetPort: 8080
   selector:
     app: keycloak
   type: NodePort
