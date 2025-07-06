@@ -18,3 +18,4 @@ cluster/Secret-cloudflared.yaml
 cluster/Secret-traefik.yaml
 cluster/values-traefik/Secret.yaml
 whitelabel/Secret-mysql.yaml
+cluster/Secret-keycloak-postgres.yaml
