@@ -66,6 +66,9 @@ spec:
         env:
         - name: APP_NAME
           value: RSS
+        ports:
+        - name: http
+          containerPort: 80
         
         volumeMounts:
         - name: pvc-nfs
