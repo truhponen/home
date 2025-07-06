@@ -85,7 +85,7 @@ spec:
         imagePullPolicy: IfNotPresent
         envFrom:
         - secretRef:
-            name: postgres
+            name: keycloak-postgres
         ports:
         - name: postgres
           containerPort: 5432
