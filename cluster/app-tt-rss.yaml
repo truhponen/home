@@ -32,7 +32,7 @@ spec:
   ports:
     - name: http
       port: 80
-      targetPort: 8080
+      targetPort: 8280
   selector:
     app: tt-rss
   type: NodePort
@@ -68,7 +68,7 @@ spec:
             name: tt-rss
         ports:
         - name: http
-          containerPort: 8080
+          containerPort: 8280
         volumeMounts:
         - name: pvc-nfs
           mountPath: /var/www/html
