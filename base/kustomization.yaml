@@ -25,6 +25,7 @@ resources:
   - app-musicassistant.yaml
   - app-nginx.yaml
   - app-picard.yaml
+  - app-rss.yaml
 #  - app-technitium.yaml
   - app-z2m.yaml
 
