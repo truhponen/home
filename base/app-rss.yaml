@@ -91,7 +91,7 @@ spec:
         volumeMounts:
         - name: pvc-nfs
           mountPath: /var/lib/postgresql/data
-          subPath: rss/data
+          subPath: rss/postgres
           
       volumes:
         - name: pvc-nfs
