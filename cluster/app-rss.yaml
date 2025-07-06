@@ -1,0 +1,77 @@
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rss
+spec:
+  tls:
+  - secretName: rss-certs
+    hosts:
+    - rss.kotimme.cc
+  rules:
+  - host: rss.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: rss
+            port:
+              name: http
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rss
+  labels:
+    app: rss
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  selector:
+    app: rss
+  type: NodePort
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: rss
+  labels:
+    app: rss
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rss
+  serviceName: "rss"
+  template:
+    metadata:
+      labels:
+        app: rss
+    spec:
+#      securityContext:
+#        fsGroup: 1978
+#      imagePullSecrets:
+#        - name: docker-hub
+      containers:
+      - name: rss
+        image: codeberg.org/danb/rss:latest
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: APP_NAME
+          value: RSS
+        volumeMounts:
+        - name: pvc-nfs
+          mountPath: /app/storage
+          subPath: rss
+          
+      volumes:
+        - name: pvc-nfs
+          persistentVolumeClaim:
+           claimName: nfs
