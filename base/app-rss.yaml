@@ -80,7 +80,7 @@ spec:
           subPath: rss/extensions
           
       - name: postgres
-        image: postgres/postgres
+        image: postgres:latest
         imagePullPolicy: IfNotPresent
         envFrom:
         - secretRef:
