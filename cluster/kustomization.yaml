@@ -19,7 +19,6 @@ resources:
   - app-kubernetes-dashboard.yaml
   - app-oauth2-proxy-kubernetes-dashboard.yaml
   - app-portainer.yaml
- -  app-postgres.yaml
   - app-redis.yaml
   - app-traefik-dashboard-middleware-certificate.yaml
   - app-traefik.yaml
