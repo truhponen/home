@@ -84,7 +84,7 @@ spec:
         imagePullPolicy: IfNotPresent
         envFrom:
         - secretRef:
-            name: rss-postgres
+            name: rss
         ports:
         - name: postgres
           containerPort: 5432
