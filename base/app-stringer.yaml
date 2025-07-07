@@ -1,0 +1,91 @@
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: stringer
+spec:
+  tls:
+  - secretName: stringer-certs
+    hosts:
+    - stringer.kotimme.cc
+  rules:
+  - host: stringer.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: stringer
+            port:
+              name: http
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: stringer
+  labels:
+    app: stringer
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  selector:
+    app: stringer
+  type: NodePort
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: stringer
+  labels:
+    app: stringer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: stringer
+  serviceName: "stringer"
+  template:
+    metadata:
+      labels:
+        app: stringer
+    spec:
+      securityContext:
+        fsGroup: 1978
+#      imagePullSecrets:
+#        - name: docker-hub
+      containers:
+
+      - name: stringer
+        image: stringerrss/stringer:latest
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - secretRef:
+            name: stringer
+        ports:
+        - name: http
+          containerPort: 8080
+          
+      - name: postgres
+        image: postgres:16-alpine
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - secretRef:
+            name: stringer
+        ports:
+        - name: postgres
+          containerPort: 5432
+        volumeMounts:
+        - name: pvc-nfs
+          mountPath: /var/lib/postgresql/data
+          subPath: stringer/postgres
+
+      volumes:
+        - name: pvc-nfs
+          persistentVolumeClaim:
+           claimName: nfs
