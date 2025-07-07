@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: curl
+  labels:
+    app: curl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: curl
+  serviceName: "curl"
+  template:
+    metadata:
+      labels:
+        app: curl
+    spec:
+#      securityContext:
+#        fsGroup: 1978
+#      imagePullSecrets:
+#        - name: docker-hub
+      containers:
+      - name: curl
+        image: curlimages/curl:latest
+        imagePullPolicy: IfNotPresent
+        args:
+        - sh
