@@ -25,5 +25,5 @@ spec:
         image: curlimages/curl
         imagePullPolicy: IfNotPresent
         args: 
-        - --
-        - sh
+        - "--"
+        - "sh"
