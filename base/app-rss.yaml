@@ -78,9 +78,9 @@ spec:
         - name: pvc-nfs
           mountPath: /var/www/FreshRSS/extensions
           subPath: rss/extensions
-          
+
       - name: postgres
-        image: postgres:latest
+        image: postgres:17-bookworm
         imagePullPolicy: IfNotPresent
         envFrom:
         - secretRef:
@@ -92,7 +92,7 @@ spec:
         - name: pvc-nfs
           mountPath: /var/lib/postgresql/data
           subPath: rss/postgres
-          
+
       volumes:
         - name: pvc-nfs
           persistentVolumeClaim:

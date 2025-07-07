@@ -23,3 +23,4 @@ cluster/Secret-tt-rss.yaml
 cluster/Secret-tt-rss-postgres.yaml
 base/Secret-tt-rss.yaml
 base/Secret-rss.yaml
+base/Secret-stringer.yaml
