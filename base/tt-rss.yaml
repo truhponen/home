@@ -1,0 +1,126 @@
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tt-rss
+spec:
+  tls:
+  - secretName: tt-rss-certs
+    hosts:
+    - tt-rss.kotimme.cc
+  rules:
+  - host: tt-rss.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: tt-rss
+            port:
+              name: http
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: tt-rss
+  labels:
+    app: tt-rss
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  selector:
+    app: tt-rss
+  type: NodePort
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: tt-rss
+  labels:
+    app: tt-rss
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tt-rss
+  serviceName: "tt-rss"
+  template:
+    metadata:
+      labels:
+        app: tt-rss
+    spec:
+#      securityContext:
+#        fsGroup: 1978
+#      imagePullSecrets:
+#        - name: docker-hub
+      containers:
+
+      - name: tt-rss-app
+        image: cthulhoo/ttrss-fpm-pgsql-static:latest
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - secretRef:
+            name: tt-rss
+        ports:
+        - name: http
+          containerPort: 80
+        volumeMounts:
+        - name: pvc-nfs
+          mountPath: /var/www/html
+          subPath: tt-rss/html
+        - name: pvc-nfs
+          mountPath: /opt/tt-rss/config.d
+          subPath: tt-rss/config.d
+          
+      - name: postgres
+        image: postgres:latest
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - secretRef:
+            name: tt-rss
+        ports:
+        - name: postgres
+          containerPort: 5432
+        volumeMounts:
+        - name: pvc-nfs
+          mountPath: /var/lib/postgresql/data
+          subPath: tt-rss/postgres
+  
+      - name: tt-rss-updater
+        image: cthulhoo/ttrss-fpm-pgsql-static:latest
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - secretRef:
+            name: tt-rss
+        volumeMounts:
+        - name: pvc-nfs
+          mountPath: /var/www/html
+          subPath: tt-rss/html
+        - name: pvc-nfs
+          mountPath: /opt/tt-rss/config.d
+          subPath: tt-rss/config.d
+          
+      - name: tt-rss-nginx
+        image: cthulhoo/ttrss-web-nginx:latest
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - secretRef:
+            name: tt-rss
+        ports:
+        - name: http
+          containerPort: 80
+        volumeMounts:
+        - name: pvc-nfs
+          mountPath: /var/www/html
+          subPath: tt-rss/html
+
+      volumes:
+        - name: pvc-nfs
+          persistentVolumeClaim:
+           claimName: nfs
