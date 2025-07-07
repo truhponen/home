@@ -22,3 +22,4 @@ cluster/Secret-keycloak-postgres.yaml
 cluster/Secret-tt-rss.yaml
 cluster/Secret-tt-rss-postgres.yaml
 base/Secret-tt-rss.yaml
+base/Secret-rss.yaml
