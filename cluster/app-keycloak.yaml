@@ -72,10 +72,10 @@ spec:
         imagePullPolicy: IfNotPresent
         args:
         - "start-dev"
-        - --hostname
-        - https://my.keycloak.org
-        - --hostname-backchannel-dynamic
-        - true
+        - "--hostname"
+        - "https://keycloak.kotimme.cc"
+        - "--hostname-backchannel-dynamic"
+        - "true"
         envFrom:
         - secretRef:
             name: keycloak
