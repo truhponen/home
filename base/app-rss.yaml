@@ -63,6 +63,9 @@ spec:
       - name: rss
         image: freshrss/freshrss
         imagePullPolicy: IfNotPresent
+        envFrom:
+        - secretRef:
+            name: rss
         env:
         - name: TZ
           value: Europe/Helsinki
