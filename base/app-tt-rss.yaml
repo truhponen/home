@@ -67,9 +67,6 @@ spec:
         envFrom:
         - secretRef:
             name: tt-rss
-        ports:
-        - name: http
-          containerPort: 80
         volumeMounts:
         - name: pvc-nfs
           mountPath: /var/www/html
