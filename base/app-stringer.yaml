@@ -32,7 +32,7 @@ spec:
   ports:
     - name: http
       port: 80
-      targetPort: 80
+      targetPort: 8080
   selector:
     app: stringer
   type: NodePort
@@ -70,7 +70,7 @@ spec:
         ports:
         - name: http
           containerPort: 8080
-          
+
       - name: postgres
         image: postgres:16-alpine
         imagePullPolicy: IfNotPresent
