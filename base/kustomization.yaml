@@ -9,6 +9,7 @@ resources:
   - PersistentVolumeClaim.yaml
   - Secret-docker-hub.yaml
   - Secret-rss.yaml
+  - Secret-tt-rss.yaml
   - Secret-technitium.yaml
   - Secret-telegraf.yaml
 # Namespaced apps
@@ -28,6 +29,7 @@ resources:
   - app-picard.yaml
   - app-rss.yaml
 #  - app-technitium.yaml
+  - app-tt-rss.yaml
   - app-z2m.yaml
 
 configMapGenerator:
