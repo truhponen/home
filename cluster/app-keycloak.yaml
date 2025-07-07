@@ -70,7 +70,12 @@ spec:
       - name: keycloak
         image: quay.io/keycloak/keycloak:26.1.4
         imagePullPolicy: IfNotPresent
-        args: ["start-dev"]
+        args:
+        - "start-dev"
+        - --hostname
+        - https://my.keycloak.org
+        - --hostname-backchannel-dynamic
+        - true
         envFrom:
         - secretRef:
             name: keycloak
