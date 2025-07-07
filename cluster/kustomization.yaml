@@ -15,6 +15,7 @@ resources:
   - ServiceAccount-admin-user.yaml
 # Namespaced apps
   - app-cloudflared.yaml
+  - app-curl.yaml
   - app-keycloak.yaml
   - app-kubernetes-dashboard.yaml
   - app-oauth2-proxy-kubernetes-dashboard.yaml
