@@ -22,6 +22,6 @@ spec:
 #        - name: docker-hub
       containers:
       - name: curl
-        image: curlimages/curl
+        image: curlimages/curl:latest
         imagePullPolicy: IfNotPresent
         args: ["tail", "-f", "/dev/null"] 
