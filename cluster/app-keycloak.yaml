@@ -85,6 +85,8 @@ spec:
         ports:
         - name: http
           containerPort: 8080
+        - name: http
+          containerPort: 8443
         readinessProbe:
           httpGet:
             path: /health/ready
