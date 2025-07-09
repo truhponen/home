@@ -94,7 +94,7 @@ spec:
             port: 9000
         volumeMounts:
         - name: certificate
-          mountPath: /opt/keycloak/conf
+          mountPath: /opt/keycloak/conf/certificate
           readOnly: true
       - name: postgres
         image: postgres:latest
