@@ -114,6 +114,9 @@ spec:
         - name: certificate
           mountPath: /opt/keycloak/conf/certificate
           readOnly: true
+        - name: certificate-selfsigned
+          mountPath: /opt/keycloak/conf/certificate-selfsigned
+          readOnly: true
       - name: postgres
         image: postgres:latest
         imagePullPolicy: IfNotPresent
@@ -134,3 +137,6 @@ spec:
         - name: certificate
           secret:
             secretName: keycloak-certs
+        - name: certificate-selfsigned
+          secret:
+            secretName: keycloak-selfsigned-certs
