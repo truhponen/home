@@ -74,8 +74,8 @@ spec:
         image: quay.io/keycloak/keycloak:26.1.4
         imagePullPolicy: IfNotPresent
         args:
-        - "start"
-#        - "start-dev"
+#        - "start"
+        - "start-dev"
 #        - "--hostname"
 #        - "https://keycloak.kotimme.cc"
 #        - "--hostname-backchannel-dynamic"
