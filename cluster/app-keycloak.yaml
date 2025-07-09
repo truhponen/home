@@ -74,11 +74,12 @@ spec:
         image: quay.io/keycloak/keycloak:26.1.4
         imagePullPolicy: IfNotPresent
         args:
-        - "start-dev"
-        - "--hostname"
-        - "https://keycloak.kotimme.cc"
-        - "--hostname-backchannel-dynamic"
-        - "true"
+        - "start"
+#        - "start-dev"
+#        - "--hostname"
+#        - "https://keycloak.kotimme.cc"
+#        - "--hostname-backchannel-dynamic"
+#        - "true"
         envFrom:
         - secretRef:
             name: keycloak
@@ -91,6 +92,10 @@ spec:
           httpGet:
             path: /health/ready
             port: 9000
+        volumeMounts:
+        - name: certificate
+          mountPath: /opt/keycloak/conf
+          readOnly: true
       - name: postgres
         image: postgres:latest
         imagePullPolicy: IfNotPresent
@@ -108,3 +113,6 @@ spec:
         - name: dir
           persistentVolumeClaim:
            claimName: nfs
+        - name: certificate
+          secret:
+            secretName: keycloak-certs
