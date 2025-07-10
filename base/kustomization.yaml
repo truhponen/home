@@ -8,7 +8,7 @@ resources:
   - Certificate-root-star.yaml
   - PersistentVolumeClaim.yaml
   - Secret-docker-hub.yaml
-  - Secret-rss.yaml
+  - Secret-freshrss.yaml
   - Secret-stringer.yaml
   - Secret-technitium.yaml
   - Secret-telegraf.yaml
@@ -16,6 +16,7 @@ resources:
   - app-default.yaml
   - app-excalidraw.yaml
   - app-filestash.yaml
+  - app-freshrss.yaml
   - app-grafana.yaml
   - app-grav.yaml
   - app-homeassistant-piper-whisper.yaml
@@ -27,7 +28,6 @@ resources:
   - app-musicassistant.yaml
   - app-nginx.yaml
   - app-picard.yaml
-  - app-freshrss.yaml
   - app-stringer.yaml
 #  - app-technitium.yaml
   - app-z2m.yaml
