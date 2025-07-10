@@ -1,23 +1,22 @@
-
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: rss
+  name: freshrss
 spec:
   tls:
-  - secretName: rss-certs
+  - secretName: freshrss-certs
     hosts:
-    - rss.kotimme.cc
+    - freshrss.kotimme.cc
   rules:
-  - host: rss.kotimme.cc
+  - host: freshrss.kotimme.cc
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: rss
+            name: freshrss
             port:
               name: http
 
@@ -25,47 +24,47 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: rss
+  name: freshrss
   labels:
-    app: rss
+    app: freshrss
 spec:
   ports:
     - name: http
       port: 80
       targetPort: 80
   selector:
-    app: rss
+    app: freshrss
   type: NodePort
 
 ---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: rss
+  name: freshrss
   labels:
-    app: rss
+    app: freshrss
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: rss
-  serviceName: "rss"
+      app: freshrss
+  serviceName: "freshrss"
   template:
     metadata:
       labels:
-        app: rss
+        app: freshrss
     spec:
       securityContext:
         fsGroup: 1978
 #      imagePullSecrets:
 #        - name: docker-hub
       containers:
-      - name: rss
+      - name: freshrss
         image: freshrss/freshrss
         imagePullPolicy: IfNotPresent
         envFrom:
         - secretRef:
-            name: rss
+            name: freshrss
         env:
         - name: TZ
           value: Europe/Helsinki
@@ -77,24 +76,24 @@ spec:
         volumeMounts:
         - name: pvc-nfs
           mountPath: /var/www/FreshRSS/data
-          subPath: rss/data
+          subPath: freshrss/data
         - name: pvc-nfs
           mountPath: /var/www/FreshRSS/extensions
-          subPath: rss/extensions
+          subPath: freshrss/extensions
 
       - name: postgres
         image: postgres:17-bookworm
         imagePullPolicy: IfNotPresent
         envFrom:
         - secretRef:
-            name: rss
+            name: freshrss
         ports:
         - name: postgres
           containerPort: 5432
         volumeMounts:
         - name: pvc-nfs
           mountPath: /var/lib/postgresql/data
-          subPath: rss/postgres
+          subPath: freshrss/postgres
 
       volumes:
         - name: pvc-nfs
