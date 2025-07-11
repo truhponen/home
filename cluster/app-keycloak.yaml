@@ -26,6 +26,31 @@ spec:
               name: http
 
 ---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: keycloak-admin
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare-dns
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+spec:
+  tls:
+  - secretName: keycloak-admin-certs
+    hosts:
+    - keycloak-admin.kotimme.cc
+  rules:
+  - host: keycloak-admin.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: keycloak
+            port:
+              name: http
+
+---
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
