@@ -54,8 +54,8 @@ spec:
       labels:
         app: freshrss
     spec:
-      securityContext:
-        fsGroup: 1978
+#      securityContext:
+#        fsGroup: 1978
 #      imagePullSecrets:
 #        - name: docker-hub
       containers:
