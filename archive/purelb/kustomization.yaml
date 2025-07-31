@@ -1,3 +1,0 @@
-resources:
-  - purelb-main-deployments/deployments/samples
-  - servicegroup.yaml

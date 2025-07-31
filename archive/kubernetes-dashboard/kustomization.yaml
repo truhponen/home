@@ -1,7 +1,0 @@
-#namespace: cloudflared
-
-resources:
-  - ClusterRoleBinding.yaml
-  - Secret.yaml
-  - ServiceAccount.yaml
-  - Service.yaml
