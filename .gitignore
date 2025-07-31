@@ -21,3 +21,4 @@ base/Secret-rss.yaml
 base/Secret-stringer.yaml
 base/Secret-freshrss.yaml
 archive/values-traefik/Secret.yaml
+archive
