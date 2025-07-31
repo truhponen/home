@@ -4,19 +4,14 @@ base/Secret-docker-hub.yaml
 base/Secret-influxdb.yaml
 base/Secret-technitium.yaml
 base/Secret-telegraf.yaml
-cluster/cloudflared/Secret-cloudflared.yaml
 cluster/traefik/Secret.yaml
-cluster/kubernetes-dashboard/Secret.yaml
 cluster/cert-manager/Secret.yaml
-cluster/keycloak/Secret-keycloak.yaml
-cluster/keycloak/Secret-postgres.yaml
 cluster/Secret-kubernetes-dashboard-oauth2-proxy.yaml
 cluster/Secret-kubernetes-dashboard.yaml
 cluster/Secret-keycloak.yaml
 cluster/Secret-postgres.yaml
 cluster/Secret-cloudflared.yaml
 cluster/Secret-traefik.yaml
-cluster/values-traefik/Secret.yaml
 whitelabel/Secret-mysql.yaml
 cluster/Secret-keycloak-postgres.yaml
 cluster/Secret-tt-rss.yaml
@@ -25,3 +20,4 @@ base/Secret-tt-rss.yaml
 base/Secret-rss.yaml
 base/Secret-stringer.yaml
 base/Secret-freshrss.yaml
+archive/values-traefik/Secret.yaml
