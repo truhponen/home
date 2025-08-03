@@ -64,9 +64,9 @@ spec:
       - name: webkeep
         image: ghcr.io/keeweb/keeweb:latest 
         imagePullPolicy: IfNotPresent
-        envFrom:
-        - secretRef:
-            name: webkeep
+#        envFrom:
+#        - secretRef:
+#            name: webkeep
         ports:
         - name: https
           containerPort: 443
