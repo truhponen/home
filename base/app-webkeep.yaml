@@ -19,7 +19,7 @@ spec:
           service:
             name: webkeep
             port:
-              name: http
+              name: https
 
 ---
 apiVersion: v1
