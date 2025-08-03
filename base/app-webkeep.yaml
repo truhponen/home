@@ -3,21 +3,21 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: stringer
+  name: webkeep
 spec:
   tls:
-  - secretName: stringer-certs
+  - secretName: webkeep-certs
     hosts:
-    - stringer.kotimme.cc
+    - webkeep.kotimme.cc
   rules:
-  - host: stringer.kotimme.cc
+  - host: webkeep.kotimme.cc
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: stringer
+            name: webkeep
             port:
               name: http
 
@@ -25,35 +25,35 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: stringer
+  name: webkeep
   labels:
-    app: stringer
+    app: webkeep
 spec:
   ports:
-    - name: http
-      port: 80
-      targetPort: 8080
+    - name: https
+      port: 443
+      targetPort: 443
   selector:
-    app: stringer
+    app: webkeep
   type: NodePort
 
 ---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: stringer
+  name: webkeep
   labels:
-    app: stringer
+    app: webkeep
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: stringer
-  serviceName: "stringer"
+      app: webkeep
+  serviceName: "webkeep"
   template:
     metadata:
       labels:
-        app: stringer
+        app: webkeep
     spec:
       securityContext:
         fsGroup: 1978
@@ -61,29 +61,19 @@ spec:
 #        - name: docker-hub
       containers:
 
-      - name: stringer
-        image: stringerrss/stringer:latest
+      - name: webkeep
+        image: ghcr.io/keeweb/keeweb:latest 
         imagePullPolicy: IfNotPresent
         envFrom:
         - secretRef:
-            name: stringer
+            name: webkeep
         ports:
-        - name: http
-          containerPort: 8080
-
-      - name: postgres
-        image: postgres:16-alpine
-        imagePullPolicy: IfNotPresent
-        envFrom:
-        - secretRef:
-            name: stringer
-        ports:
-        - name: postgres
-          containerPort: 5432
+        - name: https
+          containerPort: 443
         volumeMounts:
         - name: pvc-nfs
-          mountPath: /var/lib/postgresql/data
-          subPath: stringer/postgres
+          mountPath: /config
+          subPath: webkeep
 
       volumes:
         - name: pvc-nfs
