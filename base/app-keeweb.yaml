@@ -19,7 +19,7 @@ spec:
           service:
             name: keeweb
             port:
-              name: https
+              name: http
 
 ---
 apiVersion: v1
@@ -30,9 +30,9 @@ metadata:
     app: keeweb
 spec:
   ports:
-    - name: https
-      port: 443
-      targetPort: 443
+    - name: http
+      port: 80
+      targetPort: 80
   selector:
     app: keeweb
   type: NodePort
@@ -68,8 +68,8 @@ spec:
 #        - secretRef:
 #            name: keeweb
         ports:
-        - name: https
-          containerPort: 443
+        - name: http
+          containerPort: 80
         volumeMounts:
         - name: pvc-nfs
           mountPath: /config
