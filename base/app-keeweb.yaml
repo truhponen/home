@@ -3,21 +3,21 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: webkeep
+  name: keeweb
 spec:
   tls:
-  - secretName: webkeep-certs
+  - secretName: keeweb-certs
     hosts:
-    - webkeep.kotimme.cc
+    - keeweb.kotimme.cc
   rules:
-  - host: webkeep.kotimme.cc
+  - host: keeweb.kotimme.cc
     http:
       paths:
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: webkeep
+            name: keeweb
             port:
               name: https
 
@@ -25,35 +25,35 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: webkeep
+  name: keeweb
   labels:
-    app: webkeep
+    app: keeweb
 spec:
   ports:
     - name: https
       port: 443
       targetPort: 443
   selector:
-    app: webkeep
+    app: keeweb
   type: NodePort
 
 ---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: webkeep
+  name: keeweb
   labels:
-    app: webkeep
+    app: keeweb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: webkeep
-  serviceName: "webkeep"
+      app: keeweb
+  serviceName: "keeweb"
   template:
     metadata:
       labels:
-        app: webkeep
+        app: keeweb
     spec:
       securityContext:
         fsGroup: 1978
@@ -61,19 +61,19 @@ spec:
 #        - name: docker-hub
       containers:
 
-      - name: webkeep
+      - name: keeweb
         image: ghcr.io/keeweb/keeweb:latest 
         imagePullPolicy: IfNotPresent
 #        envFrom:
 #        - secretRef:
-#            name: webkeep
+#            name: keeweb
         ports:
         - name: https
           containerPort: 443
         volumeMounts:
         - name: pvc-nfs
           mountPath: /config
-          subPath: webkeep
+          subPath: keeweb
 
       volumes:
         - name: pvc-nfs
