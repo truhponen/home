@@ -21,14 +21,14 @@ resources:
   - app-grav.yaml
   - app-homeassistant-piper-whisper.yaml
   - app-homepage.yaml
-  - app-jellyfin.yaml
   - app-influxdb-telegraf.yaml
+  - app-jellyfin.yaml
+  - app-keeweb.yaml
   - app-mkdocs.yaml
   - app-mosquitto-mqtt-explorer.yaml
   - app-musicassistant.yaml
   - app-nginx.yaml
   - app-picard.yaml
-  - app-webkeep.yaml
 #  - app-technitium.yaml
   - app-z2m.yaml
 
