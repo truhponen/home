@@ -5,6 +5,7 @@ resources:
   - PersistentVolume-work.yaml
   - PersistentVolumeClaim.yaml
 # Namespaced objects
+  - Namespace.yaml
 
 # Namespaced apps
   - app-solr.yaml
