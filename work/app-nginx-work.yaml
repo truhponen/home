@@ -1,0 +1,77 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nt-maintenancepage
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare-dns
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+spec:
+  tls:
+  - secretName: nt-maintenancepage-certs
+    hosts:
+    - nt-maintenancepage.kotimme.cc
+  rules:
+  - host: nt-maintenancepage.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx
+            port:
+              name: nginx
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: nginx
+spec:
+    ports:
+      - name: nginx
+        port: 80
+        targetPort: nginx
+    selector:
+        app: nginx
+    type: NodePort
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  serviceName: "nginx"
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      securityContext:
+        fsGroup: 1978
+      imagePullSecrets:
+        - name: docker-hub
+      containers:
+      - name: nginx
+        image: nginx:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: nginx
+          containerPort: 80
+        volumeMounts:
+        - name: dir
+          mountPath: /usr/share/nginx/html
+          subPath: nginx
+        - name: conf
+          mountPath: /etc/nginx
+      volumes:
+        - name: dir
+          persistentVolumeClaim:
+           claimName: nfs
+        - name: conf
+          configMap:
+            name: app-nginx-nginx-conf
