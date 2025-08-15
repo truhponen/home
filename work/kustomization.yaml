@@ -1,0 +1,20 @@
+namespace: work
+
+resources:
+# Non-namespaced objects
+  - PersistentVolume-work.yaml
+  - PersistentVolumeClaim.yaml
+# Namespaced objects
+
+# Namespaced apps
+  - app-solr.yaml
+
+patches:
+  - path: patch-Ingress.yaml
+    target:
+      kind: Ingress
+      
+#configMapGenerator:
+#  - name: app-redis-redis-conf
+#    files:
+#      - config/app-redis/redis.conf
