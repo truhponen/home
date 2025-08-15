@@ -8,6 +8,7 @@ resources:
   - Namespace.yaml
 
 # Namespaced apps
+  - app-nginx-work.yaml
   - app-solr.yaml
 
 patches:
