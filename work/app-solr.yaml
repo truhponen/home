@@ -1,1 +1,81 @@
 
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: solr
+spec:
+  tls:
+  - secretName: solr-certs
+    hosts:
+    - solr.kotimme.cc
+  rules:
+  - host: solr.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: solr
+            port:
+              name: http
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: solr
+  labels:
+    app: solr
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 8983
+  selector:
+    app: solr
+  type: NodePort
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: solr
+  labels:
+    app: solr
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: solr
+  serviceName: "solr"
+  template:
+    metadata:
+      labels:
+        app: solr
+    spec:
+      securityContext:
+        fsGroup: 1978
+#      imagePullSecrets:
+#        - name: docker-hub
+      containers:
+
+      - name: solr
+        image: solr:latest 
+        imagePullPolicy: IfNotPresent
+#        envFrom:
+#        - secretRef:
+#            name: solr
+        ports:
+        - name: http
+          containerPort: 8983
+        volumeMounts:
+        - name: pvc-nfs
+          mountPath: /var/solr
+          subPath: solr
+
+      volumes:
+        - name: pvc-nfs
+          persistentVolumeClaim:
+           claimName: nfs
