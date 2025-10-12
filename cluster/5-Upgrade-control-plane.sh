@@ -6,6 +6,10 @@
 # sudo -i
 # curl https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/5-Upgrade-control-plane.sh | bash
 
+
+sudo apt update
+sudo apt-cache madison kubeadm
+
 echo "|"
 echo "Set variables"
 echo "|"
