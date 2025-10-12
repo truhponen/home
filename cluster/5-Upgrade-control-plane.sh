@@ -42,7 +42,7 @@ echo "Upgrade kubeadm with apt"
 echo "|"
 
 sudo apt-mark unhold kubeadm && \
-sudo apt-get update && sudo apt-get install -y kubeadm=$KUBERNETES_PATCH_VERSION && \
+sudo apt-get update && sudo apt-get install -y kubeadm='$KUBERNETES_PATCH_VERSION' && \
 sudo apt-mark hold kubeadm
 
 sudo kubeadm version
