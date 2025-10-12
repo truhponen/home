@@ -18,7 +18,7 @@ echo "Set variables"
 echo "|"
 
 export KUBERNETES_NODE=dell-7040-1
-export KUBERNETES_VERSION=v1.30
+export KUBERNETES_VERSION=v1.31
 export KUBERNETES_PATCH_VERSION='1.30.14-1.1'
 export CRIO_PATCH_VERSION='1.30.14-1.1'
 
