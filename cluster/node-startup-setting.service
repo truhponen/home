@@ -1,0 +1,12 @@
+[Unit]
+Description=Kubernetes node settings
+After=network-online.target
+Before=crio.service
+ 
+[Service]
+User=root
+ExecStart=/usr/sbin/node_startup_settings.sh 
+TimeoutSec=10
+ 
+[Install]
+WantedBy=multi-user.target
