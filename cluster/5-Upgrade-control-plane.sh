@@ -17,6 +17,7 @@ echo "|"
 echo "Set variables"
 echo "|"
 
+export KUBERNETES_NODE=dell-7040-1
 export KUBERNETES_VERSION=v1.30
 export KUBERNETES_PATCH_VERSION='1.30.14-1.1'
 export CRIO_PATCH_VERSION='1.30.14-1.1'
@@ -62,12 +63,16 @@ sudo kubeadm version
 sudo kubeadm upgrade plan
 echo upgrade with \'sudo kubeadm upgrade apply $KUBERNETES_PATCH_VERSION\'
 
+OR
+
+sudo kubeadm upgrade node
+
 echo "|"
 echo "Upgrade cri-o with apt"
 echo "|"
 
 sudo apt-mark unhold cri-o && \
-sudo apt-get update && sudo apt-get install -y cri-o=\'$CRIO_PATCH_VERSION\' && \
+sudo apt-get update && sudo apt-get install -y cri-o=$CRIO_PATCH_VERSION && \
 sudo apt-mark hold cri-o
 
 sudo systemctl daemon-reload
@@ -77,18 +82,20 @@ echo "|"
 echo "Drain node"
 echo "|"
 
-echo drain nodes with 'kubectl drain dell-5050-1 --ignore-daemonsets --delete-emptydir-data'
+kubectl drain $KUBERNETES_NODE --ignore-daemonsets --delete-emptydir-data
 
 echo "|"
 echo "Upgrade kubelet and kubectl with apt"
 echo "|"
 
 sudo apt-mark unhold kubelet kubectl && \
-sudo apt-get update && sudo apt-get install -y kubelet='1.30.14-*' kubectl='1.30.14-*' && \
+sudo apt-get update && sudo apt-get install -y kubelet=$KUBERNETES_PATCH_VERSION kubectl=$KUBERNETES_PATCH_VERSION && \
 sudo apt-mark hold kubelet kubectl
 
 sudo systemctl daemon-reload
 sudo systemctl restart kubelet
+
+kubectl uncordon $KUBERNETES_NODE
 
 #echo "|"
 #echo "Upgrade Kubernetes programs with apt"
