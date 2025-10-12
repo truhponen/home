@@ -4,7 +4,7 @@
 # Check upgradeable version with 'sudo kubeadm upgrade plan'
 # Run this script as root
 # sudo -i
-# curl https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/1-bootstrap-bare-metal-cluster.sh | bash
+# curl https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/5%20-%20Upgrade%20control%20plane | bash
 
 echo "|"
 echo "Set variables"
