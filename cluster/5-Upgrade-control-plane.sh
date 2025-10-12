@@ -10,8 +10,8 @@ echo "|"
 echo "Set variables"
 echo "|"
 
-export KUBERNETES_VERSION=v1.30
-export KUBERNETES_PATCH_VERSION=v1.30.14-1.1
+KUBERNETES_VERSION=v1.30
+KUBERNETES_PATCH_VERSION=v1.30.14-1.1
 
 
 echo "|"
