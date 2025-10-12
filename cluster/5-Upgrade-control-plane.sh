@@ -47,7 +47,7 @@ sudo apt-mark hold kubeadm
 
 sudo kubeadm version
 sudo kubeadm upgrade plan
-echo upgrade with 'sudo kubeadm upgrade apply $KUBERNETES_PATCH_VERSION'
+echo upgrade with \'sudo kubeadm upgrade apply $KUBERNETES_PATCH_VERSION\'
 
 
 
