@@ -49,9 +49,7 @@ sudo kubeadm version
 sudo kubeadm upgrade plan
 echo upgrade with \'sudo kubeadm upgrade apply $KUBERNETES_PATCH_VERSION\'
 
-
-
-#echo drain nodes with 'kubectl drain NODE'
+echo drain nodes with 'kubectl drain dell-5050-1 --ignore-daemonsets --delete-emptydir-data'
 
 #echo "|"
 #echo "Upgrade Kubernetes programs with apt"
