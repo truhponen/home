@@ -84,7 +84,9 @@ sudo apt-get update && sudo apt-get install -y cri-o=$CRIO_PATCH_VERSION && \
 sudo apt-mark hold cri-o
 
 sudo systemctl daemon-reload
+echo "Systemctl daemon reloaded"
 sudo systemctl restart crio
+echo "Cri-o restarted"
 
 
 # Define latest Kubernetes patch version
@@ -98,19 +100,9 @@ sudo apt-get update && sudo apt-get install -y kubelet=$KUBERNETES_PATCH_VERSION
 sudo apt-mark hold kubelet kubectl
 
 sudo systemctl daemon-reload
+echo "Systemctl daemon reloaded"
 sudo systemctl restart kubelet
+echo "Systemctl restarted"
 
 # On control plane uncordon node
 kubectl uncordon $KUBERNETES_DRAIN_NODE
-
-#echo "|"
-#echo "Upgrade Kubernetes programs with apt"
-#echo "|"
-
-#sudo apt-mark unhold cri-o kubelet kubeadm kubectl && \
-#sudo apt-get update && sudo apt-get install -y cri-o=$KUBERNETES_VERSION kubelet=KUBERNETES_PATCH_VERSION kubeadm=KUBERNETES_PATCH_VERSION kubectl=KUBERNETES_PATCH_VERSION && \
-#sudo apt-mark hold cri-o kubelet kubeadm kubectl
-
-#echo upgrade cluster with 'sudo kubeadm upgrade apply $KUBERNETES_PATCH_VERSION'
-#echo drain nodes with 'kubectl drain NODE'
-#systemctl status kubelet
