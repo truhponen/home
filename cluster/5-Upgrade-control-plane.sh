@@ -6,61 +6,64 @@
 # sudo -i
 # curl https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/5-Upgrade-control-plane.sh | bash
 
+# NAME           ROLES
+# dell-5050-1    control-plane
+# dell-7040-1    <none>
+# lenovo-m910q   <none>
 
-echo "|"
-echo "Set variables"
-echo "|"
-
-export KUBERNETES_NODE=dell-5050-1
+export KUBERNETES_NODE=lenovo-m910q 
 export KUBERNETES_VERSION=v1.31
 
 echo $KUBERNETES_NODE
 echo $KUBERNETES_VERSION
 
-echo "|"
-echo "Add Kubernetes repository"
-echo "|"
-
+# Upgrade Kubernetes repository
 curl -fsSL https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/Release.key | 
     sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 
 echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/$KUBERNETES_VERSION/deb/ /" |
     sudo tee /etc/apt/sources.list.d/kubernetes.list
 
+# Check available kubeadm version
+sudo apt update
+sudo apt-cache madison kubeadm
 
-echo "|"
-echo "Add Cri-o repository"
-echo "|"
+# Define latest patch version
+export KUBERNETES_PATCH_VERSION='1.31.13'
+echo $KUBERNETES_PATCH_VERSION
 
+
+# Upgrade kubeadm with apt
+sudo apt-mark unhold kubeadm && \
+sudo apt-get update && sudo apt-get install -y kubeadm=$KUBERNETES_PATCH_VERSION && \
+sudo apt-mark hold kubeadm
+
+# Control plane node
+sudo kubeadm version
+sudo kubeadm upgrade plan
+echo upgrade with \'sudo kubeadm upgrade apply $KUBERNETES_PATCH_VERSION\'
+
+# Worker node
+sudo kubeadm version
+sudo kubeadm upgrade plan
+sudo kubeadm upgrade node
+
+# Upgrade Cri-o repository
 curl -fsSL https://download.opensuse.org/repositories/isv:/cri-o:/stable:/$KUBERNETES_VERSION/deb/Release.key |
     sudo gpg --dearmor -o /etc/apt/keyrings/cri-o-apt-keyring.gpg
 
 echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://download.opensuse.org/repositories/isv:/cri-o:/stable:/$KUBERNETES_VERSION/deb/ /" |
     sudo tee /etc/apt/sources.list.d/cri-o.list
 
+# Check available cri-o version
 sudo apt update
-sudo apt-cache madison kubeadm
-sudo apt-cache madison kubelet
-sudo apt-cache madison kubectl
 sudo apt-cache madison cri-o
 
-export KUBERNETES_PATCH_VERSION='1.31.13'
+# Define latest crio patch version
 export CRIO_PATCH_VERSION='1.31.13-1.1'
-
-echo $KUBERNETES_PATCH_VERSION
 echo $CRIO_PATCH_VERSION
 
-echo "|"
-echo "Upgrade kubeadm with apt"
-echo "|"
 
-sudo apt-mark unhold kubeadm && \
-sudo apt-get update && sudo apt-get install -y kubeadm=$KUBERNETES_PATCH_VERSION && \
-sudo apt-mark hold kubeadm
-
-echo "|"
-echo "Drain node"
-echo "|"
 
 kubectl drain $KUBERNETES_NODE --ignore-daemonsets --delete-emptydir-data
 
