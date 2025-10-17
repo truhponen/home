@@ -7,24 +7,15 @@
 # curl https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/5-Upgrade-control-plane.sh | bash
 
 
-sudo apt update
-sudo apt-cache madison kubeadm
-sudo apt-cache madison cri-o
-sudo apt-cache madison kubelet
-sudo apt-cache madison kubectl
-
 echo "|"
 echo "Set variables"
 echo "|"
 
-export KUBERNETES_NODE=dell-7040-1
+export KUBERNETES_NODE=dell-5050-1
 export KUBERNETES_VERSION=v1.31
-export KUBERNETES_PATCH_VERSION='1.30.14-1.1'
-export CRIO_PATCH_VERSION='1.30.14-1.1'
 
+echo $KUBERNETES_NODE
 echo $KUBERNETES_VERSION
-echo $KUBERNETES_PATCH_VERSION
-echo $CRIO_PATCH_VERSION
 
 echo "|"
 echo "Add Kubernetes repository"
@@ -47,6 +38,18 @@ curl -fsSL https://download.opensuse.org/repositories/isv:/cri-o:/stable:/$KUBER
 echo "deb [signed-by=/etc/apt/keyrings/cri-o-apt-keyring.gpg] https://download.opensuse.org/repositories/isv:/cri-o:/stable:/$KUBERNETES_VERSION/deb/ /" |
     sudo tee /etc/apt/sources.list.d/cri-o.list
 
+sudo apt update
+sudo apt-cache madison kubeadm
+sudo apt-cache madison kubelet
+sudo apt-cache madison kubectl
+sudo apt-cache madison cri-o
+
+export KUBERNETES_PATCH_VERSION='1.31.13'
+export CRIO_PATCH_VERSION='1.31.13-1.1'
+
+echo $KUBERNETES_PATCH_VERSION
+echo $CRIO_PATCH_VERSION
+
 echo "|"
 echo "Upgrade kubeadm with apt"
 echo "|"
@@ -54,6 +57,12 @@ echo "|"
 sudo apt-mark unhold kubeadm && \
 sudo apt-get update && sudo apt-get install -y kubeadm=$KUBERNETES_PATCH_VERSION && \
 sudo apt-mark hold kubeadm
+
+echo "|"
+echo "Drain node"
+echo "|"
+
+kubectl drain $KUBERNETES_NODE --ignore-daemonsets --delete-emptydir-data
 
 echo "|"
 echo "Apply upgrade"
@@ -77,12 +86,6 @@ sudo apt-mark hold cri-o
 
 sudo systemctl daemon-reload
 sudo systemctl restart crio
-
-echo "|"
-echo "Drain node"
-echo "|"
-
-kubectl drain $KUBERNETES_NODE --ignore-daemonsets --delete-emptydir-data
 
 echo "|"
 echo "Upgrade kubelet and kubectl with apt"
