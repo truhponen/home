@@ -1,15 +1,7 @@
-#!/bin/bash
-
-# Run on each node
-# Check upgradeable version with 'sudo kubeadm upgrade plan'
-# Run this script as root
-# sudo -i
-# curl https://raw.githubusercontent.com/truhponen/home/refs/heads/main/cluster/5-Upgrade-control-plane.sh | bash
-
 ####################### UPGRADE KUBEADM #######################
 
 export KUBERNETES_VERSION=v1.31
-echo $KUBERNETES_VERSION
+echo KUBERNETES_VERSION is $KUBERNETES_VERSION
 
 
 # Upgrade Kubernetes repository
@@ -25,7 +17,7 @@ sudo apt-cache madison kubeadm
 
 # Define latest patch version
 export KUBERNETES_PATCH_VERSION='1.31.13-1.1'
-echo $KUBERNETES_PATCH_VERSION
+echo KUBERNETES_PATCH_VERSION is $KUBERNETES_PATCH_VERSION
 
 
 # Upgrade kubeadm with apt
@@ -46,19 +38,19 @@ sudo kubeadm upgrade node
 
 ####################### UPGRADE CRI-O KUBELET KUBECTL #######################
 
-export KUBERNETES_VERSION=v1.31
-echo $KUBERNETES_VERSION
-
+# On control plane to drain node 
 export KUBERNETES_DRAIN_NODE=dell-5050-1
-echo $KUBERNETES_DRAIN_NODE
+echo KUBERNETES_DRAIN_NODE is $KUBERNETES_DRAIN_NODE
 
+# ... or
 export KUBERNETES_DRAIN_NODE=lenovo-m910q 
-echo $KUBERNETES_DRAIN_NODE
+echo KUBERNETES_DRAIN_NODE is $KUBERNETES_DRAIN_NODE
 
+# ... or
 export KUBERNETES_DRAIN_NODE=dell-7040-1
-echo $KUBERNETES_DRAIN_NODE
+echo KUBERNETES_DRAIN_NODE is $KUBERNETES_DRAIN_NODE
 
-# On control plane Drain node 
+# On control plane to drain node 
 kubectl drain $KUBERNETES_DRAIN_NODE --ignore-daemonsets --delete-emptydir-data
 
 
@@ -77,7 +69,7 @@ sudo apt-cache madison cri-o
 
 # Define latest crio patch version
 export CRIO_PATCH_VERSION='1.31.13-1.1'
-echo $CRIO_PATCH_VERSION
+echo CRIO_PATCH_VERSION is $CRIO_PATCH_VERSION
 
 sudo apt-mark unhold cri-o && \
 sudo apt-get update && sudo apt-get install -y cri-o=$CRIO_PATCH_VERSION && \
@@ -91,7 +83,7 @@ echo "Cri-o restarted"
 
 # Define latest Kubernetes patch version
 export KUBERNETES_PATCH_VERSION='1.31.13-1.1'
-echo $KUBERNETES_PATCH_VERSION
+echo KUBERNETES_PATCH_VERSION is $KUBERNETES_PATCH_VERSION
 
 
 # Upgrade kubelet and kubectl with apt
