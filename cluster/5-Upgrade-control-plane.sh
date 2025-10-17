@@ -1,6 +1,6 @@
 ####################### UPGRADE KUBEADM #######################
 
-export KUBERNETES_VERSION=v1.31
+export KUBERNETES_VERSION=v1.32
 echo KUBERNETES_VERSION is $KUBERNETES_VERSION
 
 
@@ -16,13 +16,15 @@ sudo apt update
 sudo apt-cache madison kubeadm
 
 # Define latest patch version
-export KUBERNETES_PATCH_VERSION='1.31.13-1.1'
+export KUBERNETES_APT_VERSION='1.32.9-1.1'
+export KUBERNETES_UPGRADE_VERSION='1.32.9'
 echo KUBERNETES_PATCH_VERSION is $KUBERNETES_PATCH_VERSION
+echo KUBERNETES_PATCH_VERSION is $KUBERNETES_UPGRADE_VERSION
 
 
 # Upgrade kubeadm with apt
 sudo apt-mark unhold kubeadm && \
-sudo apt-get update && sudo apt-get install -y kubeadm=$KUBERNETES_PATCH_VERSION && \
+sudo apt-get update && sudo apt-get install -y kubeadm=$KUBERNETES_APT_VERSION && \
 sudo apt-mark hold kubeadm
 
 # Check Upgrade plan
@@ -30,7 +32,7 @@ sudo kubeadm version
 sudo kubeadm upgrade plan
 
 # Control plane node
-sudo kubeadm upgrade apply $KUBERNETES_PATCH_VERSION\'
+sudo kubeadm upgrade apply $KUBERNETES_UPGRADE_VERSION
 
 # Worker node
 sudo kubeadm upgrade node
@@ -68,11 +70,11 @@ sudo apt-cache madison cri-o
 
 
 # Define latest crio patch version
-export CRIO_PATCH_VERSION='1.31.13-1.1'
-echo CRIO_PATCH_VERSION is $CRIO_PATCH_VERSION
+export CRIO_APT_VERSION='1.31.13-1.1'
+echo CRIO_PATCH_VERSION is $CRIO_APT_VERSION
 
 sudo apt-mark unhold cri-o && \
-sudo apt-get update && sudo apt-get install -y cri-o=$CRIO_PATCH_VERSION && \
+sudo apt-get update && sudo apt-get install -y cri-o=$CRIO_APT_VERSION && \
 sudo apt-mark hold cri-o
 
 sudo systemctl daemon-reload
@@ -88,7 +90,7 @@ echo KUBERNETES_PATCH_VERSION is $KUBERNETES_PATCH_VERSION
 
 # Upgrade kubelet and kubectl with apt
 sudo apt-mark unhold kubelet kubectl && \
-sudo apt-get update && sudo apt-get install -y kubelet=$KUBERNETES_PATCH_VERSION kubectl=$KUBERNETES_PATCH_VERSION && \
+sudo apt-get update && sudo apt-get install -y kubelet=$KUBERNETES_APT_VERSION kubectl=$KUBERNETES_APT_VERSION && \
 sudo apt-mark hold kubelet kubectl
 
 sudo systemctl daemon-reload
