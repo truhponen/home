@@ -99,7 +99,7 @@ sudo apt-mark hold kubelet kubectl
 sudo systemctl daemon-reload
 echo "Systemctl daemon reloaded"
 sudo systemctl restart kubelet
-echo "Systemctl restarted"
+echo "Kubelet restarted"
 
 
 # On control plane uncordon node
