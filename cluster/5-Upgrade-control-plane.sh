@@ -1,6 +1,6 @@
 ####################### UPGRADE KUBEADM #######################
 
-export KUBERNETES_VERSION=v1.32
+export KUBERNETES_VERSION=v1.33
 echo KUBERNETES_VERSION is $KUBERNETES_VERSION
 
 
@@ -16,10 +16,10 @@ sudo apt update
 sudo apt-cache madison kubeadm
 
 # Define latest patch version
-export KUBERNETES_APT_VERSION='1.32.9-1.1'
-export KUBERNETES_UPGRADE_VERSION='1.32.9'
-echo KUBERNETES_PATCH_VERSION is $KUBERNETES_PATCH_VERSION
-echo KUBERNETES_PATCH_VERSION is $KUBERNETES_UPGRADE_VERSION
+export KUBERNETES_APT_VERSION='1.33.5-1.1' # with '-1.1'
+export KUBERNETES_UPGRADE_VERSION='1.33.5' # without '-1.1'
+echo KUBERNETES_APT_VERSION is $KUBERNETES_APT_VERSION
+echo KUBERNETES_UPGRADE_VERSION is $KUBERNETES_UPGRADE_VERSION
 
 
 # Upgrade kubeadm with apt
@@ -70,7 +70,7 @@ sudo apt-cache madison cri-o
 
 
 # Define latest crio patch version
-export CRIO_APT_VERSION='1.31.13-1.1'
+export CRIO_APT_VERSION='1.33.5-1.1'
 echo CRIO_PATCH_VERSION is $CRIO_APT_VERSION
 
 sudo apt-mark unhold cri-o && \
@@ -81,11 +81,6 @@ sudo systemctl daemon-reload
 echo "Systemctl daemon reloaded"
 sudo systemctl restart crio
 echo "Cri-o restarted"
-
-
-# Define latest Kubernetes patch version
-export KUBERNETES_PATCH_VERSION='1.31.13-1.1'
-echo KUBERNETES_PATCH_VERSION is $KUBERNETES_PATCH_VERSION
 
 
 # Upgrade kubelet and kubectl with apt
