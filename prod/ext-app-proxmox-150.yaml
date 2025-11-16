@@ -44,6 +44,6 @@ ports:
     port: 8006
 endpoints:
   - addresses:
-      - "192.168.68.150
+      - "192.168.68.150"
     conditions:
       ready: true
