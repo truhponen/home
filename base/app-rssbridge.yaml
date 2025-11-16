@@ -1,0 +1,77 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rssbridge
+spec:
+  tls:
+  - secretName: rssbridge-certs
+    hosts:
+    - rssbridge.kotimme.cc
+  rules:
+  - host: freshrss.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: rssbridge
+            port:
+              name: http
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rssbridge
+  labels:
+    app: rssbridge
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  selector:
+    app: rssbridge
+  type: NodePort
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: rssbridge
+  labels:
+    app: rssbridge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rssbridge
+  serviceName: "rssbridge"
+  template:
+    metadata:
+      labels:
+        app: rssbridge
+    spec:
+#      securityContext:
+#        fsGroup: 1978
+#      imagePullSecrets:
+#        - name: docker-hub
+      containers:
+
+      - name: rssbridge
+        image: rss-bridge
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: http
+          containerPort: 3000
+        volumeMounts:
+        - name: pvc-nfs
+          mountPath: /config
+          subPath: rssbridge/config
+
+      volumes:
+        - name: pvc-nfs
+          persistentVolumeClaim:
+           claimName: nfs
