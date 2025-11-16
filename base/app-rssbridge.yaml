@@ -9,7 +9,7 @@ spec:
     hosts:
     - rssbridge.kotimme.cc
   rules:
-  - host: freshrss.kotimme.cc
+  - host: rssbridge.kotimme.cc
     http:
       paths:
       - path: /
