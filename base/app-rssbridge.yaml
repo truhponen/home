@@ -61,7 +61,7 @@ spec:
       containers:
 
       - name: rssbridge
-        image: rss-bridge
+        image: rssbridge/rss-bridge
         imagePullPolicy: IfNotPresent
         ports:
         - name: http
