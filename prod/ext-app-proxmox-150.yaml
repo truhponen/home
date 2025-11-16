@@ -31,14 +31,19 @@ spec:
         targetPort: proxmox-150
     type: ClusterIP
 ---
-apiVersion: v1
-kind: Endpoints
+apiVersion: discovery.k8s.io/v1
+kind: EndpointSlice
 metadata:
   name: proxmox-150
-subsets:
-- addresses:
-  - ip: 192.168.68.150
-  ports:
+  labels:
+    kubernetes.io/service-name: proxmox-150
+addressType: IPv4
+ports:
   - name: proxmox-150
-    port: 8006
     protocol: TCP
+    port: 8006
+endpoints:
+  - addresses:
+      - "192.168.68.150
+    conditions:
+      ready: true
