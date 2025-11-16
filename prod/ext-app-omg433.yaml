@@ -30,15 +30,32 @@ spec:
         port: 80
         targetPort: omg433
     type: ClusterIP
+#---
+#apiVersion: v1
+#kind: Endpoints
+#metadata:
+#  name: omg433
+#subsets:
+#- addresses:
+#  - ip: 192.168.68.138
+#  ports:
+#  - name: omg433
+#    port: 80
+#    protocol: TCP
 ---
 apiVersion: v1
-kind: Endpoints
+kind: EndpointSlice
 metadata:
   name: omg433
-subsets:
-- addresses:
-  - ip: 192.168.68.138
-  ports:
+  labels:
+    kubernetes.io/service-name: omg433
+addressType: IPv4
+ports:
   - name: omg433
-    port: 80
     protocol: TCP
+    port: 80
+endpoints:
+  - addresses:
+      - "192.168.68.138"
+    conditions:
+      ready: true
