@@ -1,0 +1,150 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: freshrss
+spec:
+  tls:
+  - secretName: freshrss-certs
+    hosts:
+    - freshrss.kotimme.cc
+  rules:
+  - host: freshrss.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: freshrss
+            port:
+              name: freshrss-http
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rssbridge
+spec:
+  tls:
+  - secretName: rssbridge-certs
+    hosts:
+    - rssbridge.kotimme.cc
+  rules:
+  - host: freshrss.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: rssbridge
+            port:
+              name: rssbridge-http
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: freshrss
+  labels:
+    app: freshrss
+spec:
+  ports:
+    - name: freshrss-http
+      port: 80
+      targetPort: 80
+  selector:
+    app: rss
+  type: NodePort
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rssbridge
+  labels:
+    app: rssbridge
+spec:
+  ports:
+    - name: rssbridge-http
+      port: 80
+      targetPort: 80
+  selector:
+    app: rss
+  type: NodePort
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: rss
+  labels:
+    app: rss
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rsss
+  serviceName: "rss"
+  template:
+    metadata:
+      labels:
+        app: rss
+    spec:
+#      securityContext:
+#        fsGroup: 1978
+#      imagePullSecrets:
+#        - name: docker-hub
+      containers:
+      - name: freshrss
+        image: freshrss/freshrss
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - secretRef:
+            name: freshrss
+        env:
+        - name: TZ
+          value: Europe/Helsinki
+        - name: CRON_MIN
+          value: '1,31'
+        ports:
+        - name: freshrss-http
+          containerPort: 80
+        volumeMounts:
+        - name: pvc-nfs
+          mountPath: /var/www/FreshRSS/data
+          subPath: freshrss/data
+        - name: pvc-nfs
+          mountPath: /var/www/FreshRSS/extensions
+          subPath: freshrss/extensions
+
+      - name: postgres
+        image: postgres:17-bookworm
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - secretRef:
+            name: freshrss
+        ports:
+        - name: postgres
+          containerPort: 5432
+        volumeMounts:
+        - name: pvc-nfs
+          mountPath: /var/lib/postgresql/data
+          subPath: freshrss/postgres
+
+      - name: rssbridge
+        image: rss-bridge
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: rssbridge-http
+          containerPort: 3000
+        volumeMounts:
+        - name: pvc-nfs
+          mountPath: /config
+          subPath: rssbridge/config
+
+      volumes:
+        - name: pvc-nfs
+          persistentVolumeClaim:
+           claimName: nfs
