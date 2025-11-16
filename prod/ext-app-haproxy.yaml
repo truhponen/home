@@ -30,15 +30,32 @@ spec:
         port: 80
         targetPort: haproxy
     type: ClusterIP
+#---
+#apiVersion: v1
+#kind: Endpoints
+#metadata:
+#  name: haproxy
+#subsets:
+#- addresses:
+#  - ip: 192.168.68.111
+#  ports:
+#  - name: haproxy
+#    port: 8404
+#    protocol: TCP
 ---
 apiVersion: v1
-kind: Endpoints
+kind: EndpointSlice
 metadata:
   name: haproxy
-subsets:
-- addresses:
-  - ip: 192.168.68.111
-  ports:
+  labels:
+    kubernetes.io/service-name: haproxy
+addressType: IPv4
+ports:
   - name: haproxy
-    port: 8404
     protocol: TCP
+    port: 8404
+endpoints:
+  - addresses:
+      - "192.168.68.111"
+    conditions:
+      ready: true
