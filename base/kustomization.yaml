@@ -24,6 +24,7 @@ resources:
   - app-influxdb-telegraf.yaml
   - app-jellyfin.yaml
   - app-keeweb.yaml
+  - app-linkwarden.yaml
   - app-mkdocs.yaml
   - app-mosquitto-mqtt-explorer.yaml
   - app-musicassistant.yaml
