@@ -87,6 +87,18 @@ spec:
           mountPath: /var/lib/postgresql/data
           subPath: linkwarden/postgres
 
+
+      - name: meilisearch
+        image: getmeili/meilisearch:v1.12.8
+        imagePullPolicy: IfNotPresent
+        envFrom:
+        - secretRef:
+            name: linkwarden
+        volumeMounts:
+        - name: pvc-nfs
+          mountPath: /meili_data
+          subPath: linkwarden/meili_data
+
       volumes:
         - name: pvc-nfs
           persistentVolumeClaim:
