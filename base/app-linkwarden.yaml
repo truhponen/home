@@ -36,6 +36,24 @@ spec:
     app: linkwarden
   type: NodePort
 
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: meilisearch
+  labels:
+    app: linkwarden
+spec:
+  ports:
+    - name: meilisearch
+      port: 80
+      targetPort: 80
+  selector:
+    app: linkwarden
+  type: NodePort
+
+
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -94,6 +112,9 @@ spec:
         envFrom:
         - secretRef:
             name: linkwarden
+        ports:
+        - name: meilisearch
+          containerPort: 80
         volumeMounts:
         - name: pvc-nfs
           mountPath: /meili_data
