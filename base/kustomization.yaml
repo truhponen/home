@@ -9,6 +9,7 @@ resources:
   - PersistentVolumeClaim.yaml
   - Secret-docker-hub.yaml
   # - Secret-freshrss.yaml
+  - Secret-linkwarden.yaml
   - Secret-stringer.yaml
   - Secret-technitium.yaml
   - Secret-telegraf.yaml
