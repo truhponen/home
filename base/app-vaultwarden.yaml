@@ -61,7 +61,7 @@ spec:
 #          - --no-autoupdate
         ports:
         - name: vaultwarden
-          containerPort: 8000
+          containerPort: 80
         volumeMounts:
         - name: dir
           mountPath: /vw-data/
