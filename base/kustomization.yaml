@@ -33,6 +33,7 @@ resources:
   - app-picard.yaml
   - app-rssbridge.yaml
 #  - app-technitium.yaml
+  - app-vaultwarden.yaml
   - app-z2m.yaml
 
 configMapGenerator:
