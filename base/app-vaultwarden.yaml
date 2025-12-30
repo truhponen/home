@@ -48,8 +48,8 @@ spec:
       labels:
         app: vaultwarden
     spec:
-      securityContext:
-        fsGroup: 1978
+#      securityContext:
+#        fsGroup: 1978
       containers:
       - name: vaultwarden
         image: vaultwarden/server:latest
