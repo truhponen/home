@@ -1,0 +1,74 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vaultwarden
+spec:
+  tls:
+  - secretName: vaultwarden-certs
+    hosts:
+    - vaultwarden.kotimme.cc
+  rules:
+  - host: vaultwarden.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: vaultwarden
+            port:
+              name: vaultwarden
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: vaultwarden
+spec:
+    ports:
+      - name: vaultwarden
+        port: 80
+        targetPort: vaultwarden
+    selector:
+        app: vaultwarden
+    type: NodePort
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: vaultwarden
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vaultwarden
+  serviceName: "vaultwarden"
+  template:
+    metadata:
+      labels:
+        app: vaultwarden
+    spec:
+      securityContext:
+        fsGroup: 1978
+      containers:
+      - name: vaultwarden
+        image: vaultwarden/server:latest
+        imagePullPolicy: IfNotPresent
+        env: 
+        - name: DOMAIN
+          value: "https://vaultwarden.kotimme.cc"
+#        args: 
+#          - --no-autoupdate
+        ports:
+        - name: vaultwarden
+          containerPort: 8000
+        volumeMounts:
+        - name: dir
+          mountPath: /vw-data/
+          subPath: vaultwarden
+#      imagePullSecrets: 
+#        - name: ghcr.io
+      volumes:
+        - name: dir
+          persistentVolumeClaim:
+           claimName: nfs
