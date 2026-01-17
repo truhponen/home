@@ -38,7 +38,6 @@ kind: StatefulSet
 metadata:
   name: jellyfin
 spec:
-  hostNetwork: true
   replicas: 1
   selector:
     matchLabels:
@@ -49,6 +48,7 @@ spec:
       labels:
         app: jellyfin
     spec:
+      hostNetwork: true
       securityContext:
         fsGroup: 1978
       containers:
