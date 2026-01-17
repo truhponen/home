@@ -38,6 +38,7 @@ kind: StatefulSet
 metadata:
   name: jellyfin
 spec:
+  hostNetwork: true
   replicas: 1
   selector:
     matchLabels:
