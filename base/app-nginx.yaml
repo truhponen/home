@@ -82,7 +82,8 @@ spec:
         targetPort: nginx
     selector:
         app: nginx
-    type: NodePort
+    type: LoadBalancer
+        loadBalancerIP: 192.168.68.205
 ---
 apiVersion: apps/v1
 kind: StatefulSet
