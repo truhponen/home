@@ -1,0 +1,60 @@
+# This manifest installs Rygel DLNA/UPnP media server
+# hostNetwork is required for UPnP multicast discovery to reach LAN devices
+ 
+# Service exposes the DLNA HTTP port
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: rygel
+spec:
+    ports:
+      - name: dlna
+        port: 8200
+        targetPort: dlna
+    selector:
+        app: rygel
+    type: ClusterIP
+ 
+# StatefulSet with replicas=1 and persistent config storage
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: rygel
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rygel
+  serviceName: "rygel"
+  template:
+    metadata:
+      labels:
+        app: rygel
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      securityContext:
+        fsGroup: 1978
+      containers:
+      - name: rygel
+        image: ghcr.io/yourina/rygel:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: dlna
+          containerPort: 8200
+        volumeMounts:
+        - name: dir
+          mountPath: /root/.config
+          subPath: rygel/config
+        - name: rygel-conf
+          mountPath: /etc/rygel.conf
+          subPath: rygel.conf
+      volumes:
+        - name: dir
+          persistentVolumeClaim:
+           claimName: nfs
+        - name: rygel-conf
+          configMap:
+            name: app-rygel-conf
