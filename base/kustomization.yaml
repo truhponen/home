@@ -44,3 +44,7 @@ configMapGenerator:
   - name: app-influxdb-telegraf-telegraf-conf
     files:
       - config/app-influxdb-telegraf/telegraf.conf
+  - name: app-rygel-conf
+    files:
+      - config/app-rygel/rygel.conf
+ 
