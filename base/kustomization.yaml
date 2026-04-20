@@ -32,6 +32,7 @@ resources:
   - app-nginx.yaml
   - app-picard.yaml
   - app-rssbridge.yaml
+  - app-rygel.yaml
 #  - app-technitium.yaml
   - app-vaultwarden.yaml
   - app-z2m.yaml
