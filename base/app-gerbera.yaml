@@ -58,7 +58,7 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - name: gerbera
-          containerPort: 5800
+          containerPort: 49494
         volumeMounts:
         - name: config
           mountPath: /var/run/gerbera
