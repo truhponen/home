@@ -1,0 +1,76 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gerbera
+spec:
+  tls:
+  - secretName: gerbera-certs
+    hosts:
+    - gerbera.kotimme.cc
+  rules:
+  - host: gerbera.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: gerbera
+            port:
+              name: gerbera
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: gerbera
+spec:
+    ports:
+      - name: gerbera
+        port: 80
+        targetPort: gerbera
+    selector:
+        app: gerbera
+    type: NodePort
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: gerbera
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gerbera
+  serviceName: "gerbera"
+  template:
+    metadata:
+      labels:
+        app: gerbera
+    spec:
+#      securityContext:
+#        fsGroup: 1978
+      imagePullSecrets:
+        - name: docker-hub
+      containers:
+      - name: gerbera
+        image: gerbera/gerbera:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: gerbera
+          containerPort: 5800
+        volumeMounts:
+        - name: config
+          mountPath: /var/run/gerbera
+          subPath: gerbera/config
+        - name: content
+          mountPath: /content
+          subPath: gerbera/content
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+           claimName: nfs
+        - name: content
+          persistentVolumeClaim:
+           claimName: nfs
+          
