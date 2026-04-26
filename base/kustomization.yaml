@@ -18,6 +18,7 @@ resources:
   - app-excalidraw.yaml
   - app-filestash.yaml
   - app-freshrss.yaml
+  - app-gerbera.yaml
   - app-grafana.yaml
   - app-grav.yaml
   - app-homeassistant-piper-whisper.yaml
