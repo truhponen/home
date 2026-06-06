@@ -2,14 +2,14 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: technitium
+  name: lxc-technitium
 spec:
   tls:
-  - secretName: technitium-certs
+  - secretName: lxc-technitium-certs
     hosts:
-    - technitium.kotimme.cc
+    - lxc-technitium.kotimme.cc
   rules:
-  - host: technitium.kotimme.cc
+  - host: lxc-technitium.kotimme.cc
     http:
       paths:
       - path: /
@@ -23,7 +23,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: technitium
+    name: lxc-technitium
 spec:
     ports:
       - name: technitium
