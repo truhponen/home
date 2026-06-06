@@ -34,7 +34,7 @@ resources:
   - app-picard.yaml
   - app-rssbridge.yaml
   - app-rygel.yaml
-#  - app-technitium.yaml
+  - app-technitium.yaml
   - app-vaultwarden.yaml
   - app-z2m.yaml
 
