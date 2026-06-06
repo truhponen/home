@@ -44,7 +44,7 @@ resources:
   - ext-app-proxmox-150.yaml
   - ext-app-proxmox-backup-190.yaml
   - ext-app-semaphore.yaml
-  # - ext-app-technitium.yaml
+  - ext-app-technitium.yaml
   
 
 configMapGenerator:
