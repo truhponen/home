@@ -62,8 +62,8 @@ spec:
       labels:
         app: technitium
     spec:
-      securityContext:
-        fsGroup: 1978
+      # securityContext:
+      #  fsGroup: 1978
       containers:
       - name: technitium
         image: technitium/dns-server:latest
