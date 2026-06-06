@@ -81,7 +81,7 @@ spec:
           containerPort: 53
         volumeMounts:
         - name: dir
-          mountPath: 	/etc/dns
+          mountPath: /etc/dns
           subPath: technitium
       imagePullSecrets: 
         - name: docker-hub
