@@ -18,7 +18,7 @@ resources:
   - app-excalidraw.yaml
   - app-filestash.yaml
   - app-freshrss.yaml
-  - app-gerbera.yaml
+  # - app-gerbera.yaml
   - app-grafana.yaml
   - app-grav.yaml
   - app-homeassistant-piper-whisper.yaml
@@ -33,7 +33,7 @@ resources:
   - app-nginx.yaml
   - app-picard.yaml
   - app-rssbridge.yaml
-  - app-rygel.yaml
+  # - app-rygel.yaml
   - app-technitium.yaml
   - app-vaultwarden.yaml
   - app-z2m.yaml
