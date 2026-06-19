@@ -124,11 +124,11 @@ spec:
           containerPort: 8080
         - name: https
           containerPort: 8443
-#        readinessProbe:
-#          httpGet:
-#            path: /health/ready
-#            port: 9000
-#            scheme: HTTPS
+        readinessProbe:
+          httpGet:
+            path: /health/ready
+            port: 9000
+            scheme: HTTPS
         volumeMounts:
         - name: certificate
           mountPath: /opt/keycloak/conf/certificate
