@@ -7,6 +7,6 @@ metadata:
 spec:
   local:
     v4pools:
-    - subnet: 192.168.80.0/24
-      pool: 192.168.80.1-192.168.80.100
+    - subnet: 192.168.68.0/22
+      pool: 192.168.70.1-192.168.70.100
       aggregation: default
