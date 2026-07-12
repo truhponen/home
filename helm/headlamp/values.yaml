@@ -5,6 +5,7 @@ config:
     externalSecret:
       enabled: true
       name: "oidc-headlamp"
+ingress:
   hosts:
   - host: headlamp.kotimme.cc
     paths:
