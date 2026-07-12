@@ -1,0 +1,39 @@
+namespaceOverride: "prometheus"
+alertmanager:
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: cloudflare-dns
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    hosts:
+      - prometheus-alertmanager.kotimme.cc
+    tls:
+      - secretName: prometheus-alertmanager-certs
+        hosts:
+          - prometheus-alertmanager.kotimme.cc
+
+grafana:
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: cloudflare-dns
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    hosts:
+      - prometheus-grafana.kotimme.cc
+    tls:
+      - secretName: rometheus-grafana-certs
+        hosts:
+          - prometheus-grafana.kotimme.cc
+
+prometheus:
+  ingress:
+    enabled: true
+    annotations:
+      cert-manager.io/cluster-issuer: cloudflare-dns
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    hosts:
+      - prometheus.kotimme.cc
+    tls:
+      - secretName: prometheus-certs
+        hosts:
+          - prometheus.kotimme.cc
