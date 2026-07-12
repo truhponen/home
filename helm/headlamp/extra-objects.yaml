@@ -1,0 +1,24 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: headlamp
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare-dns
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+spec:
+  tls:
+  - secretName: headlamp-certs
+    hosts:
+    - headlamp.kotimme.cc
+  rules:
+  - host: headlamp.kotimme.cc
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: headlamp
+            port:
+              name: 80
