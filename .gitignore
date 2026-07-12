@@ -5,7 +5,6 @@ base/Secret-influxdb.yaml
 base/Secret-technitium.yaml
 base/Secret-telegraf.yaml
 cluster/traefik/Secret.yaml
-cluster/cert-manager/Secret.yaml
 cluster/Secret-kubernetes-dashboard-oauth2-proxy.yaml
 cluster/Secret-kubernetes-dashboard.yaml
 cluster/Secret-keycloak.yaml
@@ -24,3 +23,4 @@ archive/values-traefik/Secret.yaml
 archive
 work/Secret-docker-hub.yaml
 base/Secret-linkwarden.yaml
+helm/cert-manager/Secret.yaml
