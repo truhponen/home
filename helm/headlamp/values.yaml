@@ -60,7 +60,8 @@ config:
     #       name: oidc
     secret:
       # -- Generate OIDC secret. If true, will generate a secret using .config.oidc.
-      create: true
+####################### CHANGES ########################
+      create: false
       # -- Name of the OIDC secret.
       name: oidc
 
@@ -109,9 +110,10 @@ config:
     #     externalSecret:
     #       enabled: true
     #       name: oidc
+####################### CHANGES ########################
     externalSecret:
-      enabled: false
-      name: ""
+      enabled: true
+      name: "oidc-headlamp"
       # -- Set to true if your external secret contains an OIDC_SCOPES key.
       # When false (default), the -oidc-scopes argument is omitted so that
       # a missing key does not produce an empty or unresolved argument.
@@ -336,12 +338,12 @@ ingress:
   - host: headlamp.kotimme.cc
     paths:
     - path: /
-      pathType: Prefix
+      type: ImplementationSpecific
       backend:
         service:
-          name: headlamp
+          name: my-headlamp
           port:
-            name: 80
+            name: http
 
   # -- Ingress TLS configuration
 ####################### CHANGES ########################
