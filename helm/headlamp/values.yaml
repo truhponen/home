@@ -6,6 +6,11 @@ config:
       enabled: true
       name: "oidc-headlamp"
 ingress:
+ingress:
+  enabled: true
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare-dns
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
   hosts:
   - host: headlamp.kotimme.cc
     paths:
