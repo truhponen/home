@@ -1,12 +1,12 @@
 namespace: work
 
 resources:
+  - ../bootstrap/
 # Non-namespaced objects
   - PersistentVolume-work.yaml
   - PersistentVolumeClaim.yaml
 # Namespaced objects
   - Namespace.yaml
-  - ../bootstrap/Secret-docker-hub.yaml
 # Namespaced apps
   - app-nginx-work.yaml
   - app-solr.yaml

@@ -7,7 +7,6 @@ resources:
   - Namespace.yaml
   - Certificate-root-star.yaml
   - PersistentVolumeClaim.yaml
-  - ../bootstrap/Secret-docker-hub.yaml
   # - Secret-freshrss.yaml
   - Secret-linkwarden.yaml
   - Secret-stringer.yaml

@@ -1,6 +1,7 @@
 namespace: prod
 resources:
   - ../base/
+  - ../bootstrap/
 
 patches:
   - path: patch-PersistentVolumeClaim.yaml
