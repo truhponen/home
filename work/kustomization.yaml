@@ -6,7 +6,7 @@ resources:
   - PersistentVolumeClaim.yaml
 # Namespaced objects
   - Namespace.yaml
-  - Secret-docker-hub.yaml
+  - ../bootstrap/Secret-docker-hub.yaml
 # Namespaced apps
   - app-nginx-work.yaml
   - app-solr.yaml

@@ -26,3 +26,4 @@ base/Secret-linkwarden.yaml
 helm/cert-manager/Secret.yaml
 helm/headlamp/Secret-headlamp.yaml
 helm/headlamp/Secret-oidc-headlamp.yaml
+bootstrap/Secret-docker-hub.yaml
