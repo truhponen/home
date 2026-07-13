@@ -21,7 +21,7 @@ grafana:
     hosts:
       - prometheus-grafana.kotimme.cc
     tls:
-      - secretName: rometheus-grafana-certs
+      - secretName: prometheus-grafana-certs
         hosts:
           - prometheus-grafana.kotimme.cc
 
