@@ -1,6 +1,7 @@
 namespace: whitelabel
 
 resources:
+ - ../../bootstrap/
 # Non-namespaced objects
   - PersistentVolume-whitelabel.yaml
 # Namespaced objects

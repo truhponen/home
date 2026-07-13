@@ -1,8 +1,12 @@
-namespace: test
+namespace: qa
 resources:
+  - ../../bootstrap/
   - ../base/
 
 patches:
   - path: patch-PersistentVolumeClaim.yaml
     target:
       kind: PersistentVolumeClaim
+
+transformers:
+  - prefix-transformer-host.yaml

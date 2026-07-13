@@ -2,6 +2,7 @@ namespace: cluster
 
 resources:
 # Non-namespaced objects
+  - ../../bootstrap/
   - PersistentVolume-cluster.yaml
   - PersistentVolumeClaim.yaml
 # Namespaced objects
@@ -28,7 +29,7 @@ patches:
   - path: patch-Ingress.yaml
     target:
       kind: Ingress
-      
+
 #configMapGenerator:
 #  - name: app-redis-redis-conf
 #    files:

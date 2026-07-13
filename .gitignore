@@ -27,3 +27,16 @@ helm/cert-manager/Secret.yaml
 helm/headlamp/Secret-headlamp.yaml
 helm/headlamp/Secret-oidc-headlamp.yaml
 bootstrap/Secret-docker-hub.yaml
+kustomization/base/Secret-freshrss.yaml
+kustomization/base/Secret-influxdb.yaml
+kustomization/base/Secret-linkwarden.yaml
+kustomization/base/Secret-stringer.yaml
+kustomization/base/Secret-technitium.yaml
+kustomization/base/Secret-telegraf.yaml
+kustomization/cluster/Secret-cloudflared.yaml
+kustomization/cluster/Secret-keycloak-postgres.yaml
+kustomization/cluster/Secret-keycloak.yaml
+kustomization/cluster/Secret-kubernetes-dashboard-oauth2-proxy.yaml
+kustomization/cluster/Secret-kubernetes-dashboard.yaml
+kustomization/cluster/Secret-traefik.yaml
+kustomization/whitelabel/Secret-mysql.yaml
